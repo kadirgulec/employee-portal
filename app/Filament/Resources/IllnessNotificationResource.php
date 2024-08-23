@@ -7,6 +7,7 @@ use App\Filament\Resources\IllnessNotificationResource\RelationManagers;
 use App\Models\IllnessNotification;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -24,19 +25,47 @@ class IllnessNotificationResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name')
+                    ->relationship('user', 'id')
+                    ->getOptionLabelFromRecordUsing(fn($record) => $record->first_name.' '.$record->last_name)
+                    ->searchable()
+                    ->preload()
                     ->required(),
-                Forms\Components\TextInput::make('reported_to')
+                Forms\Components\Select::make('reported_to')
+                    ->relationship('reportedTo', 'id')
+                    ->getOptionLabelFromRecordUsing(fn($record) => $record->first_name.' '.$record->last_name)
                     ->required()
-                    ->numeric(),
-                Forms\Components\DatePicker::make('illness_notification_at'),
-                Forms\Components\DatePicker::make('doctor_visited_at'),
+                    ->preload()
+                    ->searchable(),
+
                 Forms\Components\DateTimePicker::make('report_time')
+                    ->default(now())
                     ->required(),
+                Forms\Components\DatePicker::make('illness_notification_at')
+                    ->default(now())
+                    ->required(),
+
+
+                Forms\Components\DatePicker::make('doctor_visited_at')
+                    ->live(),
+
                 Forms\Components\Toggle::make('entgFG')
-                    ->required(),
-                Forms\Components\TextInput::make('incapacity_reason'),
-                Forms\Components\TextInput::make('doctor_certificate'),
+                    ->required(fn (Get $get): bool => filled($get('doctor_visited_at')))
+                    ->hidden(fn (Get $get): bool =>!filled($get('doctor_visited_at'))),
+
+                Forms\Components\Select::make('incapacity_reason')
+                    ->options([
+                        'AU wegen Krankheit' => 'AU wegen Krankheit',
+                    ])
+                    ->required(fn (Get $get): bool => filled($get('doctor_visited_at')))
+                    ->hidden(fn (Get $get): bool =>!filled($get('doctor_visited_at'))),
+
+                Forms\Components\Select::make('doctor_certificate')
+                ->options([
+                    'Erste Bescheinigung' => 'Erste Bescheinigung',
+                    'Folge Bescheinigung' => 'Folge Bescheinigung',
+                ])
+                    ->required(fn (Get $get): bool => filled($get('doctor_visited_at')))
+                    ->hidden(fn (Get $get): bool =>!filled($get('doctor_visited_at'))),
                 Forms\Components\Textarea::make('note')
                     ->columnSpanFull(),
                 Forms\Components\DatePicker::make('sent_at'),
@@ -63,8 +92,7 @@ class IllnessNotificationResource extends Resource
                 Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('reported_to')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('reportedTo.full_name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('illness_notification_at')
                     ->date()
@@ -74,18 +102,23 @@ class IllnessNotificationResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('report_time')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\IconColumn::make('entgFG')
-                    ->boolean(),
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('incapacity_reason')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('doctor_certificate')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('sent_at')
                     ->date()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('sent_to')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -115,7 +148,7 @@ class IllnessNotificationResource extends Resource
         return [
             'index' => Pages\ListIllnessNotifications::route('/'),
             'create' => Pages\CreateIllnessNotification::route('/create'),
-            'view' => Pages\ViewIllnessNotification::route('/{record}'),
+//            'view' => Pages\ViewIllnessNotification::route('/{record}'),
             'edit' => Pages\EditIllnessNotification::route('/{record}/edit'),
         ];
     }

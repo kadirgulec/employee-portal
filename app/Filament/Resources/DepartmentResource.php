@@ -4,7 +4,11 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\DepartmentResource\Pages;
 use App\Filament\Resources\DepartmentResource\RelationManagers;
+use App\Filament\Resources\DepartmentResource\RelationManagers\DepartmentUsersRelationManager;
+use App\Filament\Resources\DepartmentResource\RelationManagers\UsersRelationManager;
+use App\Filament\Resources\UserResource\RelationManagers\DepartmentsRelationManager;
 use App\Models\Department;
+use App\Models\DepartmentUser;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -25,7 +29,7 @@ class DepartmentResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required(),
-                Forms\Components\Toggle::make('leader'),
+
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
             ]);
@@ -45,6 +49,11 @@ class DepartmentResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\ImageColumn::make('department_users.avatar')
+
+                ->circular()
+                ->stacked(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -65,7 +74,7 @@ class DepartmentResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            DepartmentUsersRelationManager::class,
         ];
     }
 
@@ -74,7 +83,7 @@ class DepartmentResource extends Resource
         return [
             'index' => Pages\ListDepartments::route('/'),
             'create' => Pages\CreateDepartment::route('/create'),
-            'view' => Pages\ViewDepartment::route('/{record}'),
+//            'view' => Pages\ViewDepartment::route('/{record}'),
             'edit' => Pages\EditDepartment::route('/{record}/edit'),
         ];
     }

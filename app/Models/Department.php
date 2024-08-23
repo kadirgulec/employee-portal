@@ -19,5 +19,10 @@ class Department extends Model
 
     }
 
+    public function department_users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
 
 }

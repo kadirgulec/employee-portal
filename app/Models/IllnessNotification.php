@@ -20,7 +20,8 @@ class IllnessNotification extends Model
 
     public function reportedTo(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class, 'reported_to');
+        return $this->belongsTo(User::class, 'reported_to')
+            ->where('illness_notification_contact', true);
     }
 
 }
