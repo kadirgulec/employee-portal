@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\App;
 use Livewire\Component;
 
@@ -16,9 +17,22 @@ class LanguageSwitcher extends Component
 
     public function switchLanguage($locale)
     {
-        App::setLocale($locale);
-        session()->put('locale', $locale);
-        return redirect()->to('/');
+        if($locale != App::getLocale()) {
+            App::setLocale($locale);
+            session()->put('locale', $locale);
+            Notification::make()
+                ->title(__('filament-panels::translations.language_changed'))
+                ->success()
+                ->send();
+
+            return $this->js('window.location.reload()');
+        }else{
+            Notification::make()
+                ->title(__('filament-panels::translations.language_did_not_change'))
+                ->warning()
+                ->send();
+        }
+
     }
     public function render()
     {

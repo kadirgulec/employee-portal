@@ -7,6 +7,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\MenuItem;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
 use Filament\Pages\Auth\EditProfile;
 use Filament\Panel;
@@ -40,6 +41,14 @@ class AdminPanelProvider extends PanelProvider
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
+//            ->navigationGroups([
+//                NavigationGroup::make()
+//                ->label(__('filament-panels::translations.user.plural'))
+//                ->icon('heroicon-o-users'),
+//                NavigationGroup::make()
+//                ->label(__('filament-panels::translations.illness_notifications.plural'))
+//                ->icon('heroicon-o-plus')
+//            ])
             ->userMenuItems([
                 'profile' => MenuItem::make()->label('Edit Profile')->icon('heroicon-o-user'),
                 MenuItem::make('language')

@@ -23,7 +23,7 @@ class ListUsers extends ListRecords
 
     public function getTabs(): array
     {
-        $tabs = ['all' => Tab::make('All')->badge($this->getModel()::count())];
+        $tabs = ['all' => Tab::make(__('filament-panels::translations.departments.tabs.all'))->badge($this->getModel()::count())];
 
         $departments = Department::orderBy('name')
             ->get();

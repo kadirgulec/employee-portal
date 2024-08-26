@@ -227,20 +227,24 @@ class UserResource extends Resource
                                     TextEntry::make('email')
                                         ->inlineLabel(),
                                     TextEntry::make('phone')
+                                        ->label(__('filament-panels::translations.user.phone'))
                                         ->inlineLabel(),
                                     TextEntry::make('mobile')
+                                        ->label(__('filament-panels::translations.user.mobile'))
                                         ->inlineLabel(),
                                     TextEntry::make('birth_date')
                                         ->inlineLabel()
-                                        ->label(__('filament-panels::translations.birth_date'))
+                                        ->label(__('filament-panels::translations.user.birth_date'))
                                         ->default(now()->format('d-m-Y')),
                                 ]),
                         ])->from('md'),
                     ])->columns(1),
 
                 TextEntry::make('departments.name')
+                    ->label(__('filament-panels::translations.departments.plural'))
                     ->listWithLineBreaks(),
                 TextEntry::make('illness_notifications.illness_notification_at')
+                    ->label(__('filament-panels::translations.illness_notifications.plural'))
                     ->since()
 //                    ->visible(fn ($record) => auth()->user()->getKey() == $record->user_id)
                     ->listWithLineBreaks()
