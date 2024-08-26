@@ -10,6 +10,13 @@ class EditUser extends EditRecord
 {
     protected static string $resource = UserResource::class;
 
+    public function getTitle(): string
+    {
+        $gender = $this->record->gender;
+        return $gender === 'female'
+            ? __('filament-panels::translations.user.edit.female')
+            : __('filament-panels::translations.user.edit.male');
+    }
 
 
     protected function getHeaderActions(): array

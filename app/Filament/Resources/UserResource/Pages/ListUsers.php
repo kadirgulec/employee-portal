@@ -34,6 +34,7 @@ class ListUsers extends ListRecords
             $slug = str($name)->slug()->toString();
 
             $tabs[$slug] = Tab::make($name)
+                ->label(__('filament-panels::translations.departments.tabs.' . $slug))
                 ->badge($department->users()->count()) // Badge showing the number of users in the department
                 ->modifyQueryUsing(function (Builder $query) use ($department) {
                     // Filter users by their department

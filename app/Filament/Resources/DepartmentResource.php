@@ -23,6 +23,21 @@ class DepartmentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
+    public static function getNavigationParentItem(): ?string
+    {
+        return __('filament-panels::translations.user.plural');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('filament-panels::translations.departments.single');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament-panels::translations.departments.plural');
+    }
+
     public static function form(Form $form): Form
     {
         return $form

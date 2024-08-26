@@ -39,6 +39,18 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
+    protected static ?int $navigationSort = 1;
+
+    public static function getModelLabel(): string
+    {
+        return __('filament-panels::translations.user.single');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament-panels::translations.user.plural');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -101,8 +113,7 @@ class UserResource extends Resource
                     ->relationship('permissions', 'name')
                     ->preload(),
 
-                Forms\Components\Section::make('Departments')
-                    ->label(__('filament-panels::translations.departments'))
+                Forms\Components\Section::make(__('filament-panels::translations.departments.plural'))
                     ->schema([
                         Forms\Components\Repeater::make('department_user')
                             ->hiddenLabel()

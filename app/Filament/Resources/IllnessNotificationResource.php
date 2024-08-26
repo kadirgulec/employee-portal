@@ -20,6 +20,8 @@ class IllnessNotificationResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-plus';
 
+    protected static ?int $navigationSort = 3;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -49,6 +51,7 @@ class IllnessNotificationResource extends Resource
                     ->live(),
 
                 Forms\Components\Toggle::make('entgFG')
+                    ->label('§5 EntgFG')
                     ->required(fn (Get $get): bool => filled($get('doctor_visited_at')))
                     ->hidden(fn (Get $get): bool =>!filled($get('doctor_visited_at'))),
 
@@ -105,6 +108,7 @@ class IllnessNotificationResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\IconColumn::make('entgFG')
+                    ->label('§5 EnttgFG')
                     ->boolean()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('incapacity_reason')

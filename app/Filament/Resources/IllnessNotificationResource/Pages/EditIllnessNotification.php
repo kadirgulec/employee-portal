@@ -10,6 +10,8 @@ class EditIllnessNotification extends EditRecord
 {
     protected static string $resource = IllnessNotificationResource::class;
 
+
+
     protected function getHeaderActions(): array
     {
         return [
@@ -17,6 +19,7 @@ class EditIllnessNotification extends EditRecord
             Actions\DeleteAction::make(),
             Actions\ForceDeleteAction::make(),
             Actions\RestoreAction::make(),
+
         ];
     }
 }
