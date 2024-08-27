@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Policies;
+
+use App\Models\IllnessNotification;
+use App\Models\User;
+use Illuminate\Auth\Access\Response;
+
+class IllnessNotificationPolicy
+{
+    /**
+     * Determine whether the user can view any models.
+     */
+    public function viewAny(User $user): bool
+    {
+        return auth()->user()->can('view-any IllnessNotification');
+    }
+
+    /**
+     * Determine whether the user can view the model.
+     */
+    public function view(User $user, IllnessNotification $illnessNotification): bool
+    {
+        return auth()->user()->can('view IllnessNotification') || $user->id === $illnessNotification->user->id ;
+    }
+
+    /**
+     * Determine whether the user can create models.
+     */
+    public function create(User $user): bool
+    {
+        return auth()->user()->can('create IllnessNotification');
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     */
+    public function update(User $user): bool
+    {
+        return auth()->user()->can('update IllnessNotification');
+    }
+
+    /**
+     * Determine whether the user can delete the model.
+     */
+    public function delete(User $user): bool
+    {
+        return auth()->user()->can('delete IllnessNotification');
+    }
+
+    /**
+     * Determine whether the user can restore the model.
+     */
+    public function restore(User $user): bool
+    {
+        return auth()->user()->can('restore IllnessNotification');
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDelete(User $user): bool
+    {
+        return auth()->user()->can('forceDelete IllnessNotification');
+    }
+
+    public function replicateUser(User $user) :bool
+    {
+        return auth()->user()->can('replicate IllnessNotification');
+    }
+
+    public function reorderUser(User $user) :bool
+    {
+        return auth()->user()->can('reorder IllnessNotification');
+    }
+}
