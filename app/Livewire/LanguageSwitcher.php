@@ -14,8 +14,6 @@ class LanguageSwitcher extends Component
     {
         $this->language = auth()->user()->settings['language'] ?? config('app.locale');
         App::setLocale($this->language);
-        session()->put('locale', $this->language);
-
     }
 
     public function switchLanguage($locale)
@@ -30,7 +28,6 @@ class LanguageSwitcher extends Component
 
             //set the local language
             App::setLocale($locale);
-            session()->put('locale', $locale);
             Notification::make()
                 ->title(__('filament-panels::translations.language_changed'))
                 ->success()
