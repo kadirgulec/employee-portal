@@ -12,8 +12,10 @@ class LanguageSwitcher extends Component
 
     public function mount()
     {
-        $this->language = auth()->user()->settings['language'] ?? 'de';
+        $this->language = auth()->user()->settings['language'] ?? config('app.locale');
         App::setLocale($this->language);
+        session()->put('locale', $this->language);
+
     }
 
     public function switchLanguage($locale)

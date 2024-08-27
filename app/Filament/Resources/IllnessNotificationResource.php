@@ -93,9 +93,11 @@ class IllnessNotificationResource extends Resource
                     ->label(__('filament-panels::translations.illness_notifications.notes'))
                     ->columnSpanFull(),
                 Forms\Components\DatePicker::make('sent_at')
-                ->label(__('filament-panels::translations.illness_notifications.sent_at')),
+                ->label(__('filament-panels::translations.illness_notifications.sent_at'))
+                ->hidden(!auth()->user()->can('update IllnessNotification')),
                 Forms\Components\TextInput::make('sent_to')
-                ->label(__('filament-panels::translations.illness_notifications.sent_to')),
+                ->label(__('filament-panels::translations.illness_notifications.sent_to'))
+                    ->hidden(!auth()->user()->can('update IllnessNotification')),
             ]);
     }
 

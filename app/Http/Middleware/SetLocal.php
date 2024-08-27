@@ -20,6 +20,9 @@ class SetLocal
 
         if(Session::has('locale')) {
            App::setLocale(Session::get('locale'));
+        }else{
+            $language = auth()->user()->settings['language'] ?? config('app.locale');
+            App::setLocale($language);
         }
 
         return $next($request);
