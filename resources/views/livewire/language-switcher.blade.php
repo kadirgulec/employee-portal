@@ -1,7 +1,8 @@
 <div x-data=" { open: false }" class="fi-dropdown fi-user-menu">
     <div @click="open = !open" class="fi-dropdown-trigger flex cursor-pointer"
          x-ref="button">
-        <button class="shrink-0"><img src="{{__('filament-panels::translations.language')}}"
+        <button class="shrink-0">
+            <img src="{{__('filament-panels::translations.language_flag_link')}}"
                                       class="fi-avatar object-cover object-center fi-circular rounded-full h-8 w-8 fi-user-avatar"
                                       alt="language"></button>
     </div>

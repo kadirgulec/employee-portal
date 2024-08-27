@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\UserResource;
 use App\Http\Middleware\SetLocal;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -41,20 +42,11 @@ class AdminPanelProvider extends PanelProvider
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
-//            ->navigationGroups([
-//                NavigationGroup::make()
-//                ->label(__('filament-panels::translations.user.plural'))
-//                ->icon('heroicon-o-users'),
-//                NavigationGroup::make()
-//                ->label(__('filament-panels::translations.illness_notifications.plural'))
-//                ->icon('heroicon-o-plus')
-//            ])
             ->userMenuItems([
-                'profile' => MenuItem::make()->label('Edit Profile')->icon('heroicon-o-user'),
-                MenuItem::make('language')
-                    ->label('Settings')
-
-                    ->icon('heroicon-o-cog-6-tooth'),
+                'profile' => MenuItem::make()
+                    ->label('Edit Profile')
+                    ->url(fn (): string => UserResource\Pages\EditUser::getUrl([auth()->user()->id]))
+                    ->icon('heroicon-o-user'),
             ])
             ->brandLogo(fn () => view('filament.admin.logo'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')

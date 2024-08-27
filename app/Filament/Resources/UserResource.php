@@ -57,13 +57,24 @@ class UserResource extends Resource
             ->schema([
 
                 Forms\Components\Toggle::make('active')
-                    ->required(),
+                    ->required()
+                    ->disabled(!auth()->user()->can('create User')),
                 Forms\Components\Toggle::make('illness_notification_contact')
-                    ->required(),
+                    ->label(__('filament-panels::translations.user.illness_notification_contact'))
+                    ->required()
+                    ->disabled(!auth()->user()->can('create User')),
+                Forms\Components\FileUpload::make('avatar')
+                    ->avatar()
+                    ->image()
+                    ->imageEditor()
+                    ->circleCropper()
+                ->columnSpanFull(),
                 Forms\Components\TextInput::make('personal_number')
+                    ->label(__('filament-panels::translations.personal_number'))
                     ->numeric()
-                    ->disabled(!auth()->user()->can('delete User')),
+                    ->disabled(!auth()->user()->can('create User')),
                 Forms\Components\TextInput::make('name')
+                    ->label(__('filament-panels::translations.user.name'))
                     ->required(),
                 Forms\Components\TextInput::make('email')
                     ->email()
@@ -75,45 +86,66 @@ class UserResource extends Resource
                     ->dehydrated(fn(?string $state): bool => filled($state))
                     ->required(fn(string $operation): bool => $operation === 'create'),
                 Forms\Components\TextInput::make('first_name')
+                    ->label(__('filament-panels::translations.user.first_name'))
                     ->required(),
                 Forms\Components\TextInput::make('last_name')
+                    ->label(__('filament-panels::translations.user.last_name'))
                     ->required(),
                 Forms\Components\TextInput::make('pin')
                     ->numeric()
                     ->length(4)
                     ->required(),
-                Forms\Components\FileUpload::make('avatar')
-                    ->avatar()
-                    ->image()
-                    ->imageEditor()
-                    ->circleCropper(),
                 Forms\Components\Select::make('gender')
+                    ->label(__('filament-panels::translations.user.gender'))
                     ->options(function () {
                         return [
                             'male' => __('filament-panels::translations.male'),
                             'female' => __('filament-panels::translations.female'),
                         ];
                     }),
-                Forms\Components\TextInput::make('title'),
-                Forms\Components\TextInput::make('position'),
+                Forms\Components\TextInput::make('title')
+                    ->label(__('filament-panels::translations.user.title')),
+                Forms\Components\TextInput::make('position')
+                    ->label(__('filament-panels::translations.user.position')),
                 Forms\Components\TextInput::make('phone')
+                    ->label(__('filament-panels::translations.user.phone'))
                     ->tel(),
                 Forms\Components\TextInput::make('mobile')
+                    ->label(__('filament-panels::translations.user.mobile'))
                     ->tel(),
 
 //                Forms\Components\Select::make('roles')->multiple()->relationship('roles', 'name')->preload(),
-                Forms\Components\Select::make('permissions')
-                    ->hintAction(Action::make('select all')
-                        ->label(__('filament-panels::translations.select_all'))
-                        ->action(function ($livewire, $get, $set) {
-                            $allPermissionIds = Permission::all()->pluck('id')->toArray();
-                            $set('permissions', $allPermissionIds);
-                        }))
-                    ->multiple()
+//                Forms\Components\Select::make('permissions')
+//                    ->label(__('filament-panels::translations.user.permissions'))
+//                    ->hintAction(Action::make('select all')
+//                        ->label(__('filament-panels::translations.select_all'))
+//                        ->action(function ($set) {
+//                            $allPermissionIds = Permission::all()->pluck('id')->toArray();
+//                            $set('permissions', $allPermissionIds);
+//                        }))
+//                    ->multiple()
+//                    ->relationship('permissions', 'name')
+//                    ->preload(),
+
+                Forms\Components\CheckboxList::make('permissions')
+                    ->hidden(!auth()->user()->can('create User'))
+                    ->label(__('filament-panels::translations.user.permissions'))
+                    ->options(Permission::all()->pluck('name', 'id'))
+                    ->hintAction(
+                        Action::make('select_all')
+                            ->label(__('filament-panels::translations.select_all'))
+                            ->action(function ($set) {
+                                $allPermissionIds = Permission::all()->pluck('id')->toArray();
+                                $set('permissions', $allPermissionIds);
+                            })
+                    )
                     ->relationship('permissions', 'name')
-                    ->preload(),
+                    ->columns(4)  // Display the toggle buttons in 3 columns
+                    ->columnSpanFull()
+                    ->required(),
 
                 Forms\Components\Section::make(__('filament-panels::translations.departments.plural'))
+                    ->disabled(!auth()->user()->can('update DepartmentUser'))
                     ->schema([
                         Forms\Components\Repeater::make('department_user')
                             ->hiddenLabel()
@@ -121,9 +153,16 @@ class UserResource extends Resource
                             ->schema([
                                 Select::make('department_id')
                                     ->hiddenLabel()
+                                    ->hidden(!auth()->user()->can('update DepartmentUser'))
                                     ->options(Department::all()->pluck('name', 'id')),
                                 Forms\Components\Toggle::make('leader')
+                                ->label(__('filament-panels::translations.user.leader'))
                             ])
+                            ->itemLabel(function (array $state): ?string{
+                                $department = Department::find($state['department_id']);
+                                return $department ? __('filament-panels::translations.departments.tabs.' . str($department->name)->slug()->toString()) : null;
+                            })
+                            ->live()
                             ->grid(2),
                     ])
             ]);
@@ -157,6 +196,7 @@ class UserResource extends Resource
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('departments')
+                    ->label(__('filament-panels::translations.departments.plural'))
                     ->relationship('departments', 'name')
                     ->multiple()
                     ->preload(),
@@ -175,7 +215,7 @@ class UserResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()->visible(auth()->user()->can('view User')),
-                Tables\Actions\EditAction::make()->visible(auth()->user()->can('update User')),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
 //                Tables\Actions\BulkActionGroup::make([

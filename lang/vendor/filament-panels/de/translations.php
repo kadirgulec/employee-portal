@@ -10,7 +10,7 @@ return [
     'select_all'       => 'Alle Auswählen',
     'language_changed' => 'Sprache Geändert',
     'language_did_not_change' => 'Die Sprache Wurde Nicht Geändert',
-    'language' => 'https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1200px-Flag_of_Germany.svg.png',
+    'language_flag_link' => 'https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1200px-Flag_of_Germany.svg.png',
     'user' => [
         'single' => 'Mitarbeiter',
         'plural' => 'Mitarbeiter',
@@ -21,6 +21,15 @@ return [
         'phone' => 'Telefonnummer',
         'mobile' => 'Handynummer',
         'birth_date' => 'Geburtsdatum',
+        'illness_notification_contact' => 'Krankmeldung Kontakt',
+        'name' => 'Name',
+        'first_name' => 'Vorname',
+        'last_name' => 'Nachname',
+        'gender' => 'Geschlecht',
+        'title' => 'Titel',
+        'position' => 'Position',
+        'permissions' => 'Berechtigungen',
+        'leader' => 'Abteilungleiter'
     ],
     'departments' => [
         'single' => 'Abteilung',

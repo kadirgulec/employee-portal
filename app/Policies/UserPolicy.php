@@ -12,7 +12,7 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        return auth()->user()->can('view-any User') || true;
+        return auth()->user()->can('view-any User');
     }
 
     /**
@@ -20,7 +20,7 @@ class UserPolicy
      */
     public function view(User $user, User $model): bool
     {
-        return auth()->user()->can('view User') || true;
+        return auth()->user()->can('view User') || $user->id === $model->id;
     }
 
     /**
@@ -36,7 +36,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        return auth()->user()->can('update User') || true;
+        return auth()->user()->can('update User') || $user->id === $model->id ;
     }
 
     /**

@@ -21,13 +21,17 @@ class DepartmentResource extends Resource
 {
     protected static ?string $model = Department::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
+//    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
     public static function getNavigationParentItem(): ?string
     {
         return __('filament-panels::translations.user.plural');
     }
 
+    public static function getNavigationIcon(): string
+    {
+        return 'heroicon-o-briefcase';
+    }
     public static function getModelLabel(): string
     {
         return __('filament-panels::translations.departments.single');
