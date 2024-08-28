@@ -13,10 +13,21 @@ class StatsOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Krankmeldungen Heute', (function () {
+            Stat::make(__('filament-panels::translations.illness_notifications.today'), (function () {
                 $today = Carbon::today();
                 return IllnessNotification::whereDate('illness_notification_at', $today)->count();
-            })),
+            }))
+                ->color((function () {
+                    $today = Carbon::today();
+                    $illUsers = IllnessNotification::whereDate('illness_notification_at', $today)->count();
+                    if ($illUsers < 3) {
+                        return 'success';
+                    } elseif ($illUsers < 8) {
+                        return 'warning';
+                    } else {
+                        return 'danger';
+                    }
+                })()),
             Stat::make('Krankmeldung rate', (function () {
                 $today = Carbon::today();
                 $illUsers = IllnessNotification::whereDate('illness_notification_at', $today)->count();
@@ -27,6 +38,7 @@ class StatsOverview extends BaseWidget
                 $percentage = $illUsers / $totalUsers * 100;
                 return number_format($percentage, 2)."%";
             }))
+                ->label(__('filament-panels::translations.illness_notifications.rate'))
                 ->chart((function () {
                     $startDate = Carbon::today()->subDays(10);
                     $endDate = Carbon::today();
@@ -50,8 +62,9 @@ class StatsOverview extends BaseWidget
                     return $todayCount < 10 ? 'success' : 'danger';
                 })()),
             Stat::make('Mitarbeiter', (function () {
-                 return User::count();
+                return User::count();
             }))
+            ->label(__('filament-panels::translations.user.plural'))
 
         ];
     }

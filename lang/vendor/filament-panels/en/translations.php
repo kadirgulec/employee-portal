@@ -5,7 +5,6 @@ return [
     'female' => 'Female',
     'personal_information' => 'Personal Information',
     'employee_portal' => 'Employee Portal',
-
     'department_information' => 'Department Information',
     'personal_number' => 'Personal Number',
     'select_all' => 'Select All',
@@ -62,10 +61,11 @@ return [
         'notes' => 'Notes',
         'sent_at' => 'Sent At',
         'sent_to' => 'Sent to',
-
         'create_PDF' => 'Create PDF',
         'after' => 'Illness Notifications after',
         'before' => 'Illness Notifications before',
+        'today' => "Todays's Illness Notifications",
+        'rate' => 'Share of Illness Notifications',
     ],
 
 ];

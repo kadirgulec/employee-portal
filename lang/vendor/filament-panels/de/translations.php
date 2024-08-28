@@ -60,6 +60,8 @@ return [
         'create_PDF' => 'PDF Erstellen',
         'after' => 'Krankmeldungen nach',
         'before' => 'Krankmeldungen vor',
+        'today' => 'Heutige Krankmeldungen',
+        'rate' => 'Anteil der Krankmeldungen',
     ],
 
 
