@@ -70,7 +70,6 @@ class DepartmentResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\ImageColumn::make('department_users.avatar')
-
                 ->circular()
                 ->stacked(),
             ])
