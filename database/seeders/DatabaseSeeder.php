@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
         User::factory()->create([
             'id' => 1,
@@ -52,7 +51,7 @@ class DatabaseSeeder extends Seeder
                     ->create();
 
 
-                $user->departments()->create([
+                $user->department_user()->create([
                     'department_id' => $department->id,
                     'user_id' => $user->id,
                     'leader' => false,

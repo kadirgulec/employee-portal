@@ -11,8 +11,10 @@ class IllnessNotificationFactory extends Factory
 
     public function definition(): array
     {
+        $date = fake()->dateTimeBetween('-3 months', 'now');
         return [
-            'report_time'=>fake()->dateTimeBetween('-1 years', 'now'),
+            'report_time'=>$date,
+            'illness_notification_at' => $date,
             'reported_to' => 1,
             'incapacity_reason' => 'AU wegen Krankheit',
         ];
