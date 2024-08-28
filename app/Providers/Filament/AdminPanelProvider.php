@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\IllnessNotificationResource;
 use App\Filament\Resources\UserResource;
 use App\Http\Middleware\SetLocal;
 use Filament\Http\Middleware\Authenticate;
@@ -58,6 +59,7 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
+                IllnessNotificationResource\Widgets\StatsOverview::class,
             ])
             ->middleware([
                 EncryptCookies::class,
