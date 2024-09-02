@@ -144,7 +144,7 @@ class UserResource extends Resource
                     ->columnSpanFull()
                     ->required(),
 
-                Forms\Components\Section::make(__('filament-panels::translations.departments.plural'))
+                Forms\Components\Section::make(__('filament-panels::translations.department.plural'))
                     ->disabled(!auth()->user()->can('update DepartmentUser'))
                     ->schema([
                         Forms\Components\Repeater::make('department_user')
@@ -160,7 +160,7 @@ class UserResource extends Resource
                             ])
                             ->itemLabel(function (array $state): ?string{
                                 $department = Department::find($state['department_id']);
-                                return $department ? __('filament-panels::translations.departments.tabs.' . str($department->name)->slug()->toString()) : null;
+                                return $department ? __('filament-panels::translations.department.tabs.' . str($department->name)->slug()->toString()) : null;
                             })
                             ->live()
                             ->grid(2),
@@ -175,7 +175,7 @@ class UserResource extends Resource
                 Tables\Columns\Layout\Stack::make([
                     Tables\Columns\ImageColumn::make('avatar')
                         ->defaultImageUrl(function (User $user) {
-                            return 'https://avatar.iran.liara.run/public/'.$user->id;
+                            return 'https://avatar.iran.liara.run/public/'.$user->id % 99 + 1;
                         })->circular()
                         ->height('100%')
                         ->width('100%')
@@ -196,7 +196,7 @@ class UserResource extends Resource
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('departments')
-                    ->label(__('filament-panels::translations.departments.plural'))
+                    ->label(__('filament-panels::translations.department.plural'))
                     ->relationship('departments', 'name')
                     ->multiple()
                     ->preload(),
@@ -242,7 +242,7 @@ class UserResource extends Resource
                                         ImageEntry::make('avatar')
                                             ->hiddenLabel()
                                             ->defaultImageUrl(function (User $user) {
-                                                return 'https://avatar.iran.liara.run/public/'.$user->id;
+                                                return 'https://avatar.iran.liara.run/public/'. $user->id % 99 + 1;
                                             })->grow(false)
                                             ->circular(),
                                         Grid::make(1)
@@ -281,7 +281,7 @@ class UserResource extends Resource
                     ])->columns(1),
 
                 TextEntry::make('departments.name')
-                    ->label(__('filament-panels::translations.departments.plural'))
+                    ->label(__('filament-panels::translations.department.plural'))
                     ->listWithLineBreaks(),
                 TextEntry::make('illness_notifications.illness_notification_at')
                     ->label(__('filament-panels::translations.illness_notifications.plural'))

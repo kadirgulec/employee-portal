@@ -23,7 +23,7 @@ class ListUsers extends ListRecords
 
     public function getTabs(): array
     {
-        $tabs = ['all' => Tab::make(__('filament-panels::translations.departments.tabs.all'))->badge($this->getModel()::count())];
+        $tabs = ['all' => Tab::make(__('filament-panels::translations.department.tabs.all'))->badge($this->getModel()::count())];
 
         $departments = Department::orderBy('name')
             ->get();
@@ -34,7 +34,7 @@ class ListUsers extends ListRecords
             $slug = str($name)->slug()->toString();
 
             $tabs[$slug] = Tab::make($name)
-                ->label(__('filament-panels::translations.departments.tabs.' . $slug))
+                ->label(__('filament-panels::translations.department.tabs.' . $slug))
                 ->badge($department->users()->count()) // Badge showing the number of users in the department
                 ->modifyQueryUsing(function (Builder $query) use ($department) {
                     // Filter users by their department

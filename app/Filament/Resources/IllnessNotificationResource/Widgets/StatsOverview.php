@@ -40,7 +40,7 @@ class StatsOverview extends BaseWidget
             }))
                 ->label(__('filament-panels::translations.illness_notifications.rate'))
                 ->chart((function () {
-                    $startDate = Carbon::today()->subDays(10);
+                    $startDate = Carbon::today()->subDays(30);
                     $endDate = Carbon::today();
                     $chartData = [];
 
@@ -57,14 +57,14 @@ class StatsOverview extends BaseWidget
                 ->color((function () {
                     $today = Carbon::today();
 
-                    $todayCount = IllnessNotification::whereDate('illness_notification_at', $today)->count();
+                    $todayCount = IllnessNotification::query()->whereDate('illness_notification_at', $today)->count();
 
-                    return $todayCount < 10 ? 'success' : 'danger';
+                    return $todayCount < 5 ? 'success' : 'danger';
                 })()),
             Stat::make('Mitarbeiter', (function () {
                 return User::count();
             }))
-            ->label(__('filament-panels::translations.user.plural'))
+            ->label('Total ' . __('filament-panels::translations.user.plural'))
 
         ];
     }

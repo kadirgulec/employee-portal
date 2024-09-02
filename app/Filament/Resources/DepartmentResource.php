@@ -34,12 +34,12 @@ class DepartmentResource extends Resource
     }
     public static function getModelLabel(): string
     {
-        return __('filament-panels::translations.departments.single');
+        return __('filament-panels::translations.department.single');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('filament-panels::translations.departments.plural');
+        return __('filament-panels::translations.department.plural');
     }
 
     public static function form(Form $form): Form
@@ -70,6 +70,7 @@ class DepartmentResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\ImageColumn::make('department_users.avatar')
+                    ->label(__('filament-panels::translations.department.users'))
                 ->circular()
                 ->stacked(),
             ])

@@ -31,7 +31,7 @@ return [
         'permissions' => 'Berechtigungen',
         'leader' => 'Abteilungleiter'
     ],
-    'departments' => [
+    'department' => [
         'single' => 'Abteilung',
         'plural' => 'Abteilungen',
         'tabs' => [
@@ -43,6 +43,7 @@ return [
             'management' => 'Verwaltung',
             'technic' => 'Technik',
         ],
+        'users' => 'Mitarbeiter',
     ],
     'illness_notifications' =>[
         'single' => 'Krankmeldung',

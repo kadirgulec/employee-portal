@@ -33,7 +33,7 @@ return [
         'permissions' => 'Permissions',
         'leader' => 'Department Manager',
     ],
-    'departments' => [
+    'department' => [
         'single' => 'Department',
         'plural' => 'Departments',
         'tabs' =>
@@ -46,6 +46,7 @@ return [
                 'management' => 'Management',
                 'technic' => 'Technic',
             ],
+        'users' => 'Employees',
     ],
 
     'illness_notifications' => [
