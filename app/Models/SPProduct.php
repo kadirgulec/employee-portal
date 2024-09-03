@@ -9,6 +9,8 @@ class SPProduct extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $table = 'sp_products';
     public function positions()
     {

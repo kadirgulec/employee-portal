@@ -8,6 +8,8 @@ use App\Models\Customer;
 use App\Models\SPProduct;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -18,7 +20,21 @@ class CustomerResource extends Resource
 {
     protected static ?string $model = Customer::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
+
+    protected static ?string $navigationGroup = 'IT Service Point';
+
+    protected static ?int $navigationSort = 1;
+
+//    public static function getModelLabel(): string
+//    {
+//        return 'IT Service Point';
+//    }
+//
+//    public static function getPluralModelLabel(): string
+//    {
+//        return 'IT Service Point';
+//    }
 
     public static function form(Form $form): Form
     {
@@ -36,20 +52,83 @@ class CustomerResource extends Resource
                     ->tel(),
 
                 Forms\Components\Section::make('Invoices')
+                    ->description('The invoices for the customer')
                     ->schema([
                         Forms\Components\Repeater::make('Invoices')
+                            ->addActionLabel('Add Invoice')
+                            ->itemLabel(fn(array $state): ?string => $state['date'])
                             ->relationship()
                             ->schema([
+                                Forms\Components\Grid::make(2)
+                                    ->schema([
+                                        Forms\Components\DatePicker::make('date')
+                                            ->native(false),
+                                        Forms\Components\TextInput::make('total_price')
+                                            ->numeric()
+                                            ->readOnly()
+                                            ->prefix('€')
+                                            ->afterStateHydrated(function (Get $get, Set $set) {
+                                                $positions = $get('positions') ?? [];
+                                                $totalPrice = collect($positions)->sum(function ($position) {
+
+                                                    if ($position['s_p_product_id'] && is_numeric($position['quantity'])) {
+                                                        return $position['quantity'] * SPProduct::find($position['s_p_product_id'])->price;
+                                                    } else {
+                                                        return 0;
+                                                    }
+                                                });
+                                                $set('total_price', $totalPrice);
+                                            }),
+                                    ]),
+
                                 Forms\Components\Repeater::make('positions')
+                                    ->addActionLabel('Add new product')
+                                    ->hiddenLabel()
                                     ->relationship()
                                     ->schema([
-                                        Forms\Components\Select::make('product')
+                                        Forms\Components\Select::make('s_p_product_id')
+                                            ->label('Product or Service')
                                             ->options(SPProduct::all()->pluck('name', 'id')),
-                                        Forms\Components\TextInput::make('Quantity'),
+                                        Forms\Components\TextInput::make('quantity')
+                                            ->numeric()
+                                            ->required(),
                                     ])
+                                    ->live()
+                                    ->grid(2)
+                                    ->afterStateUpdated(function (Get $get, Set $set) {
+                                        $positions = $get('positions') ?? [];
+                                        $totalPrice = collect($positions)->sum(function ($position) {
+                                            if ($position['s_p_product_id'] && is_numeric($position['quantity'])) {
+                                                return $position['quantity'] * SPProduct::find($position['s_p_product_id'])->price;
+                                            } else {
+                                                return 0;
+                                            }
 
+                                        });
+                                        $set('total_price', $totalPrice);
+                                    })
+                                    ->afterStateHydrated(function (Get $get, Set $set) {
+                                        $positions = $get('positions') ?? [];
+                                        $totalPrice = collect($positions)->sum(function ($position) {
+
+                                            if ($position['s_p_product_id'] && is_numeric($position['quantity'])) {
+                                                return $position['quantity'] * SPProduct::find($position['s_p_product_id'])->price;
+                                            } else {
+                                                return 0;
+                                            }
+                                        });
+                                        $set('total_price', $totalPrice);
+                                    }),
 
                             ])
+                            ->collapsed()
+                        ->extraItemActions([
+                            Forms\Components\Actions\Action::make('PDF')
+                                ->label('PDF')
+                                ->icon('heroicon-m-document-arrow-down')
+                                ->color('info')
+
+                        ]),
                     ])
             ]);
     }

@@ -12,6 +12,7 @@ class Invoice extends Model
 
     protected $fillable = [
         'date',
+        'customer_id'
     ];
 
     public function customer(): \Illuminate\Database\Eloquent\Relations\BelongsTo

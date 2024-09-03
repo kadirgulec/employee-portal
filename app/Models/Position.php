@@ -9,6 +9,8 @@ class Position extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function invoice()
     {
         $this->belongsTo(Invoice::class);
@@ -16,6 +18,6 @@ class Position extends Model
 
     public function sp_product()
     {
-        $this->belongsTo(SpProduct::class);
+        $this->belongsTo(SPProduct::class);
     }
 }

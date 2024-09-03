@@ -140,7 +140,7 @@ class UserResource extends Resource
                             })
                     )
                     ->relationship('permissions', 'name')
-                    ->columns(4)  // Display the toggle buttons in 3 columns
+                    ->columns(4)  // Display the toggle buttons in 4 columns
                     ->columnSpanFull()
                     ->required(),
 
