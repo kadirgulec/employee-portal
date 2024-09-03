@@ -31,6 +31,7 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->favicon('https://www.aks-service.de/wp-content/uploads/2022/10/aks_waben.png')
             ->id('admin')
             ->path('/')
             ->login()
