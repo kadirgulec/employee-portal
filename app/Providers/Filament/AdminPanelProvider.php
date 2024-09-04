@@ -11,7 +11,6 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\MenuItem;
 use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
-use Filament\Pages\Auth\EditProfile;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -43,13 +42,19 @@ class AdminPanelProvider extends PanelProvider
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
+
             ->userMenuItems([
                 'profile' => MenuItem::make()
-                    ->label('Edit Profile')
-                    ->url(fn (): string => UserResource\Pages\EditUser::getUrl([auth()->user()->id]))
-                    ->icon('heroicon-o-user'),
+                    ->label(__('filament-panels::translations.user.edit.profile'))
+                    ->url(fn(): string => UserResource\Pages\EditUser::getUrl([auth()->user()->id]))
+                    ->icon('heroicon-o-pencil-square'),
             ])
-            ->brandLogo(fn () => view('filament.admin.logo'))
+            ->navigationGroups([
+                'IT Service Point',
+                'Management',
+            ])
+            ->sidebarCollapsibleOnDesktop()
+            ->brandLogo(fn() => view('filament.admin.logo'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -78,6 +83,6 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->spa() //single page application
             ->unsavedChangesAlerts()
-            ->renderHook('panels::user-menu.before', fn () => Blade::render('@livewire("language-switcher")'));
+            ->renderHook('panels::user-menu.before', fn() => Blade::render('@livewire("language-switcher")'));
     }
 }

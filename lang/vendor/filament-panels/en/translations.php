@@ -12,6 +12,10 @@ return [
     'language_did_not_change' => 'Language Did Not Change',
     'language_flag_link' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/2560px-Flag_of_the_United_Kingdom_%283-5%29.svg.png',
 
+    'navigation' =>[
+      'management' => 'Management',
+    ],
+
     'user' => [
         'single' => 'Employee',
         'plural' => 'Employees',
@@ -19,6 +23,7 @@ return [
             [
                 'male' => 'Edit Employee',
                 'female' => 'Edit Employee',
+                'profile' => 'Edit Profile',
             ],
         'phone' => 'Phone Number',
         'mobile' => 'Mobile Number',

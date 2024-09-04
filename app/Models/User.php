@@ -64,7 +64,8 @@ class User extends Authenticatable implements FilamentUser
 
     public function departments()
     {
-        return $this->belongsToMany(Department::class);
+        return $this->belongsToMany(Department::class)
+            ->withPivot('leader');
     }
 
     public function illness_notifications(): \Illuminate\Database\Eloquent\Relations\HasMany

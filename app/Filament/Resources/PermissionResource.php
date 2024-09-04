@@ -18,6 +18,10 @@ class PermissionResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-key';
 
     protected static ?int $navigationSort = 5;
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-panels::translations.navigation.management');
+    }
 
     public static function form(Form $form): Form
     {

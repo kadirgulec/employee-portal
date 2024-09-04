@@ -30,6 +30,8 @@ class CustomerResource extends Resource
 
     protected static ?string $navigationGroup = 'IT Service Point';
 
+    protected static ?string $navigationGroupIcon = 'heroicon-o-user';
+
     protected static ?int $navigationSort = 1;
 
 //    public static function getModelLabel(): string
@@ -106,7 +108,7 @@ class CustomerResource extends Resource
                                                     ->required(),
                                             ])
                                             ->action(function (array $data) {
-                                                // Your product creation logic using $data from the form
+
                                                 \App\Models\SPProduct::create($data);
                                                 Notification::make()
                                                     ->title('Product Created')
@@ -114,14 +116,16 @@ class CustomerResource extends Resource
                                                     ->send();
 
                                             })
-                                            ->modalHeading('Create New Product') // Optional: Set a custom heading for the modal
-                                            ->modalWidth('lg'), // Optional: Define modal width (e.g., sm, md, lg, xl),
+                                            ->modalHeading('Create New Product')
+                                            ->modalWidth('lg'),
                                     ])
                                     ->relationship()
                                     ->schema([
                                         Forms\Components\Select::make('s_p_product_id')
                                             ->label('Product or Service')
-                                            ->options(SPProduct::all()->pluck('name', 'id')),
+                                            ->options(SPProduct::all()->pluck('name', 'id'))
+                                        ->searchable()
+                                        ->preload(),
                                         Forms\Components\TextInput::make('quantity')
                                             ->numeric()
                                             ->required(),

@@ -68,7 +68,7 @@ class UserResource extends Resource
                     ->image()
                     ->imageEditor()
                     ->circleCropper()
-                ->columnSpanFull(),
+                    ->columnSpanFull(),
                 Forms\Components\TextInput::make('personal_number')
                     ->label(__('filament-panels::translations.personal_number'))
                     ->numeric()
@@ -156,11 +156,11 @@ class UserResource extends Resource
                                     ->hidden(!auth()->user()->can('update DepartmentUser'))
                                     ->options(Department::all()->pluck('name', 'id')),
                                 Forms\Components\Toggle::make('leader')
-                                ->label(__('filament-panels::translations.user.leader'))
+                                    ->label(__('filament-panels::translations.user.leader'))
                             ])
-                            ->itemLabel(function (array $state): ?string{
+                            ->itemLabel(function (array $state): ?string {
                                 $department = Department::find($state['department_id']);
-                                return $department ? __('filament-panels::translations.department.tabs.' . str($department->name)->slug()->toString()) : null;
+                                return $department ? __('filament-panels::translations.department.tabs.'.str($department->name)->slug()->toString()) : null;
                             })
                             ->live()
                             ->grid(2),
@@ -242,7 +242,7 @@ class UserResource extends Resource
                                         ImageEntry::make('avatar')
                                             ->hiddenLabel()
                                             ->defaultImageUrl(function (User $user) {
-                                                return 'https://avatar.iran.liara.run/public/'. $user->id % 99 + 1;
+                                                return 'https://avatar.iran.liara.run/public/'.$user->id % 99 + 1;
                                             })->grow(false)
                                             ->circular(),
                                         Grid::make(1)
@@ -252,7 +252,8 @@ class UserResource extends Resource
                                                     ->weight('bold'),
                                                 TextEntry::make('position')
                                                     ->hiddenLabel()
-                                                    ->size(TextEntry\TextEntrySize::ExtraSmall),
+                                                    ->size(TextEntry\TextEntrySize::ExtraSmall)
+                                                    ->extraAttributes(['style' => 'margin-top:-1.5rem']),
                                             ]),
 
                                     ]),
@@ -280,16 +281,21 @@ class UserResource extends Resource
                         ])->from('md'),
                     ])->columns(1),
 
-                TextEntry::make('departments.name')
-                    ->label(__('filament-panels::translations.department.plural'))
-                    ->listWithLineBreaks(),
-                TextEntry::make('illness_notifications.illness_notification_at')
-                    ->label(__('filament-panels::translations.illness_notifications.plural'))
-                    ->since()
+                Grid::make(['default'=> 1,
+                    'sm'=>2])
+                    ->schema([
+                        TextEntry::make('departments.name')
+                            ->label(__('filament-panels::translations.department.plural'))
+                            ->listWithLineBreaks(),
+                        TextEntry::make('illness_notifications.illness_notification_at')
+                            ->label(__('filament-panels::translations.illness_notifications.plural'))
+                            ->since()
 //                    ->visible(fn ($record) => auth()->user()->getKey() == $record->user_id)
-                    ->listWithLineBreaks()
-                    ->limitList(2)
-                    ->expandableLimitedList(),
+                            ->listWithLineBreaks()
+                            ->limitList(2)
+                            ->expandableLimitedList(),
+                    ])
+
             ]);
 
 

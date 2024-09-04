@@ -6,18 +6,25 @@ return [
     'personal_information' => 'Persönliche Informationen',
     'employee_portal' => 'Mitarbeiter Portal',
     'department_information' => 'Informationen der Abteilung',
-    'personal_number'  => 'Mitarbeiternummer',
-    'select_all'       => 'Alle Auswählen',
+    'personal_number' => 'Mitarbeiternummer',
+    'select_all' => 'Alle Auswählen',
     'language_changed' => 'Sprache Geändert',
     'language_did_not_change' => 'Die Sprache Wurde Nicht Geändert',
     'language_flag_link' => 'https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1200px-Flag_of_Germany.svg.png',
+
+    'navigation' =>[
+        'management' => 'Verwaltung',
+    ],
+
     'user' => [
         'single' => 'Mitarbeiter',
         'plural' => 'Mitarbeiter',
-        'edit' => [
-            'male' => 'Mitarbeiter bearbeiten',
-            'female' => 'Mitarbeiterin bearbeiten',
-        ],
+        'edit' =>
+            [
+                'male' => 'Mitarbeiter bearbeiten',
+                'female' => 'Mitarbeiterin bearbeiten',
+                'profile' => 'Profile bearbeiten',
+            ],
         'phone' => 'Telefonnummer',
         'mobile' => 'Handynummer',
         'birth_date' => 'Geburtsdatum',
@@ -45,7 +52,7 @@ return [
         ],
         'users' => 'Mitarbeiter',
     ],
-    'illness_notifications' =>[
+    'illness_notifications' => [
         'single' => 'Krankmeldung',
         'plural' => 'Krankmeldungen',
         'user' => 'Mitarbeiter',
