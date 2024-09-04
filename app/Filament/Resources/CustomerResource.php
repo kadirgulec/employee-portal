@@ -4,12 +4,18 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CustomerResource\Pages;
 use App\Filament\Resources\CustomerResource\RelationManagers;
+use App\Filament\Resources\SPProductResource\Pages\CreateSPProduct;
 use App\Models\Customer;
 use App\Models\SPProduct;
 use Filament\Forms;
+use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -62,7 +68,8 @@ class CustomerResource extends Resource
                                 Forms\Components\Grid::make(2)
                                     ->schema([
                                         Forms\Components\DatePicker::make('date')
-                                            ->native(false),
+                                            ->native(false)
+                                            ->required(),
                                         Forms\Components\TextInput::make('total_price')
                                             ->numeric()
                                             ->readOnly()
@@ -84,6 +91,32 @@ class CustomerResource extends Resource
                                 Forms\Components\Repeater::make('positions')
                                     ->addActionLabel('Add new product')
                                     ->hiddenLabel()
+                                    ->extraItemActions([
+                                        Action::make('Create Product')
+                                            ->icon('heroicon-m-plus-circle')
+                                            ->form([
+                                                TextInput::make('name')
+                                                    ->label('Product Name')
+                                                    ->required(),
+                                                Textarea::make('description')
+                                                    ->label('Product Description'),
+                                                TextInput::make('price')
+                                                    ->label('Price')
+                                                    ->numeric()
+                                                    ->required(),
+                                            ])
+                                            ->action(function (array $data) {
+                                                // Your product creation logic using $data from the form
+                                                \App\Models\SPProduct::create($data);
+                                                Notification::make()
+                                                    ->title('Product Created')
+                                                    ->success()
+                                                    ->send();
+
+                                            })
+                                            ->modalHeading('Create New Product') // Optional: Set a custom heading for the modal
+                                            ->modalWidth('lg'), // Optional: Define modal width (e.g., sm, md, lg, xl),
+                                    ])
                                     ->relationship()
                                     ->schema([
                                         Forms\Components\Select::make('s_p_product_id')
@@ -122,13 +155,13 @@ class CustomerResource extends Resource
 
                             ])
                             ->collapsed()
-                        ->extraItemActions([
-                            Forms\Components\Actions\Action::make('PDF')
-                                ->label('PDF')
-                                ->icon('heroicon-m-document-arrow-down')
-                                ->color('info')
+                            ->extraItemActions([
+                                Forms\Components\Actions\Action::make('PDF')
+                                    ->label('PDF')
+                                    ->icon('heroicon-m-document-arrow-down')
+                                    ->color('info')
 
-                        ]),
+                            ]),
                     ])
             ]);
     }
