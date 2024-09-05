@@ -18,9 +18,9 @@ class Customer extends Model
         return ucwords("{$this->first_name} {$this->last_name}");
     }
 
-    public function invoices()
+    public function bills()
     {
-        return $this->hasMany(Invoice::class);
+        return $this->hasMany(Bill::class);
     }
 
 }

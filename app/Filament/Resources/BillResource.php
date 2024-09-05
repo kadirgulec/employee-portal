@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\InvoiceResource\Pages;
-use App\Filament\Resources\InvoiceResource\RelationManagers;
+use App\Filament\Resources\BillResource\Pages;
+use App\Filament\Resources\BillResource\RelationManagers;
+use App\Models\Bill;
 use App\Models\Customer;
-use App\Models\Invoice;
 use App\Models\SPProduct;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -17,9 +17,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class InvoiceResource extends Resource
+class BillResource extends Resource
 {
-    protected static ?string $model = Invoice::class;
+    protected static ?string $model = Bill::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -159,10 +159,10 @@ class InvoiceResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListInvoices::route('/'),
-            'create' => Pages\CreateInvoice::route('/create'),
-            'view' => Pages\ViewInvoice::route('/{record}'),
-            'edit' => Pages\EditInvoice::route('/{record}/edit'),
+            'index' => Pages\ListBills::route('/'),
+            'create' => Pages\CreateBill::route('/create'),
+            'view' => Pages\ViewBill::route('/{record}'),
+            'edit' => Pages\EditBill::route('/{record}/edit'),
         ];
     }
 

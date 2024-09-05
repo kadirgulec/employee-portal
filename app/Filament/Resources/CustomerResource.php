@@ -17,6 +17,8 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\ActionSize;
+use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -59,11 +61,11 @@ class CustomerResource extends Resource
                 Forms\Components\TextInput::make('phone')
                     ->tel(),
 
-                Forms\Components\Section::make('Invoices')
-                    ->description('The invoices for the customer')
+                Forms\Components\Section::make('bills')
+                    ->description('The bills for the customer')
                     ->schema([
-                        Forms\Components\Repeater::make('Invoices')
-                            ->addActionLabel('Add Invoice')
+                        Forms\Components\Repeater::make('bills')
+                            ->addActionLabel('Add bill')
                             ->itemLabel(fn(array $state): ?string => $state['date'])
                             ->relationship()
                             ->schema([
@@ -94,7 +96,7 @@ class CustomerResource extends Resource
                                     ->addActionLabel('Add new product')
                                     ->hiddenLabel()
                                     ->extraItemActions([
-                                        Action::make('Create Product')
+                                        Action::make('Create new Product')
                                             ->icon('heroicon-m-plus-circle')
                                             ->form([
                                                 TextInput::make('name')
@@ -107,25 +109,47 @@ class CustomerResource extends Resource
                                                     ->numeric()
                                                     ->required(),
                                             ])
-                                            ->action(function (array $data) {
+                                            ->action(function (array $data, SPProduct $product) {
 
-                                                \App\Models\SPProduct::create($data);
+                                                $product->create($data);
+
                                                 Notification::make()
                                                     ->title('Product Created')
                                                     ->success()
                                                     ->send();
 
+
                                             })
+                                            ->color('success')
                                             ->modalHeading('Create New Product')
-                                            ->modalWidth('lg'),
+                                            ->modalWidth('lg')
+//                                        ->modalSubmitAction(function (Get $get, Set $set) {
+//                                            $products = SPProduct::all()->pluck('name', 'id');
+//                                            $set('s_p_products_id', $products);
+//
+//                                        }),
                                     ])
                                     ->relationship()
                                     ->schema([
                                         Forms\Components\Select::make('s_p_product_id')
                                             ->label('Product or Service')
                                             ->options(SPProduct::all()->pluck('name', 'id'))
-                                        ->searchable()
-                                        ->preload(),
+                                            ->searchable()
+                                            ->preload()
+                                            ->live(),
+//TODO add price changer in this
+//                                            ->suffixAction(
+//                                                Action::make('Change Price')
+//                                                    ->icon('heroicon-s-currency-euro')
+//                                                    ->color('primary')
+//                                                    ->form([
+//                                                        TextInput::make('price')
+//                                                        ->fill(function(){
+//
+//                                                        })
+//
+//                                                    ])
+//                                            ),
                                         Forms\Components\TextInput::make('quantity')
                                             ->numeric()
                                             ->required(),
@@ -164,6 +188,10 @@ class CustomerResource extends Resource
                                     ->label('PDF')
                                     ->icon('heroicon-m-document-arrow-down')
                                     ->color('info')
+                                    ->button()
+                                    ->labeledFrom('md')
+                                    ->outlined()
+
 
                             ]),
                     ])
