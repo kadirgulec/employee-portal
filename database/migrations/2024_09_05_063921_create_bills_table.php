@@ -32,7 +32,11 @@ return new class extends Migration
             $table->softDeletes();
 
             //fields
+            $table->string('name');
+            $table->float('price');
+            $table->text('description')->nullable();
             $table->integer('quantity');
+
 
             //foreign keys
             $table->foreignIdFor(\App\Models\SPProduct::class);

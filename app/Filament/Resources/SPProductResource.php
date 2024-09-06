@@ -6,6 +6,7 @@ use App\Filament\Resources\SPProductResource\Pages;
 use App\Filament\Resources\SPProductResource\RelationManagers;
 use App\Models\SPProduct;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -34,8 +35,20 @@ class SPProductResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required(),
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
+                RichEditor::make('description')
+                    ->columnSpanFull()
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'bulletList',
+                        'orderedList',
+                        'blockquote',
+                        'h3',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ]),
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->numeric()

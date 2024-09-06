@@ -7,9 +7,11 @@ use App\Filament\Resources\CustomerResource\RelationManagers;
 use App\Filament\Resources\SPProductResource\Pages\CreateSPProduct;
 use App\Models\Customer;
 use App\Models\SPProduct;
+use Faker\Provider\Text;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -54,6 +56,9 @@ class CustomerResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('last_name')
                     ->required(),
+                TextInput::make('address')
+                    ->nullable(),
+                TextInput::make('city'),
                 Forms\Components\TextInput::make('email')
                     ->email(),
                 Forms\Components\TextInput::make('mobile')
@@ -61,14 +66,28 @@ class CustomerResource extends Resource
                 Forms\Components\TextInput::make('phone')
                     ->tel(),
 
-                Forms\Components\Section::make('bills')
+                //Bills section
+                Forms\Components\Section::make('Bills')
                     ->description('The bills for the customer')
                     ->schema([
                         Forms\Components\Repeater::make('bills')
                             ->addActionLabel('Add bill')
                             ->itemLabel(fn(array $state): ?string => $state['date'])
                             ->relationship()
+                            ->collapsed()
+                            ->extraItemActions([
+                                Forms\Components\Actions\Action::make('PDF')
+                                    ->label('PDF')
+                                    ->url(fn($record) => route("bill.pdf", $record))
+                                    ->icon('heroicon-m-document-arrow-down')
+                                    ->color('info')
+                                    ->openUrlInNewTab()
+                                    ->link()
+                                    ->labeledFrom('md')
+                                    ->outlined()
+                            ])
                             ->schema([
+                                //two text fields at top of the Bill repeater
                                 Forms\Components\Grid::make(2)
                                     ->schema([
                                         Forms\Components\DatePicker::make('date')
@@ -92,9 +111,83 @@ class CustomerResource extends Resource
                                             }),
                                     ]),
 
+                                //Positions repeater under Bill repeater
                                 Forms\Components\Repeater::make('positions')
                                     ->addActionLabel('Add new product')
                                     ->hiddenLabel()
+                                    ->itemLabel(fn(array $state): ?string => $state['name'])
+                                    ->relationship()
+                                    ->live()
+                                    ->collapsible()
+                                    ->grid(2)
+                                    ->schema([
+                                        //select a product field
+                                        Forms\Components\Select::make('s_p_product_id')
+                                            ->label('Product or Service')
+                                            ->options(SPProduct::all()->pluck('name', 'id'))
+                                            ->searchable()
+                                            ->preload()
+                                            ->live()
+                                            ->required()
+                                            ->afterStateUpdated(function (Get $get, Set $set) {
+                                                $product = SPProduct::find($get('s_p_product_id'));
+                                                $set('description', optional($product)->description);
+                                                $set('price', optional($product)->price);
+                                                $set('name', optional($product)->name);
+                                            }),
+                                        Forms\Components\TextInput::make('quantity')
+                                            ->numeric()
+                                            ->required(),
+                                        TextInput::make('name'),
+                                        RichEditor::make('description')
+                                            ->columnSpanFull()
+                                            ->toolbarButtons([
+                                                'bold',
+                                                'italic',
+                                                'bulletList',
+                                                'orderedList',
+                                                'blockquote',
+                                                'h3',
+                                                'redo',
+                                                'strike',
+                                                'underline',
+                                                'undo',
+                                            ]),
+                                        TextInput::make('price')
+                                            ->numeric(),
+
+//                                            //Change Price Action
+//                                            ->suffixAction(
+//                                                Action::make('Change Price')
+//                                                    ->icon('heroicon-s-currency-euro')
+//                                                    ->color('primary')
+//                                                    ->form(function (callable $get) {
+//                                                        $productId = $get('s_p_product_id');
+//                                                        $product = SPProduct::find($productId);
+//                                                        return
+//                                                            [
+//                                                                TextInput::make('price')
+//                                                                    ->numeric()
+//                                                                    ->default($product ? $product->price : null)
+//                                                            ];
+//                                                    })
+//                                                    ->action(function (array $data, GET $get, SET $set) {
+//                                                        $productId = $get('s_p_product_id');
+//                                                        $product = SPProduct::find($productId);
+//
+//                                                        if (is_numeric($data['price'])) {
+//                                                            $product->update($data);
+//                                                        } else {
+//
+//                                                            Notification::make()
+//                                                                ->title('Price couldn\'t be updated')
+//                                                                ->danger()
+//                                                                ->send();
+//                                                        }
+//                                                    })
+//                                            ),
+
+                                    ])
                                     ->extraItemActions([
                                         Action::make('Create new Product')
                                             ->icon('heroicon-m-plus-circle')
@@ -102,8 +195,20 @@ class CustomerResource extends Resource
                                                 TextInput::make('name')
                                                     ->label('Product Name')
                                                     ->required(),
-                                                Textarea::make('description')
-                                                    ->label('Product Description'),
+                                                RichEditor::make('description')
+                                                    ->columnSpanFull()
+                                                    ->toolbarButtons([
+                                                        'bold',
+                                                        'italic',
+                                                        'bulletList',
+                                                        'orderedList',
+                                                        'blockquote',
+                                                        'h3',
+                                                        'redo',
+                                                        'strike',
+                                                        'underline',
+                                                        'undo',
+                                                    ]),
                                                 TextInput::make('price')
                                                     ->label('Price')
                                                     ->numeric()
@@ -117,50 +222,19 @@ class CustomerResource extends Resource
                                                     ->title('Product Created')
                                                     ->success()
                                                     ->send();
-
-
                                             })
                                             ->color('success')
                                             ->modalHeading('Create New Product')
                                             ->modalWidth('lg')
-//                                        ->modalSubmitAction(function (Get $get, Set $set) {
-//                                            $products = SPProduct::all()->pluck('name', 'id');
-//                                            $set('s_p_products_id', $products);
-//
-//                                        }),
                                     ])
-                                    ->relationship()
-                                    ->schema([
-                                        Forms\Components\Select::make('s_p_product_id')
-                                            ->label('Product or Service')
-                                            ->options(SPProduct::all()->pluck('name', 'id'))
-                                            ->searchable()
-                                            ->preload()
-                                            ->live(),
-//TODO add price changer in this
-//                                            ->suffixAction(
-//                                                Action::make('Change Price')
-//                                                    ->icon('heroicon-s-currency-euro')
-//                                                    ->color('primary')
-//                                                    ->form([
-//                                                        TextInput::make('price')
-//                                                        ->fill(function(){
-//
-//                                                        })
-//
-//                                                    ])
-//                                            ),
-                                        Forms\Components\TextInput::make('quantity')
-                                            ->numeric()
-                                            ->required(),
-                                    ])
-                                    ->live()
-                                    ->grid(2)
+                                    ->deleteAction(
+                                        fn(Action $action) => $action->requiresConfirmation(),
+                                    )
                                     ->afterStateUpdated(function (Get $get, Set $set) {
                                         $positions = $get('positions') ?? [];
                                         $totalPrice = collect($positions)->sum(function ($position) {
-                                            if ($position['s_p_product_id'] && is_numeric($position['quantity'])) {
-                                                return $position['quantity'] * SPProduct::find($position['s_p_product_id'])->price;
+                                            if ($position['s_p_product_id'] && is_numeric($position['quantity']) && is_numeric($position['price'])) {
+                                                return $position['quantity'] * $position['price'];
                                             } else {
                                                 return 0;
                                             }
@@ -172,28 +246,16 @@ class CustomerResource extends Resource
                                         $positions = $get('positions') ?? [];
                                         $totalPrice = collect($positions)->sum(function ($position) {
 
-                                            if ($position['s_p_product_id'] && is_numeric($position['quantity'])) {
-                                                return $position['quantity'] * SPProduct::find($position['s_p_product_id'])->price;
+                                            if ($position['s_p_product_id'] && is_numeric($position['quantity']) && is_numeric($position['price'])) {
+                                                return $position['quantity'] * $position['price'] ?? 0;
                                             } else {
                                                 return 0;
                                             }
                                         });
                                         $set('total_price', $totalPrice);
                                     }),
-
                             ])
-                            ->collapsed()
-                            ->extraItemActions([
-                                Forms\Components\Actions\Action::make('PDF')
-                                    ->label('PDF')
-                                    ->icon('heroicon-m-document-arrow-down')
-                                    ->color('info')
-                                    ->button()
-                                    ->labeledFrom('md')
-                                    ->outlined()
 
-
-                            ]),
                     ])
             ]);
     }

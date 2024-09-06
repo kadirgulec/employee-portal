@@ -11,9 +11,9 @@ class Position extends Model
 
     protected $guarded = [];
 
-    public function invoice()
+    public function bill()
     {
-        $this->belongsTo(Invoice::class);
+        $this->belongsTo(Bill::class);
     }
 
     public function sp_product()
