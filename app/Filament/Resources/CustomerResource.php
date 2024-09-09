@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CustomerResource\Pages;
 use App\Filament\Resources\CustomerResource\RelationManagers;
 use App\Filament\Resources\SPProductResource\Pages\CreateSPProduct;
+use App\Models\Bill;
 use App\Models\Customer;
 use App\Models\SPProduct;
 use Faker\Provider\Text;
@@ -73,18 +74,27 @@ class CustomerResource extends Resource
                         Forms\Components\Repeater::make('bills')
                             ->addActionLabel('Add bill')
                             ->itemLabel(fn(array $state): ?string => $state['date'])
-                            ->relationship()
+                            ->relationship('bills')
                             ->collapsed()
+                            ->defaultItems(0)
+                            ->deleteAction(
+                                fn(Action $action) => $action->requiresConfirmation())
                             ->extraItemActions([
                                 Forms\Components\Actions\Action::make('PDF')
                                     ->label('PDF')
-                                    ->url(fn($record) => route("bill.pdf", $record))
+                                    ->url(function($state, array $arguments){
+                                        $itemID = $state[$arguments['item']]['id'];
+
+                                        return route('bill.pdf', $itemID);
+                                    })
+                                    ->visible(fn($record) => $record)
                                     ->icon('heroicon-m-document-arrow-down')
                                     ->color('info')
                                     ->openUrlInNewTab()
-                                    ->link()
+                                    ->button()
                                     ->labeledFrom('md')
                                     ->outlined()
+
                             ])
                             ->schema([
                                 //two text fields at top of the Bill repeater
@@ -115,11 +125,11 @@ class CustomerResource extends Resource
                                 Forms\Components\Repeater::make('positions')
                                     ->addActionLabel('Add new product')
                                     ->hiddenLabel()
-                                    ->itemLabel(fn(array $state): ?string => $state['name'])
-                                    ->relationship()
+                                    ->itemLabel(fn(array $state): ?string => $state['product_name'])
                                     ->live()
                                     ->collapsible()
                                     ->grid(2)
+                                    ->relationship('positions')
                                     ->schema([
                                         //select a product field
                                         Forms\Components\Select::make('s_p_product_id')
@@ -131,15 +141,15 @@ class CustomerResource extends Resource
                                             ->required()
                                             ->afterStateUpdated(function (Get $get, Set $set) {
                                                 $product = SPProduct::find($get('s_p_product_id'));
-                                                $set('description', optional($product)->description);
-                                                $set('price', optional($product)->price);
-                                                $set('name', optional($product)->name);
+                                                $set('product_description', optional($product)->description);
+                                                $set('product_price', optional($product)->price);
+                                                $set('product_name', optional($product)->name);
                                             }),
                                         Forms\Components\TextInput::make('quantity')
                                             ->numeric()
                                             ->required(),
-                                        TextInput::make('name'),
-                                        RichEditor::make('description')
+                                        TextInput::make('product_name'),
+                                        RichEditor::make('product_description')
                                             ->columnSpanFull()
                                             ->toolbarButtons([
                                                 'bold',
@@ -153,7 +163,7 @@ class CustomerResource extends Resource
                                                 'underline',
                                                 'undo',
                                             ]),
-                                        TextInput::make('price')
+                                        TextInput::make('product_price')
                                             ->numeric(),
 
 //                                            //Change Price Action
@@ -233,8 +243,8 @@ class CustomerResource extends Resource
                                     ->afterStateUpdated(function (Get $get, Set $set) {
                                         $positions = $get('positions') ?? [];
                                         $totalPrice = collect($positions)->sum(function ($position) {
-                                            if ($position['s_p_product_id'] && is_numeric($position['quantity']) && is_numeric($position['price'])) {
-                                                return $position['quantity'] * $position['price'];
+                                            if ($position['s_p_product_id'] && is_numeric($position['quantity']) && is_numeric($position['product_price'])) {
+                                                return $position['quantity'] * $position['product_price'];
                                             } else {
                                                 return 0;
                                             }
@@ -246,8 +256,8 @@ class CustomerResource extends Resource
                                         $positions = $get('positions') ?? [];
                                         $totalPrice = collect($positions)->sum(function ($position) {
 
-                                            if ($position['s_p_product_id'] && is_numeric($position['quantity']) && is_numeric($position['price'])) {
-                                                return $position['quantity'] * $position['price'] ?? 0;
+                                            if ($position['s_p_product_id'] && is_numeric($position['quantity']) && is_numeric($position['product_price'])) {
+                                                return $position['quantity'] * $position['product_price'] ?? 0;
                                             } else {
                                                 return 0;
                                             }

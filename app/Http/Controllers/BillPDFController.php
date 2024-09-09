@@ -24,23 +24,27 @@ class BillPDFController extends Controller
         Browsershot::html($html)
             ->noSandbox() // Ensure it works on environments without sandbox permissions
             ->showBackground() // Render the background styles
-            ->margins(0, 0, 0, 0) // Set the margins (top, right, bottom, left)
+            ->margins(5, 20, 10, 25) // Set the margins (top, right, bottom, left)
             ->savePdf($pdfFilePath); // Save the PDF to the defined path
 
         // Prepare the file name for download
-//        $date = date('d.m.Y', strtotime($bill->date));
-//        $firstName = $bill->customer()->first_name;
-//        $lastName = $bill->customer()->last_name;
-//        $id = $bill->customer()->id;
-//        $customer_number = $bill->customer()->customer_number;
+        $date = date('d.m.Y', strtotime($bill->date));
+        $firstName = $bill->customer->first_name;
+        $lastName = $bill->customer->last_name;
+        $id = $bill->customer->id;
+//        $customer_number = $bill->customer->customer_number;
 
-//        $fileName = "KD Nr. {$customer_number} {$firstName} {$lastName} {$date}.pdf";
-        $fileName = "KD Nr.pdf";
+        $fileName = "{$date} KD Nr. {$id} {$firstName} {$lastName} .pdf";
+//        $fileName = "KD Nr.pdf";
 
         // Return the PDF as a download response
         return response()->download($pdfFilePath, $fileName, [
             'Content-Type' => 'application/pdf',
         ])->deleteFileAfterSend(true); // Optionally delete the file after it's sent
     }
+
+//    public function viewPDF(Bill $bill){
+//        return view('bill-pdf-layout', compact('bill'));
+//    }
 
 }

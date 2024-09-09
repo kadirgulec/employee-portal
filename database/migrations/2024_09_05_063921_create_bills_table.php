@@ -32,9 +32,9 @@ return new class extends Migration
             $table->softDeletes();
 
             //fields
-            $table->string('name');
-            $table->float('price');
-            $table->text('description')->nullable();
+            $table->string('product_name');
+            $table->float('product_price');
+            $table->text('product_description')->nullable();
             $table->integer('quantity');
 
 

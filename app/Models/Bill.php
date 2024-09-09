@@ -15,6 +15,17 @@ class Bill extends Model
         'customer_id'
     ];
 
+    protected $appends = ['total_price'];
+
+
+    public function getTotalPriceAttribute(): string
+    {
+        $totalPrice = 0;
+        foreach ($this->positions as $position) {
+            $totalPrice += $position->product_price * $position->quantity;
+        }
+        return $totalPrice;
+    }
     public function customer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Customer::class);

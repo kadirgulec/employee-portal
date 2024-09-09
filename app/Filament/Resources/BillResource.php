@@ -8,6 +8,8 @@ use App\Models\Bill;
 use App\Models\Customer;
 use App\Models\SPProduct;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -67,17 +69,45 @@ class BillResource extends Resource
                     ->schema([
                         Forms\Components\Select::make('s_p_product_id')
                             ->label('Product or Service')
-                            ->options(SPProduct::all()->pluck('name', 'id')),
+                            ->options(SPProduct::all()->pluck('name', 'id'))
+                            ->searchable()
+                            ->preload()
+                            ->live()
+                            ->required()
+                            ->afterStateUpdated(function (Get $get, Set $set) {
+                                $product = SPProduct::find($get('s_p_product_id'));
+                                $set('product_description', optional($product)->description);
+                                $set('product_price', optional($product)->price);
+                                $set('product_name', optional($product)->name);
+                            }),
                         Forms\Components\TextInput::make('quantity')
                             ->numeric()
                             ->required(),
+                        Forms\Components\TextInput::make('product_name'),
+                        RichEditor::make('product_description')
+                            ->columnSpanFull()
+                            ->toolbarButtons([
+                                'bold',
+                                'italic',
+                                'bulletList',
+                                'orderedList',
+                                'blockquote',
+                                'h3',
+                                'redo',
+                                'strike',
+                                'underline',
+                                'undo',
+                            ]),
+                        TextInput::make('product_price')
+                            ->numeric(),
                     ])
                     ->live()
                     ->afterStateUpdated(function (Get $get, Set $set) {
                         $positions = $get('positions') ?? [];
+
                         $totalPrice = collect($positions)->sum(function ($position) {
-                            if ($position['s_p_product_id'] && is_numeric($position['quantity'])) {
-                                return $position['quantity'] * SPProduct::find($position['s_p_product_id'])->price;
+                            if ($position['product_price'] && is_numeric($position['quantity'])) {
+                                return $position['quantity'] *  $position['product_price'];
                             } else {
                                 return 0;
                             }
@@ -89,8 +119,8 @@ class BillResource extends Resource
                         $positions = $get('positions') ?? [];
                         $totalPrice = collect($positions)->sum(function ($position) {
 
-                            if ($position['s_p_product_id'] && is_numeric($position['quantity'])) {
-                                return $position['quantity'] * SPProduct::find($position['s_p_product_id'])->price;
+                            if ($position['product_price'] && is_numeric($position['quantity'])) {
+                                return $position['quantity'] * $position['product_price'];
                             } else {
                                 return 0;
                             }
@@ -135,8 +165,10 @@ class BillResource extends Resource
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\Action::make('PDF')
                     ->label('PDF')
-                    ->url("/")
+                    ->url(fn($record): string => route('bill.pdf', $record))
                     ->color('info')
+                    ->icon('heroicon-o-document-arrow-down')
+                    ->outlined()
                     ->openUrlInNewTab(),
 
             ])
