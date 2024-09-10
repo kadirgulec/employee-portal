@@ -26,7 +26,12 @@ class SPProductResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return 'Product';
+        return __('filament-panels::translations.product.single');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament-panels::translations.product.plural');
     }
 
     public static function form(Form $form): Form
@@ -34,8 +39,10 @@ class SPProductResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label(__('filament-panels::translations.product.name'))
                     ->required(),
                 RichEditor::make('description')
+                    ->label(__('filament-panels::translations.product.description'))
                     ->columnSpanFull()
                     ->toolbarButtons([
                         'bold',
@@ -50,6 +57,7 @@ class SPProductResource extends Resource
                         'undo',
                     ]),
                 Forms\Components\TextInput::make('price')
+                    ->label(__('filament-panels::translations.product.price'))
                     ->required()
                     ->numeric()
                     ->prefix('€'),
@@ -73,8 +81,10 @@ class SPProductResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('name')
+                    ->label(__('filament-panels::translations.product.name'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price')
+                    ->label(__('filament-panels::translations.product.price'))
                     ->money('EUR')
                     ->sortable(),
             ])

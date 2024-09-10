@@ -54,7 +54,6 @@ describe('view-any User authenticated user', function () {
     routeTesting('it forbids unauthorised pages')
         ->exclude(['/', 'login', 'up', 'users', 'livewire/*', 'illness-notifications/*/edit', 'departments/*/edit'])
         ->ignoreRoutesWithMissingBindings()
-        ->bind('record', (fn() => User::factory()->create()))
         ->assertForbidden();
 });
 

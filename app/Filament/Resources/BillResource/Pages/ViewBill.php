@@ -14,6 +14,12 @@ class ViewBill extends ViewRecord
     {
         return [
             Actions\EditAction::make(),
+            Actions\Action::make('PDF')
+            ->label('PDF')
+            ->color('info')
+            ->icon('heroicon-o-document-arrow-down')
+            ->url(fn($record): ?string => route('bill.pdf', $record))
+            ->openUrlInNewTab()
         ];
     }
 }

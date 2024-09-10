@@ -74,4 +74,42 @@ return [
         'rate' => 'Share of Illness Notifications',
     ],
 
+    'customer'=>[
+        'single' => 'Customer',
+        'plural' => 'Customers',
+        'first_name' => 'First Name',
+        'last_name' => 'Last Name',
+        'address' => 'Address',
+        'city' => 'City',
+        'mobile' => 'Mobile',
+        'email' => 'Email',
+        'phone' => 'Phone',
+    ],
+    'bill' => [
+        'single' => 'Bill',
+        'plural' => 'Bills',
+        'description' => 'Bills for Customers',
+        'date' => 'Bill Date',
+        'total_price' => 'Total Price',
+        'product' => 'Product',
+        'quantity' => 'Quantity',
+        'unit_price' => 'Unit Price',
+        'product_name' => 'Product Name',
+        'product_description' => 'Product Description',
+        'add' => 'Add Bill',
+        'download' => 'Download Bill',
+        'customer' => 'Customer',
+    ],
+    'product' =>
+    [
+        'single' => 'Product',
+        'plural' => 'Products',
+        'add' => 'Add Product',
+        'create_new' => 'Create New Product',
+        'name' => 'Name',
+        'description' => 'Description',
+        'price' => 'Price',
+        'notify_created' => 'Product Created',
+    ],
+
 ];

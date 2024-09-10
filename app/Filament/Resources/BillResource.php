@@ -29,14 +29,27 @@ class BillResource extends Resource
 
     protected static ?int $navigationSort = 3;
 
+    public static function getModelLabel(): string
+    {
+        return __('filament-panels::translations.bill.single');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament-panels::translations.bill.plural');
+    }
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\DatePicker::make('date')
-                    ->required(),
+                    ->label(__('filament-panels::translations.bill.date'))
+                    ->required()
+                    ->native(false),
                 Forms\Components\Select::make('customer_id')
+                    ->label(__('filament-panels::translations.bill.customer'))
                     ->relationship('customer', 'id')
                     ->options(Customer::all()->pluck('full_name', 'id'))
                     ->searchable()
@@ -44,6 +57,7 @@ class BillResource extends Resource
                     ->required(),
 
                 Forms\Components\TextInput::make('total_price')
+                    ->label(__('filament-panels::translations.bill.total_price'))
                     ->numeric()
                     ->readOnly()
                     ->prefix('€')
@@ -62,13 +76,14 @@ class BillResource extends Resource
 
 
                 Forms\Components\Repeater::make('positions')
-                    ->addActionLabel('Add new product')
+                    ->addActionLabel(__('filament-panels::translations.product.add'))
+                    ->itemLabel(fn(array $state): ?string => $state['product_name'])
                     ->hiddenLabel()
                     ->relationship()
                     ->columnSpanFull()
                     ->schema([
                         Forms\Components\Select::make('s_p_product_id')
-                            ->label('Product or Service')
+                            ->label(__('filament-panels::translations.product.name'))
                             ->options(SPProduct::all()->pluck('name', 'id'))
                             ->searchable()
                             ->preload()
@@ -81,10 +96,13 @@ class BillResource extends Resource
                                 $set('product_name', optional($product)->name);
                             }),
                         Forms\Components\TextInput::make('quantity')
+                            ->label(__('filament-panels::translations.bill.quantity'))
                             ->numeric()
                             ->required(),
-                        Forms\Components\TextInput::make('product_name'),
+                        Forms\Components\TextInput::make('product_name')
+                        ->label(__('filament-panels::translations.bill.product.name')),
                         RichEditor::make('product_description')
+                            ->label(__('filament-panels::translations.bill.product_description'))
                             ->columnSpanFull()
                             ->toolbarButtons([
                                 'bold',
@@ -99,6 +117,7 @@ class BillResource extends Resource
                                 'undo',
                             ]),
                         TextInput::make('product_price')
+                            ->label(__('filament-panels::translations.bill.unit_price'))
                             ->numeric(),
                     ])
                     ->live()
@@ -107,7 +126,7 @@ class BillResource extends Resource
 
                         $totalPrice = collect($positions)->sum(function ($position) {
                             if ($position['product_price'] && is_numeric($position['quantity'])) {
-                                return $position['quantity'] *  $position['product_price'];
+                                return $position['quantity'] * $position['product_price'];
                             } else {
                                 return 0;
                             }
@@ -127,7 +146,7 @@ class BillResource extends Resource
                         });
                         $set('total_price', $totalPrice);
                     })
-                ->grid(2),
+                    ->grid(2),
 
 
             ]);
@@ -151,9 +170,11 @@ class BillResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('date')
+                    ->label(__('filament-panels::translations.bill.date'))
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('customer.full_name')
+                    ->label(__('filament-panels::translations.bill.customer'))
                     ->numeric()
                     ->sortable(),
             ])

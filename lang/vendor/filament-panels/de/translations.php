@@ -72,5 +72,43 @@ return [
         'rate' => 'Anteil der Krankmeldungen',
     ],
 
+    'customer'=>[
+        'single' => 'Kunde',
+        'plural' => 'Kunden',
+        'first_name' => 'Vorname',
+        'last_name' => 'Nachname',
+        'address' => 'Adresss',
+        'city' => 'Ort',
+        'mobile' => 'Handy',
+        'email' => 'Email',
+        'phone' => 'Telefon',
+    ],
+    'bill' => [
+        'single' => 'Rechnung',
+        'plural' => 'Rechnungen',
+        'description' => 'Rechnungen für Kunden',
+        'date' => 'Rechnung Datum',
+        'total_price' => 'Gesamtpreis',
+        'product' => 'Produkt',
+        'quantity' => 'Menge',
+        'unit_price' => 'Stückpreis',
+        'product_name' => 'Produkt Name',
+        'product_description' => 'Produkt Beschreibung',
+        'add' => 'Rechnung addieren',
+        'download' => 'Rechnung herunterladen',
+        'customer' => 'Kunde',
+    ],
+    'product' =>
+        [
+            'single' => 'Produkt',
+            'plural' => 'Produkte',
+            'add' => 'Produkt addieren',
+            'create_new' => 'Neue Produkt erstellen',
+            'name' => 'Name',
+            'description' => 'Beschreibung',
+            'price' => 'Preis',
+            'notify_created' => 'Produkt erstellt.',
+        ],
+
 
 ];

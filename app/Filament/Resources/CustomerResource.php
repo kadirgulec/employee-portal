@@ -39,40 +39,47 @@ class CustomerResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-//    public static function getModelLabel(): string
-//    {
-//        return 'IT Service Point';
-//    }
-//
-//    public static function getPluralModelLabel(): string
-//    {
-//        return 'IT Service Point';
-//    }
+    public static function getModelLabel(): string
+    {
+        return __('filament-panels::translations.customer.single');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament-panels::translations.customer.plural');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('first_name')
+                    ->label(__('filament-panels::translations.customer.first_name'))
                     ->required(),
                 Forms\Components\TextInput::make('last_name')
+                    ->label(__('filament-panels::translations.customer.last_name'))
                     ->required(),
                 TextInput::make('address')
+                    ->label(__('filament-panels::translations.customer.address'))
                     ->nullable(),
-                TextInput::make('city'),
+                TextInput::make('city')
+                ->label(__('filament-panels::translations.customer.city')),
                 Forms\Components\TextInput::make('email')
+                    ->label(__('filament-panels::translations.customer.email'))
                     ->email(),
                 Forms\Components\TextInput::make('mobile')
+                    ->label(__('filament-panels::translations.customer.mobile'))
                     ->tel(),
                 Forms\Components\TextInput::make('phone')
+                    ->label(__('filament-panels::translations.customer.phone'))
                     ->tel(),
 
                 //Bills section
-                Forms\Components\Section::make('Bills')
-                    ->description('The bills for the customer')
+                Forms\Components\Section::make(__('filament-panels::translations.bill.plural'))
+                    ->description(__('filament-panels::translations.bill.description'))
                     ->schema([
                         Forms\Components\Repeater::make('bills')
-                            ->addActionLabel('Add bill')
+                            ->addActionLabel(__('filament-panels::translations.bill.add'))
                             ->itemLabel(fn(array $state): ?string => $state['date'])
                             ->relationship('bills')
                             ->collapsed()
@@ -83,9 +90,15 @@ class CustomerResource extends Resource
                                 Forms\Components\Actions\Action::make('PDF')
                                     ->label('PDF')
                                     ->url(function($state, array $arguments){
-                                        $itemID = $state[$arguments['item']]['id'];
+                                        if(isset($state[$arguments['item']]['id']))
+                                        {
+                                            $itemID = $state[$arguments['item']]['id'];
+                                            return route('bill.pdf', $itemID);
+                                        }
 
-                                        return route('bill.pdf', $itemID);
+                                        return null;
+
+
                                     })
                                     ->visible(fn($record) => $record)
                                     ->icon('heroicon-m-document-arrow-down')
@@ -101,9 +114,11 @@ class CustomerResource extends Resource
                                 Forms\Components\Grid::make(2)
                                     ->schema([
                                         Forms\Components\DatePicker::make('date')
+                                            ->label(__('filament-panels::translations.bill.date'))
                                             ->native(false)
                                             ->required(),
                                         Forms\Components\TextInput::make('total_price')
+                                            ->label(__('filament-panels::translations.bill.total_price'))
                                             ->numeric()
                                             ->readOnly()
                                             ->prefix('€')
@@ -123,7 +138,7 @@ class CustomerResource extends Resource
 
                                 //Positions repeater under Bill repeater
                                 Forms\Components\Repeater::make('positions')
-                                    ->addActionLabel('Add new product')
+                                    ->addActionLabel(__('filament-panels::translations.product.add'))
                                     ->hiddenLabel()
                                     ->itemLabel(fn(array $state): ?string => $state['product_name'])
                                     ->live()
@@ -146,10 +161,13 @@ class CustomerResource extends Resource
                                                 $set('product_name', optional($product)->name);
                                             }),
                                         Forms\Components\TextInput::make('quantity')
+                                            ->label(__('filament-panels::translations.bill.quantity'))
                                             ->numeric()
                                             ->required(),
-                                        TextInput::make('product_name'),
+                                        TextInput::make('product_name')
+                                        ->label(__('filament-panels::translations.bill.product_name')),
                                         RichEditor::make('product_description')
+                                            ->label(__('filament-panels::translations.bill.product_description'))
                                             ->columnSpanFull()
                                             ->toolbarButtons([
                                                 'bold',
@@ -164,6 +182,7 @@ class CustomerResource extends Resource
                                                 'undo',
                                             ]),
                                         TextInput::make('product_price')
+                                            ->label(__('filament-panels::translations.bill.unit_price'))
                                             ->numeric(),
 
 //                                            //Change Price Action
@@ -200,12 +219,14 @@ class CustomerResource extends Resource
                                     ])
                                     ->extraItemActions([
                                         Action::make('Create new Product')
+                                            ->label(__('filament-panels::translations.product.create_new'))
                                             ->icon('heroicon-m-plus-circle')
                                             ->form([
                                                 TextInput::make('name')
-                                                    ->label('Product Name')
+                                                    ->label(__('filament-panels::translations.product.name'))
                                                     ->required(),
                                                 RichEditor::make('description')
+                                                    ->label(__('filament-panels::translations.product.description'))
                                                     ->columnSpanFull()
                                                     ->toolbarButtons([
                                                         'bold',
@@ -220,7 +241,7 @@ class CustomerResource extends Resource
                                                         'undo',
                                                     ]),
                                                 TextInput::make('price')
-                                                    ->label('Price')
+                                                    ->label(__('filament-panels::translations.product.price'))
                                                     ->numeric()
                                                     ->required(),
                                             ])
@@ -229,12 +250,12 @@ class CustomerResource extends Resource
                                                 $product->create($data);
 
                                                 Notification::make()
-                                                    ->title('Product Created')
+                                                    ->title(__('filament-panels::translations.product.notify_created'))
                                                     ->success()
                                                     ->send();
                                             })
                                             ->color('success')
-                                            ->modalHeading('Create New Product')
+                                            ->modalHeading(__('filament-panels::translations.product.create'))
                                             ->modalWidth('lg')
                                     ])
                                     ->deleteAction(
@@ -287,14 +308,19 @@ class CustomerResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('first_name')
+                    ->label(__('filament-panels::translations.customer.first_name'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('last_name')
+                    ->label(__('filament-panels::translations.customer.last_name'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->label(__('filament-panels::translations.customer.email'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('mobile')
+                    ->label(__('filament-panels::translations.customer.mobile'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
+                    ->label(__('filament-panels::translations.customer.phone'))
                     ->searchable(),
             ])
             ->filters([
