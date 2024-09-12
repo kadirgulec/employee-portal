@@ -4,16 +4,12 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CustomerResource\Pages;
 use App\Filament\Resources\CustomerResource\RelationManagers;
-use App\Filament\Resources\SPProductResource\Pages\CreateSPProduct;
-use App\Models\Bill;
 use App\Models\Customer;
 use App\Models\SPProduct;
-use Faker\Provider\Text;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
-use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -21,11 +17,9 @@ use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\ActionSize;
-use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+
 
 class CustomerResource extends Resource
 {
@@ -63,7 +57,7 @@ class CustomerResource extends Resource
                     ->label(__('filament-panels::translations.customer.address'))
                     ->nullable(),
                 TextInput::make('city')
-                ->label(__('filament-panels::translations.customer.city')),
+                    ->label(__('filament-panels::translations.customer.city')),
                 Forms\Components\TextInput::make('email')
                     ->label(__('filament-panels::translations.customer.email'))
                     ->email(),
@@ -89,9 +83,8 @@ class CustomerResource extends Resource
                             ->extraItemActions([
                                 Forms\Components\Actions\Action::make('PDF')
                                     ->label('PDF')
-                                    ->url(function($state, array $arguments){
-                                        if(isset($state[$arguments['item']]['id']))
-                                        {
+                                    ->url(function ($state, array $arguments) {
+                                        if (isset($state[$arguments['item']]['id'])) {
                                             $itemID = $state[$arguments['item']]['id'];
                                             return route('bill.pdf', $itemID);
                                         }
@@ -165,7 +158,7 @@ class CustomerResource extends Resource
                                             ->numeric()
                                             ->required(),
                                         TextInput::make('product_name')
-                                        ->label(__('filament-panels::translations.bill.product_name')),
+                                            ->label(__('filament-panels::translations.bill.product_name')),
                                         RichEditor::make('product_description')
                                             ->label(__('filament-panels::translations.bill.product_description'))
                                             ->columnSpanFull()
@@ -324,10 +317,20 @@ class CustomerResource extends Resource
                     ->searchable(),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                Tables\Filters\TrashedFilter::make()->visible(auth()->user()->can('restore Customer')),
             ])
             ->actions([
+
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                ActionGroup::make([
+                    Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\ForceDeleteAction::make(),
+                    Tables\Actions\RestoreAction::make(),
+                ])
+                    ->color('gray')
+                    ->size(ActionSize::Small),
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -354,11 +357,11 @@ class CustomerResource extends Resource
         ];
     }
 
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
-    }
+//    public static function getEloquentQuery(): Builder
+//    {
+////        return parent::getEloquentQuery()
+////            ->withoutGlobalScopes([
+////                SoftDeletingScope::class,
+////            ]);
+//    }
 }

@@ -188,7 +188,7 @@ class IllnessNotificationResource extends Resource
                                     $data['illness_notification_after']));
                     }),
 
-//                Tables\Filters\TrashedFilter::make(),
+                Tables\Filters\TrashedFilter::make()->visible(auth()->user()->can('restore IllnessNotification')),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

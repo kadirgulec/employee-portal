@@ -2,9 +2,11 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\AvatarProviders\BigUiAvatarsProvider;
 use App\Filament\Resources\IllnessNotificationResource;
 use App\Filament\Resources\UserResource;
 use App\Http\Middleware\SetLocal;
+use Filament\AvatarProviders\UiAvatarsProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -12,6 +14,7 @@ use Filament\Navigation\MenuItem;
 use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
 use Filament\Panel;
+use Filament\View\PanelsRenderHook;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Widgets;
@@ -30,19 +33,19 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->defaultAvatarProvider(UiAvatarsProvider::class)
             ->favicon('https://www.aks-service.de/wp-content/uploads/2022/10/aks_waben.png')
             ->id('admin')
             ->path('/')
             ->login()
             ->colors([
                 'danger' => Color::Red,
-                'gray' => Color::Gray,
+                'gray' => Color::Slate,
                 'info' => Color::Blue,
                 'primary' => Color::Yellow,
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
-
             ->userMenuItems([
                 'profile' => MenuItem::make()
                     ->label(__('filament-panels::translations.user.edit.profile'))
@@ -81,8 +84,13 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+            ->renderHook(
+                PanelsRenderHook::USER_MENU_PROFILE_AFTER,
+                fn(): string => 'hey there')
             ->spa() //single page application
             ->unsavedChangesAlerts()
-            ->renderHook('panels::user-menu.before', fn() => Blade::render('@livewire("language-switcher")'));
+            ->renderHook(
+                PanelsRenderHook::USER_MENU_BEFORE,
+                fn() => Blade::render('@livewire("language-switcher")'));
     }
 }

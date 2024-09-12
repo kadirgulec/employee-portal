@@ -89,7 +89,7 @@ class SPProductResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-
+                Tables\Filters\TrashedFilter::make()->visible(auth()->user()->can('restore SPProduct')),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

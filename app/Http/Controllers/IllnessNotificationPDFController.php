@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\IllnessNotification;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Http\Request;
 use Spatie\Browsershot\Browsershot;
 
@@ -10,6 +11,7 @@ class IllnessNotificationPDFController extends Controller
 {
     public function generatePDF(IllnessNotification $illnessNotification)
     {
+
         // Re-fetch the latest data
         $illnessNotification = $illnessNotification->fresh();
 

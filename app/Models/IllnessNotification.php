@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class IllnessNotification extends Model
 {
@@ -15,7 +16,7 @@ class IllnessNotification extends Model
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withoutGlobalScope(SoftDeletingScope::class);
     }
 
     public function reportedTo(): \Illuminate\Database\Eloquent\Relations\BelongsTo
