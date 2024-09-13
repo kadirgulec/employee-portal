@@ -84,9 +84,6 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->renderHook(
-                PanelsRenderHook::USER_MENU_PROFILE_AFTER,
-                fn(): string => 'hey there')
             ->spa() //single page application
             ->unsavedChangesAlerts()
             ->renderHook(
