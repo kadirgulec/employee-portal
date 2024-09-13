@@ -11,10 +11,17 @@
 |
 */
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
 uses(
     Tests\TestCase::class,
      Illuminate\Foundation\Testing\RefreshDatabase::class,
-)->in('Feature');
+)->in('Feature/PagesRenderingTest.php');
+
+uses(
+    \Tests\AuthTestCase::class,
+        RefreshDatabase::class,
+)->in('Feature/*Crud*.php');
 
 /*
 |--------------------------------------------------------------------------

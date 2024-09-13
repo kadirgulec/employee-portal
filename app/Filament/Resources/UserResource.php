@@ -82,6 +82,7 @@ class UserResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('email')
                     ->email()
+                    ->unique()
                     ->required(),
                 Forms\Components\TextInput::make('password')
                     ->password()
