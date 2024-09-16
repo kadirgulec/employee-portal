@@ -53,7 +53,7 @@
     <div class="flex justify-between">
         <div>
             <p class="font-bold text-sm">Zustimmung zur Bearbeitung de folgenden Auftrags:</p>
-            <p><span class="font-bold text-sm">Ticket Überschrift: </span><span>Test</span> / Datum: {{$bill->date}}</p>
+            <p><span class="font-bold text-sm">Ticket Überschrift: </span><span>Test</span> / Datum: {{date('d.m.Y', strtotime($bill->date))}}</p>
         </div>
         <div class="self-start text-right">
             <p class="text-gray-700 text-xs">

@@ -16,7 +16,7 @@ class IllnessNotification extends Model
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class)->withoutGlobalScope(SoftDeletingScope::class);
+        return $this->belongsTo(User::class)->withTrashed();
     }
 
     public function reportedTo(): \Illuminate\Database\Eloquent\Relations\BelongsTo

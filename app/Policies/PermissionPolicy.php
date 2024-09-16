@@ -15,7 +15,7 @@ class PermissionPolicy
     {
         return auth()->user()->can('view-any Permission')
             ||
-            auth()->user()->can('admin Permission');
+            auth()->user()->can('backend.users.permissions');
     }
 
     /**

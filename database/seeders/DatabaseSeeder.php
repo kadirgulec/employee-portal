@@ -25,8 +25,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Permission::create(['name' => 'create User']);
-        Permission::create(['name' => 'admin Permission']);
+        $this->call(PermissionSeeder::class);
         User::factory()->create([
             'id' => 1,
             'illness_notification_contact' => true,
@@ -35,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'last_name' => 'Gülec',
             'email' => 'kg@aks-service.de',
             'gender' => 'Male',
-        ])->givePermissionTo(['create User', 'admin Permission']);
+        ])->givePermissionTo(Permission::all());
 
 
         foreach ($this->AksDepartments as $department) {

@@ -48,7 +48,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName
         if($this->avatar === null){
             return null;
         }
-        return 'storage/' . $this->avatar;
+        return asset('storage') . $this->avatar;
     }
 
     public function getFilamentName(): string
@@ -87,7 +87,10 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName
         return $this->hasMany(IllnessNotification::class);
     }
 
-
+    public function filteredPermissions()
+    {
+       return $this->permissions()->where('name', 'like', "%.users.%");
+    }
     public function canAccessPanel(Panel $panel): bool
     {
         return true;

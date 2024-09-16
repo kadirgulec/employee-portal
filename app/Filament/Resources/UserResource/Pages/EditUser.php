@@ -22,6 +22,9 @@ class EditUser extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
+            Actions\Action::make('permissions')
+            ->url( 'permissions' )
+            ->visible(auth()->user()->can('backend.users.permissions')),
             Actions\ViewAction::make(),
             Actions\DeleteAction::make(),
             Actions\ForceDeleteAction::make(),

@@ -60,6 +60,7 @@ class CustomerResource extends Resource
                     ->label(__('filament-panels::translations.customer.city')),
                 Forms\Components\TextInput::make('email')
                     ->label(__('filament-panels::translations.customer.email'))
+                    ->unique(ignoreRecord: true)
                     ->email(),
                 Forms\Components\TextInput::make('mobile')
                     ->label(__('filament-panels::translations.customer.mobile'))
@@ -74,9 +75,10 @@ class CustomerResource extends Resource
                     ->schema([
                         Forms\Components\Repeater::make('bills')
                             ->addActionLabel(__('filament-panels::translations.bill.add'))
-                            ->itemLabel(fn(array $state): ?string => $state['date'])
-                            ->relationship('bills')
+                            ->itemLabel(fn(array $state): ?string => date('d.m.Y', strtotime($state['date'])))
+                            ->relationship('bills', fn($query) => $query->orderByDesc('date'))
                             ->collapsed()
+//                            ->orderColumn('date')
                             ->defaultItems(0)
                             ->deleteAction(
                                 fn(Action $action) => $action->requiresConfirmation())

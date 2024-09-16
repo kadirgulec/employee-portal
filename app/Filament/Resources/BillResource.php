@@ -83,7 +83,7 @@ class BillResource extends Resource
                     ->columnSpanFull()
                     ->schema([
                         Forms\Components\Select::make('s_p_product_id')
-                            ->label(__('filament-panels::translations.product.name'))
+                            ->label(__('filament-panels::translations.product_name'))
                             ->options(SPProduct::all()->pluck('name', 'id'))
                             ->searchable()
                             ->preload()
@@ -100,7 +100,7 @@ class BillResource extends Resource
                             ->numeric()
                             ->required(),
                         Forms\Components\TextInput::make('product_name')
-                        ->label(__('filament-panels::translations.bill.product.name')),
+                        ->label(__('filament-panels::translations.bill.product_name')),
                         RichEditor::make('product_description')
                             ->label(__('filament-panels::translations.bill.product_description'))
                             ->columnSpanFull()

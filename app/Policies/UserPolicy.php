@@ -12,7 +12,7 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        return auth()->user()->can('view-any User');
+        return auth()->user()->can('backend.users.view-any') || true;
     }
 
     /**
@@ -20,7 +20,7 @@ class UserPolicy
      */
     public function view(User $user, User $model): bool
     {
-        return auth()->user()->can('view User') || $user->id === $model->id ;
+        return auth()->user()->can('backend.users.view') || $user->id === $model->id ;
     }
 
     /**
@@ -28,7 +28,7 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        return auth()->user()->can('create User');
+        return auth()->user()->can('backend.users.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        return auth()->user()->can('update User') || $user->id === $model->id;
+        return auth()->user()->can('backend.users.update') || $user->id === $model->id;
     }
 
     /**
@@ -44,7 +44,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model): bool
     {
-        return auth()->user()->can('delete User') && $user->id != $model->id;
+        return auth()->user()->can('backend.users.delete') && $user->id != $model->id;
     }
 
     /**
@@ -52,7 +52,7 @@ class UserPolicy
      */
     public function restore(User $user, User $model): bool
     {
-        return auth()->user()->can('restore User');
+        return auth()->user()->can('backend.users.restore');
     }
 
     /**
@@ -60,16 +60,16 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model): bool
     {
-        return auth()->user()->can('force-delete User');
+        return auth()->user()->can('backend.users.force-delete');
     }
 
     public function replicateUser(User $user) :bool
     {
-        return auth()->user()->can('replicate User');
+        return auth()->user()->can('backend.users.replicate');
     }
 
     public function reorderUser(User $user) :bool
     {
-        return auth()->user()->can('reorder User');
+        return auth()->user()->can('backend.users.reorder');
     }
 }

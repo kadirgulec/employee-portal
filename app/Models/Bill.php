@@ -28,7 +28,7 @@ class Bill extends Model
     }
     public function customer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Customer::class)->withTrashed();
     }
 
     public function positions(): \Illuminate\Database\Eloquent\Relations\HasMany

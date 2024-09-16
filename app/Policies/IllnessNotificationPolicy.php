@@ -13,7 +13,7 @@ class IllnessNotificationPolicy
      */
     public function viewAny(User $user): bool
     {
-        return auth()->user()->can('view-any IllnessNotification');
+        return auth()->user()->can('backend.illness-notifications.view-any');
     }
 
     /**
@@ -21,7 +21,7 @@ class IllnessNotificationPolicy
      */
     public function view(User $user, IllnessNotification $illnessNotification): bool
     {
-        return auth()->user()->can('view IllnessNotification') || $user->id === $illnessNotification->user->id ;
+        return auth()->user()->can('backend.illness-notifications.view') || $user->id === $illnessNotification->user->id ;
     }
 
     /**
@@ -29,7 +29,7 @@ class IllnessNotificationPolicy
      */
     public function create(User $user): bool
     {
-        return auth()->user()->can('create IllnessNotification');
+        return auth()->user()->can('backend.illness-notifications.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class IllnessNotificationPolicy
      */
     public function update(User $user): bool
     {
-        return auth()->user()->can('update IllnessNotification');
+        return auth()->user()->can('backend.illness-notifications.update');
     }
 
     /**
@@ -45,7 +45,7 @@ class IllnessNotificationPolicy
      */
     public function delete(User $user): bool
     {
-        return auth()->user()->can('delete IllnessNotification');
+        return auth()->user()->can('backend.illness-notifications.delete');
     }
 
     /**
@@ -53,7 +53,7 @@ class IllnessNotificationPolicy
      */
     public function restore(User $user): bool
     {
-        return auth()->user()->can('restore IllnessNotification');
+        return auth()->user()->can('backend.illness-notifications.restore');
     }
 
     /**
@@ -61,16 +61,16 @@ class IllnessNotificationPolicy
      */
     public function forceDelete(User $user): bool
     {
-        return auth()->user()->can('forceDelete IllnessNotification');
+        return auth()->user()->can('backend.illness-notifications.force-delete');
     }
 
     public function replicateUser(User $user) :bool
     {
-        return auth()->user()->can('replicate IllnessNotification');
+        return auth()->user()->can('backend.illness-notifications.replicate');
     }
 
     public function reorderUser(User $user) :bool
     {
-        return auth()->user()->can('reorder IllnessNotification');
+        return auth()->user()->can('backend.illness-notifications.reorder');
     }
 }

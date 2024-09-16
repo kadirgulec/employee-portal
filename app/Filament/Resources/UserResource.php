@@ -45,6 +45,7 @@ class UserResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
+
     public static function getModelLabel(): string
     {
         return __('filament-panels::translations.user.single');
@@ -62,11 +63,11 @@ class UserResource extends Resource
 
                 Forms\Components\Toggle::make('active')
                     ->required()
-                    ->disabled(!auth()->user()->can('create User')),
+                    ->disabled(!auth()->user()->can('backend.users.update')),
                 Forms\Components\Toggle::make('illness_notification_contact')
                     ->label(__('filament-panels::translations.user.illness_notification_contact'))
                     ->required()
-                    ->disabled(!auth()->user()->can('create User')),
+                    ->disabled(!auth()->user()->can('backend.users.update')),
                 Forms\Components\FileUpload::make('avatar')
                     ->avatar()
                     ->image()
@@ -82,7 +83,7 @@ class UserResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('email')
                     ->email()
-                    ->unique()
+                    ->unique(ignoreRecord: true)
                     ->required(),
                 Forms\Components\TextInput::make('password')
                     ->password()
@@ -132,21 +133,21 @@ class UserResource extends Resource
 //                    ->relationship('permissions', 'name')
 //                    ->preload(),
 
-                Forms\Components\CheckboxList::make('permissions')
-                    ->hidden(!auth()->user()->can('admin Permission'))
-                    ->label(__('filament-panels::translations.user.permissions'))
-                    ->options(Permission::all()->pluck('name', 'id'))
-                    ->hintAction(
-                        Action::make('select_all')
-                            ->label(__('filament-panels::translations.select_all'))
-                            ->action(function ($set) {
-                                $allPermissionIds = Permission::all()->pluck('id')->toArray();
-                                $set('permissions', $allPermissionIds);
-                            })
-                    )
-                    ->relationship('permissions', 'name')
-                    ->columns(4)  // Display the toggle buttons in 4 columns
-                    ->columnSpanFull(),
+//                Forms\Components\CheckboxList::make('permissions')
+//                    ->hidden(!auth()->user()->can('admin Permission'))
+//                    ->label(__('filament-panels::translations.user.permissions'))
+//                    ->options(Permission::all()->pluck('name', 'id'))
+//                    ->hintAction(
+//                        Action::make('select_all')
+//                            ->label(__('filament-panels::translations.select_all'))
+//                            ->action(function ($set) {
+//                                $allPermissionIds = Permission::all()->pluck('id')->toArray();
+//                                $set('permissions', $allPermissionIds);
+//                            })
+//                    )
+//                    ->relationship('permissions', 'name')
+//                    ->columns(4)  // Display the toggle buttons in 4 columns
+//                    ->columnSpanFull(),
 
                 Forms\Components\Section::make(__('filament-panels::translations.department.plural'))
                     ->disabled(!auth()->user()->can('update DepartmentUser'))
@@ -326,6 +327,7 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
 //            'view' => Pages\ViewUser::route('/{record}'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
+            'permissions' => Pages\PermissionsUser::route('/{record}/permissions'),
         ];
     }
 
