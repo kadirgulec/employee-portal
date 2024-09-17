@@ -13,7 +13,7 @@ class CustomerPolicy
      */
     public function viewAny(User $user): bool
     {
-        return auth()->user()->can('view-any Customer');
+        return auth()->user()->can('backend.customers.view-any');
     }
 
     /**
@@ -21,7 +21,7 @@ class CustomerPolicy
      */
     public function view(User $user, Customer $customer): bool
     {
-        return auth()->user()->can('view Customer');
+        return auth()->user()->can('backend.customers.view');
     }
 
     /**
@@ -29,7 +29,7 @@ class CustomerPolicy
      */
     public function create(User $user): bool
     {
-        return auth()->user()->can('create Customer');
+        return auth()->user()->can('backend.customers.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class CustomerPolicy
      */
     public function update(User $user, Customer $customer): bool
     {
-        return auth()->user()->can('update Customer');
+        return auth()->user()->can('backend.customers.update');
     }
 
     /**
@@ -45,7 +45,7 @@ class CustomerPolicy
      */
     public function delete(User $user, Customer $customer): bool
     {
-        return auth()->user()->can('delete Customer');
+        return auth()->user()->can('backend.customers.delete');
     }
 
     /**
@@ -53,7 +53,7 @@ class CustomerPolicy
      */
     public function restore(User $user, Customer $customer): bool
     {
-        return auth()->user()->can('restore Customer');
+        return auth()->user()->can('backend.customers.restore');
     }
 
     /**
@@ -61,16 +61,16 @@ class CustomerPolicy
      */
     public function forceDelete(User $user, Customer $customer): bool
     {
-        return auth()->user()->can('force-delete Customer');
+        return auth()->user()->can('backend.customers.force-delete');
     }
 
     public function replicateCustomer(Customer $customer) :bool
     {
-        return auth()->user()->can('replicate Customer');
+        return auth()->user()->can('backend.customers.replicate');
     }
 
     public function reorderCustomer(Customer $customer) :bool
     {
-        return auth()->user()->can('reorder Customer');
+        return auth()->user()->can('backend.customers.reorder');
     }
 }

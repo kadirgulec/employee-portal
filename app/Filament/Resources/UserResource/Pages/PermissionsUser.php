@@ -8,6 +8,7 @@ use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 use Spatie\Permission\Models\Permission;
 
@@ -16,9 +17,13 @@ class PermissionsUser extends EditRecord
 {
     protected static string $resource = UserResource::class;
 
-    public function getBreadcrumb(): string
+    public function getBreadcrumbs(): array
     {
-        return static::$breadcrumb ?? __('filament-panels::translations.user.permissions');
+        $resource = static::getResource();
+        return [
+            static::$breadcrumb ?? $resource::getUrl('index')=> __('filament-panels::translations.user.plural'),
+            static::$breadcrumb ??  'edit' => $this->record->full_name,
+            static::$breadcrumb ?? __('filament-panels::translations.user.permissions')];
     }
 
     protected function authorizeAccess(): void
@@ -28,7 +33,7 @@ class PermissionsUser extends EditRecord
 
     public function getTitle(): string
     {
-        return __('filament-panels::permissions.title');
+        return $this->record->full_name . ': ' . __('filament-panels::translations.user.permissions');
 
     }
 
@@ -73,9 +78,19 @@ class PermissionsUser extends EditRecord
                                                         ) {
                                                             if ($state) {
                                                                 $record->givePermissionTo($permission->name);
+                                                                Notification::make()
+                                                                    ->title('Permission added')
+                                                                    ->success()
+                                                                    ->color('success')
+                                                                    ->send();
 
                                                             } else {
                                                                 $record->revokePermissionTo($permission->name);
+                                                                Notification::make()
+                                                                    ->title('Permission removed')
+                                                                    ->warning()
+                                                                    ->color('danger')
+                                                                    ->send();
                                                             };
                                                         })
                                                         ->live();
@@ -100,7 +115,7 @@ class PermissionsUser extends EditRecord
     public function getFormActions(): array
     {
         return [
-            Actions\EditAction::make(),
+
         ];
     }
 }

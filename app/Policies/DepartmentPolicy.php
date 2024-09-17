@@ -13,7 +13,7 @@ class DepartmentPolicy
      */
     public function viewAny(User $user): bool
     {
-        return auth()->user()->can('view-any Department');
+        return auth()->user()->can('backend.departments.view-any');
     }
 
     /**
@@ -21,7 +21,7 @@ class DepartmentPolicy
      */
     public function view(User $user, Department $department): bool
     {
-        return auth()->user()->can('view Department');
+        return auth()->user()->can('backend.departments.view');
     }
 
     /**
@@ -29,7 +29,7 @@ class DepartmentPolicy
      */
     public function create(User $user): bool
     {
-        return auth()->user()->can('create Department');
+        return auth()->user()->can('backend.departments.create');
 
     }
 
@@ -38,7 +38,7 @@ class DepartmentPolicy
      */
     public function update(User $user, Department $department): bool
     {
-        return auth()->user()->can('update Department');
+        return auth()->user()->can('backend.departments.update');
 
     }
 
@@ -47,7 +47,7 @@ class DepartmentPolicy
      */
     public function delete(User $user, Department $department): bool
     {
-        return auth()->user()->can('delete Department');
+        return auth()->user()->can('backend.departments.delete');
     }
 
     /**
@@ -55,7 +55,7 @@ class DepartmentPolicy
      */
     public function restore(User $user, Department $department): bool
     {
-        return auth()->user()->can('restore Department');
+        return auth()->user()->can('backend.departments.restore');
     }
 
     /**
@@ -63,15 +63,15 @@ class DepartmentPolicy
      */
     public function forceDelete(User $user, Department $department): bool
     {
-        return auth()->user()->can('force-delete Department');
+        return auth()->user()->can('backend.departments.force-delete');
     }
     public function replicateUser(User $user) :bool
     {
-        return auth()->user()->can('replicate Department');
+        return auth()->user()->can('backend.departments.replicate');
     }
 
     public function reorderUser(User $user) :bool
     {
-        return auth()->user()->can('reorder Department');
+        return auth()->user()->can('backend.departments.reorder');
     }
 }

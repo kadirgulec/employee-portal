@@ -23,7 +23,7 @@ class PermissionPolicy
      */
     public function view(User $user, Permission $permission): bool
     {
-        return auth()->user()->can('admin Permission');
+        return auth()->user()->can('backend.users.permissions');
     }
 
     /**
@@ -31,7 +31,7 @@ class PermissionPolicy
      */
     public function create(User $user): bool
     {
-        return auth()->user()->can('admin Permission');
+        return auth()->user()->can('backend.users.permissions');
     }
 
     /**
@@ -39,7 +39,7 @@ class PermissionPolicy
      */
     public function update(User $user, Permission $permission): bool
     {
-        return auth()->user()->can('admin Permission');
+        return auth()->user()->can('backend.users.permissions');
     }
 
     /**
@@ -47,7 +47,7 @@ class PermissionPolicy
      */
     public function delete(User $user, Permission $permission): bool
     {
-        return auth()->user()->can('admin Permission');
+        return auth()->user()->can('backend.users.permissions');
     }
 
     /**
@@ -55,7 +55,7 @@ class PermissionPolicy
      */
     public function restore(User $user, Permission $permission): bool
     {
-        return auth()->user()->can('admin Permission');
+        return auth()->user()->can('backend.users.permissions');
     }
 
     /**
@@ -63,6 +63,6 @@ class PermissionPolicy
      */
     public function forceDelete(User $user, Permission $permission): bool
     {
-        return auth()->user()->can('admin Permission');
+        return auth()->user()->can('backend.users.permissions');
     }
 }

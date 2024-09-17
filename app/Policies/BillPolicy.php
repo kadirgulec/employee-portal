@@ -13,7 +13,7 @@ class BillPolicy
      */
     public function viewAny(User $user): bool
     {
-        return auth()->user()->can('view-any Bill');
+        return auth()->user()->can('backend.bills.view-any');
     }
 
     /**
@@ -21,7 +21,7 @@ class BillPolicy
      */
     public function view(User $user, Bill $bill): bool
     {
-        return auth()->user()->can('view Bill');
+        return auth()->user()->can('backend.bills.view');
     }
 
     /**
@@ -29,7 +29,7 @@ class BillPolicy
      */
     public function create(User $user): bool
     {
-        return auth()->user()->can('create Bill');
+        return auth()->user()->can('backend.bills.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class BillPolicy
      */
     public function update(User $user, Bill $bill): bool
     {
-        return auth()->user()->can('update Bill');
+        return auth()->user()->can('backend.bills.update');
     }
 
     /**
@@ -45,7 +45,7 @@ class BillPolicy
      */
     public function delete(User $user, Bill $bill): bool
     {
-        return auth()->user()->can('delete Bill');
+        return auth()->user()->can('backend.bills.delete');
     }
 
     /**
@@ -53,7 +53,7 @@ class BillPolicy
      */
     public function restore(User $user, Bill $bill): bool
     {
-        return auth()->user()->can('restore Bill');
+        return auth()->user()->can('backend.bills.restore');
     }
 
     /**
@@ -61,16 +61,16 @@ class BillPolicy
      */
     public function forceDelete(User $user, Bill $bill): bool
     {
-        return auth()->user()->can('force-delete Bill');
+        return auth()->user()->can('backend.bills.force-delete');
     }
 
     public function replicateBill(Bill $bill) :bool
     {
-        return auth()->user()->can('replicate Bill');
+        return auth()->user()->can('backend.bills.replicate');
     }
 
     public function reorderBill(Bill $bill) :bool
     {
-        return auth()->user()->can('reorder Bill');
+        return auth()->user()->can('backend.bills.reorder');
     }
 }

@@ -23,8 +23,9 @@ class EditUser extends EditRecord
     {
         return [
             Actions\Action::make('permissions')
-            ->url( 'permissions' )
-            ->visible(auth()->user()->can('backend.users.permissions')),
+                ->label(__('filament-panels::translations.user.permissions'))
+                ->url('permissions')
+                ->visible(auth()->user()->can('backend.users.permissions')),
             Actions\ViewAction::make(),
             Actions\DeleteAction::make(),
             Actions\ForceDeleteAction::make(),

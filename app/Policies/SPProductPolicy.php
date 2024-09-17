@@ -13,7 +13,7 @@ class SPProductPolicy
      */
     public function viewAny(User $user): bool
     {
-        return auth()->user()->can('view-any SPProduct');
+        return auth()->user()->can('backend.sp-products.view-any');
     }
 
     /**
@@ -21,7 +21,7 @@ class SPProductPolicy
      */
     public function view(User $user, SPProduct $sPProduct): bool
     {
-        return auth()->user()->can('view SPProduct');
+        return auth()->user()->can('backend.sp-products.view');
     }
 
     /**
@@ -29,7 +29,7 @@ class SPProductPolicy
      */
     public function create(User $user): bool
     {
-        return auth()->user()->can('create SPProduct');
+        return auth()->user()->can('backend.sp-products.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class SPProductPolicy
      */
     public function update(User $user, SPProduct $sPProduct): bool
     {
-        return auth()->user()->can('update SPProduct');
+        return auth()->user()->can('backend.sp-products.update');
     }
 
     /**
@@ -45,7 +45,7 @@ class SPProductPolicy
      */
     public function delete(User $user, SPProduct $sPProduct): bool
     {
-        return auth()->user()->can('delete SPProduct');
+        return auth()->user()->can('backend.sp-products.delete');
     }
 
     /**
@@ -53,7 +53,7 @@ class SPProductPolicy
      */
     public function restore(User $user, SPProduct $sPProduct): bool
     {
-        return auth()->user()->can('restore SPProduct');
+        return auth()->user()->can('backend.sp-products.restore');
     }
 
     /**
@@ -61,16 +61,16 @@ class SPProductPolicy
      */
     public function forceDelete(User $user, SPProduct $sPProduct): bool
     {
-        return auth()->user()->can('force-delete SPProduct');
+        return auth()->user()->can('backend.sp-products.force-delete');
     }
 
     public function replicateSPProduct(SPProduct $SPProduct) :bool
     {
-        return auth()->user()->can('replicate SPProduct');
+        return auth()->user()->can('backend.sp-products.replicate');
     }
 
     public function reorderSPProduct(SPProduct $SPProduct) :bool
     {
-        return auth()->user()->can('reorder SPProduct');
+        return auth()->user()->can('backend.sp-products.reorder');
     }
 }
