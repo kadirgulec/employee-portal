@@ -37,6 +37,7 @@ return [
         'position' => 'Position',
         'permissions' => 'Permissions',
         'leader' => 'Department Manager',
+        'add_department' => 'Add Department',
     ],
     'department' => [
         'single' => 'Department',

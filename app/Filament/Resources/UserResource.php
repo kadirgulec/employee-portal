@@ -77,7 +77,7 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('personal_number')
                     ->label(__('filament-panels::translations.personal_number'))
                     ->numeric()
-                    ->disabled(!auth()->user()->can('create User')),
+                    ->disabled(!auth()->user()->can('backend.users.update')),
                 Forms\Components\TextInput::make('name')
                     ->label(__('filament-panels::translations.user.name'))
                     ->required(),
@@ -150,15 +150,16 @@ class UserResource extends Resource
 //                    ->columnSpanFull(),
 
                 Forms\Components\Section::make(__('filament-panels::translations.department.plural'))
-                    ->disabled(!auth()->user()->can('update DepartmentUser'))
+                    ->disabled(!auth()->user()->can('backend.departments.update'))
                     ->schema([
                         Forms\Components\Repeater::make('department_user')
                             ->hiddenLabel()
                             ->relationship()
+                            ->addActionLabel(__('filament-panels::translations.user.add_department'))
                             ->schema([
                                 Select::make('department_id')
                                     ->hiddenLabel()
-                                    ->hidden(!auth()->user()->can('update DepartmentUser'))
+                                    ->hidden(!auth()->user()->can('backend.departments.update'))
                                     ->options(Department::all()->pluck('name', 'id')),
                                 Forms\Components\Toggle::make('leader')
                                     ->label(__('filament-panels::translations.user.leader'))
@@ -279,7 +280,7 @@ class UserResource extends Resource
                     ->relationship('departments', 'name')
                     ->multiple()
                     ->preload(),
-                Tables\Filters\TrashedFilter::make()->visible(auth()->user()->can('restore User')),
+                Tables\Filters\TrashedFilter::make()->visible(auth()->user()->can('backend.users.restore')),
             ])
             ->contentGrid([
                 'md' => 2,

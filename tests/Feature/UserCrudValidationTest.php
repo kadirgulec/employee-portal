@@ -191,7 +191,7 @@ it('can soft delete', function () {
 
 it('cannot delete if permission is revoked', function (){
     $user = User::factory()->create();
-    auth()->user()->revokePermissionTo('delete User');
+    auth()->user()->revokePermissionTo('backend.users.delete');
 
     livewire(UserResource\Pages\EditUser::class, [
         'record' => $user->getRouteKey(),

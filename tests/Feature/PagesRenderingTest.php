@@ -2,6 +2,7 @@
 
 use App\Filament\Resources\IllnessNotificationResource\Pages\CreateIllnessNotification;
 use App\Filament\Resources\IllnessNotificationResource\Pages\EditIllnessNotification;
+use App\Filament\Resources\UserResource\Pages\CreateUser;
 use App\Filament\Resources\UserResource\Pages\EditUser;
 use App\Models\IllnessNotification;
 use App\Models\User;
@@ -38,8 +39,8 @@ describe('logged user', function () {
 describe('view-any User authenticated user', function () {
     beforeEach(function () {
         $user = User::factory()->create();
-        Permission::create(['name' => 'view-any User']);
-        $user->givePermissionTo('view-any User');
+        Permission::create(['name' => 'backend.users.view-any']);
+        $user->givePermissionTo('backend.users.view-any');
         $this->actingAs($user);
     });
     routeTesting('it render authenticated pages')
@@ -60,10 +61,10 @@ describe('view-any User authenticated user', function () {
 describe('edit User and create user authenticated users', function () {
     beforeEach(function () {
         $user = User::factory()->create();
-        Permission::create(['name' => 'view-any User']);
-        Permission::create(['name' => 'update User']);
-        Permission::create(['name' => 'create User']);
-        $user->givePermissionTo(['view-any User', 'update User', 'create User']);
+        Permission::create(['name' => 'backend.users.view-any']);
+        Permission::create(['name' => 'backend.users.update']);
+        Permission::create(['name' => 'backend.users.create']);
+        $user->givePermissionTo(['backend.users.view-any', 'backend.users.update', 'backend.users.create']);
         $this->actingAs($user);
     });
     it('allows authenticated user to render edit page of any User', function () {
@@ -72,7 +73,7 @@ describe('edit User and create user authenticated users', function () {
     });
 
     it('allows authenticated user to render create new User Page', function () {
-        livewire(\App\Filament\Resources\UserResource\Pages\CreateUser::class)
+        livewire(CreateUser::class)
             ->assertSuccessful();
     });
 });
@@ -80,11 +81,11 @@ describe('edit User and create user authenticated users', function () {
 describe('IllnessNotification contact', function () {
     beforeEach(function () {
         $user = User::factory()->create();
-        Permission::create(['name' => 'view-any IllnessNotification']);
-        Permission::create(['name' => 'update IllnessNotification']);
-        Permission::create(['name' => 'create IllnessNotification']);
+        Permission::create(['name' => 'backend.illness-notifications.view-any']);
+        Permission::create(['name' => 'backend.illness-notifications.update']);
+        Permission::create(['name' => 'backend.illness-notifications.create']);
         $user->givePermissionTo([
-            'view-any IllnessNotification', 'update IllnessNotification', 'create IllnessNotification'
+            'backend.illness-notifications.view-any', 'backend.illness-notifications.update', 'backend.illness-notifications.create'
         ]);
         $this->actingAs($user);
     });

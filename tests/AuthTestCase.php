@@ -16,17 +16,17 @@ abstract class AuthTestCase extends TestCase
     {
         parent::setUp();
         $user = User::factory()->create();
-        Permission::create(['name' => 'view-any User']);
-        Permission::create(['name' => 'view User']);
-        Permission::create(['name' => 'create User']);
-        Permission::create(['name' => 'update User']);
-        Permission::create(['name' => 'delete User']);
+        Permission::create(['name' => 'backend.users.view-any']);
+        Permission::create(['name' => 'backend.users.view']);
+        Permission::create(['name' => 'backend.users.create']);
+        Permission::create(['name' => 'backend.users.update']);
+        Permission::create(['name' => 'backend.users.delete']);
         $user->givePermissionTo([
-            'view-any User',
-            'view User',
-            'create User',
-            'update User',
-            'delete User',
+            'backend.users.view-any',
+            'backend.users.view',
+            'backend.users.create',
+            'backend.users.update',
+            'backend.users.delete',
         ]);
         $this->actingAs($user);
     }
