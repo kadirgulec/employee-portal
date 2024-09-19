@@ -22,6 +22,7 @@ return new class extends Migration
 
             //foreign keys
             $table->foreignIdFor(\App\Models\Customer::class);
+            $table->foreignIdFor(\App\Models\User::class,'created_by');
 
         });
 

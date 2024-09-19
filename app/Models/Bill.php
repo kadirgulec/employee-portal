@@ -12,10 +12,18 @@ class Bill extends Model
 
     protected $fillable = [
         'date',
-        'customer_id'
+        'customer_id',
     ];
 
     protected $appends = ['total_price'];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->created_by = auth()->user()->id;
+        });
+    }
 
 
     public function getTotalPriceAttribute(): string

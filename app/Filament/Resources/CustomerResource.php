@@ -75,13 +75,14 @@ class CustomerResource extends Resource
                     ->schema([
                         Forms\Components\Repeater::make('bills')
                             ->addActionLabel(__('filament-panels::translations.bill.add'))
-
+                            ->disabled(!auth()->user()->can('backend.bills.create'))
                             ->itemLabel(fn(array $state): ?string => date('d.m.Y', strtotime($state['date'])))
                             ->relationship('bills', fn($query) => $query->orderByDesc('date'))
                             ->collapsed()
                             ->defaultItems(0)
                             ->deleteAction(
-                                fn(Action $action) => $action->requiresConfirmation())
+                                fn(Action $action) => $action->requiresConfirmation()->visible(auth()->user()->can('backend.bills.delete'))
+                            )
                             ->extraItemActions([
                                 Forms\Components\Actions\Action::make('PDF')
                                     ->label('PDF')
@@ -134,6 +135,8 @@ class CustomerResource extends Resource
                                 Forms\Components\Repeater::make('positions')
                                     ->addActionLabel(__('filament-panels::translations.product.add'))
                                     ->hiddenLabel()
+                                    //disable the add Product when the user is not authorised to update or not created the bill
+                                    ->disabled(fn($record) => !auth()->user()->can('backend.bills.update') && auth()->user()->id != optional($record)->created_by && isset($record))
                                     ->itemLabel(fn(array $state): ?string => $state['product_name'])
                                     ->live()
                                     ->collapsible()
@@ -142,7 +145,7 @@ class CustomerResource extends Resource
                                     ->schema([
                                         //select a product field
                                         Forms\Components\Select::make('s_p_product_id')
-                                            ->label('Product or Service')
+                                            ->label(__('filament-panels::translations.bill.product'))
                                             ->options(SPProduct::all()->pluck('name', 'id'))
                                             ->searchable()
                                             ->preload()
@@ -179,42 +182,12 @@ class CustomerResource extends Resource
                                             ->label(__('filament-panels::translations.bill.unit_price'))
                                             ->numeric(),
 
-//                                            //Change Price Action
-//                                            ->suffixAction(
-//                                                Action::make('Change Price')
-//                                                    ->icon('heroicon-s-currency-euro')
-//                                                    ->color('primary')
-//                                                    ->form(function (callable $get) {
-//                                                        $productId = $get('s_p_product_id');
-//                                                        $product = SPProduct::find($productId);
-//                                                        return
-//                                                            [
-//                                                                TextInput::make('price')
-//                                                                    ->numeric()
-//                                                                    ->default($product ? $product->price : null)
-//                                                            ];
-//                                                    })
-//                                                    ->action(function (array $data, GET $get, SET $set) {
-//                                                        $productId = $get('s_p_product_id');
-//                                                        $product = SPProduct::find($productId);
-//
-//                                                        if (is_numeric($data['price'])) {
-//                                                            $product->update($data);
-//                                                        } else {
-//
-//                                                            Notification::make()
-//                                                                ->title('Price couldn\'t be updated')
-//                                                                ->danger()
-//                                                                ->send();
-//                                                        }
-//                                                    })
-//                                            ),
-
                                     ])
                                     ->extraItemActions([
                                         Action::make('Create new Product')
                                             ->label(__('filament-panels::translations.product.create_new'))
                                             ->icon('heroicon-m-plus-circle')
+                                            ->visible(auth()->user()->can('backend.sp-products.create'))
                                             ->form([
                                                 TextInput::make('name')
                                                     ->label(__('filament-panels::translations.product.name'))
@@ -253,7 +226,8 @@ class CustomerResource extends Resource
                                             ->modalWidth('lg')
                                     ])
                                     ->deleteAction(
-                                        fn(Action $action) => $action->requiresConfirmation(),
+                                        fn(Action $action, $record) => $action->requiresConfirmation()
+                                            ->visible(auth()->user()->can('backend.bills.update') || auth()->user()->id == optional($record)->created_by ),
                                     )
                                     ->afterStateUpdated(function (Get $get, Set $set) {
                                         $positions = $get('positions') ?? [];
