@@ -1,0 +1,60 @@
+
+
+[1;37;40mCode Coverage Report:       [0m
+[1;37;40m  2024-09-19 12:39:32       [0m
+[1;37;40m                            [0m
+[1;37;40m Summary:                   [0m
+[37;41m  Classes: 12.96% (7/54)    [0m
+[37;41m  Methods: 36.81% (67/182)  [0m
+[37;41m  Lines:   27.57% (432/1567)[0m
+
+App\Filament\AvatarProviders\BigUiAvatarsProvider
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  7/  7)[0m
+App\Filament\Resources\BillResource
+  [37;41mMethods:  28.57% ( 2/ 7)[0m   [37;41mLines:   5.92% (  9/152)[0m
+App\Filament\Resources\CustomerResource
+  [37;41mMethods:  33.33% ( 2/ 6)[0m   [37;41mLines:   3.21% (  8/249)[0m
+App\Filament\Resources\DepartmentResource
+  [37;41mMethods:  22.22% ( 2/ 9)[0m   [37;41mLines:  14.55% (  8/ 55)[0m
+App\Filament\Resources\IllnessNotificationResource
+  [30;43mMethods:  85.71% ( 6/ 7)[0m   [37;41mLines:  42.60% ( 72/169)[0m
+App\Filament\Resources\IllnessNotificationResource\Pages\EditIllnessNotification
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% ( 15/ 15)[0m
+App\Filament\Resources\PermissionResource
+  [37;41mMethods:  40.00% ( 2/ 5)[0m   [37;41mLines:  10.14% (  7/ 69)[0m
+App\Filament\Resources\SPProductResource
+  [37;41mMethods:  33.33% ( 2/ 6)[0m   [37;41mLines:  12.33% (  9/ 73)[0m
+App\Filament\Resources\UserResource
+  [30;43mMethods:  85.71% ( 6/ 7)[0m   [30;43mLines:  70.56% (151/214)[0m
+App\Filament\Resources\UserResource\Pages\EditUser
+  [30;42mMethods: 100.00% ( 3/ 3)[0m   [30;42mLines: 100.00% ( 22/ 22)[0m
+App\Filament\Resources\UserResource\Pages\ListUsers
+  [37;41mMethods:  50.00% ( 1/ 2)[0m   [37;41mLines:  44.44% (  8/ 18)[0m
+App\Http\Middleware\SetLocal
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  3/  3)[0m
+App\Livewire\LanguageSwitcher
+  [30;43mMethods:  66.67% ( 2/ 3)[0m   [37;41mLines:  36.00% (  9/ 25)[0m
+App\Models\Bill
+  [37;41mMethods:   0.00% ( 0/ 4)[0m   [37;41mLines:  30.00% (  3/ 10)[0m
+App\Models\IllnessNotification
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% (  3/  3)[0m
+App\Models\User
+  [30;43mMethods:  77.78% ( 7/ 9)[0m   [30;43mLines:  87.50% ( 14/ 16)[0m
+App\Policies\BillPolicy
+  [37;41mMethods:  22.22% ( 2/ 9)[0m   [37;41mLines:  22.22% (  2/  9)[0m
+App\Policies\CustomerPolicy
+  [37;41mMethods:  22.22% ( 2/ 9)[0m   [37;41mLines:  22.22% (  2/  9)[0m
+App\Policies\DepartmentPolicy
+  [37;41mMethods:  22.22% ( 2/ 9)[0m   [37;41mLines:  22.22% (  2/  9)[0m
+App\Policies\IllnessNotificationPolicy
+  [30;43mMethods:  77.78% ( 7/ 9)[0m   [30;43mLines:  77.78% (  7/  9)[0m
+App\Policies\PermissionPolicy
+  [37;41mMethods:  14.29% ( 1/ 7)[0m   [37;41mLines:  33.33% (  3/  9)[0m
+App\Policies\SPProductPolicy
+  [37;41mMethods:  22.22% ( 2/ 9)[0m   [37;41mLines:  22.22% (  2/  9)[0m
+App\Policies\UserPolicy
+  [30;43mMethods:  77.78% ( 7/ 9)[0m   [30;43mLines:  77.78% (  7/  9)[0m
+App\Providers\AppServiceProvider
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% (  2/  2)[0m
+App\Providers\Filament\AdminPanelProvider
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% ( 57/ 57)[0m

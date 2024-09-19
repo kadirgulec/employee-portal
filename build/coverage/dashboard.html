@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/kadir/Codes/apv1/app</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_css/bootstrap.min.css?v=10.1.16" rel="stylesheet" type="text/css">
+  <link href="_css/nv.d3.min.css?v=10.1.16" rel="stylesheet" type="text/css">
+  <link href="_css/style.css?v=10.1.16" rel="stylesheet" type="text/css">
+  <link href="_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">/home/kadir/Codes/apv1/app</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Filament/Resources/BillResource/Pages/EditBill.php.html#10">App\Filament\Resources\BillResource\Pages\EditBill</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/BillResource/Pages/ListBills.php.html#9">App\Filament\Resources\BillResource\Pages\ListBills</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/BillResource/Pages/ViewBill.php.html#9">App\Filament\Resources\BillResource\Pages\ViewBill</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/CustomerResource/Pages/CreateCustomer.php.html#9">App\Filament\Resources\CustomerResource\Pages\CreateCustomer</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/CustomerResource/Pages/EditCustomer.php.html#9">App\Filament\Resources\CustomerResource\Pages\EditCustomer</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/CustomerResource/Pages/ListCustomers.php.html#9">App\Filament\Resources\CustomerResource\Pages\ListCustomers</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource/Pages/EditDepartment.php.html#9">App\Filament\Resources\DepartmentResource\Pages\EditDepartment</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource/Pages/ListDepartments.php.html#9">App\Filament\Resources\DepartmentResource\Pages\ListDepartments</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource/Pages/ViewDepartment.php.html#9">App\Filament\Resources\DepartmentResource\Pages\ViewDepartment</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource/RelationManagers/DepartmentUsersRelationManager.php.html#17">App\Filament\Resources\DepartmentResource\RelationManagers\DepartmentUsersRelationManager</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/IllnessNotificationResource/Pages/ListIllnessNotifications.php.html#9">App\Filament\Resources\IllnessNotificationResource\Pages\ListIllnessNotifications</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/IllnessNotificationResource/Pages/ViewIllnessNotification.php.html#9">App\Filament\Resources\IllnessNotificationResource\Pages\ViewIllnessNotification</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/IllnessNotificationResource/Widgets/StatsOverview.php.html#11">App\Filament\Resources\IllnessNotificationResource\Widgets\StatsOverview</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource/Pages/EditPermission.php.html#9">App\Filament\Resources\PermissionResource\Pages\EditPermission</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource/Pages/ListPermissions.php.html#9">App\Filament\Resources\PermissionResource\Pages\ListPermissions</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource/Pages/ViewPermission.php.html#9">App\Filament\Resources\PermissionResource\Pages\ViewPermission</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource/RelationManagers/UsersRelationManager.php.html#13">App\Filament\Resources\PermissionResource\RelationManagers\UsersRelationManager</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/SPProductResource/Pages/EditSPProduct.php.html#9">App\Filament\Resources\SPProductResource\Pages\EditSPProduct</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/SPProductResource/Pages/ListSPProducts.php.html#9">App\Filament\Resources\SPProductResource\Pages\ListSPProducts</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/SPProductResource/Pages/ViewSPProduct.php.html#9">App\Filament\Resources\SPProductResource\Pages\ViewSPProduct</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/PermissionsUser.php.html#16">App\Filament\Resources\UserResource\Pages\PermissionsUser</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/ViewUser.php.html#9">App\Filament\Resources\UserResource\Pages\ViewUser</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/RelationManagers/DepartmentsRelationManager.php.html#13">App\Filament\Resources\UserResource\RelationManagers\DepartmentsRelationManager</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/BillPDFController.php.html#10">App\Http\Controllers\BillPDFController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/IllnessNotificationPDFController.php.html#10">App\Http\Controllers\IllnessNotificationPDFController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Customer.php.html#9">App\Models\Customer</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Department.php.html#10">App\Models\Department</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Position.php.html#8">App\Models\Position</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/SPProduct.php.html#9">App\Models\SPProduct</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/CustomerResource.php.html#24">App\Filament\Resources\CustomerResource</a></td><td class="text-right">3%</td></tr>
+       <tr><td><a href="Filament/Resources/BillResource.php.html#22">App\Filament\Resources\BillResource</a></td><td class="text-right">5%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource.php.html#21">App\Filament\Resources\PermissionResource</a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Filament/Resources/SPProductResource.php.html#17">App\Filament\Resources\SPProductResource</a></td><td class="text-right">12%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource.php.html#20">App\Filament\Resources\DepartmentResource</a></td><td class="text-right">14%</td></tr>
+       <tr><td><a href="Policies/BillPolicy.php.html#9">App\Policies\BillPolicy</a></td><td class="text-right">22%</td></tr>
+       <tr><td><a href="Policies/CustomerPolicy.php.html#9">App\Policies\CustomerPolicy</a></td><td class="text-right">22%</td></tr>
+       <tr><td><a href="Policies/DepartmentPolicy.php.html#9">App\Policies\DepartmentPolicy</a></td><td class="text-right">22%</td></tr>
+       <tr><td><a href="Policies/SPProductPolicy.php.html#9">App\Policies\SPProductPolicy</a></td><td class="text-right">22%</td></tr>
+       <tr><td><a href="Models/Bill.php.html#9">App\Models\Bill</a></td><td class="text-right">30%</td></tr>
+       <tr><td><a href="Policies/PermissionPolicy.php.html#9">App\Policies\PermissionPolicy</a></td><td class="text-right">33%</td></tr>
+       <tr><td><a href="Livewire/LanguageSwitcher.php.html#9">App\Livewire\LanguageSwitcher</a></td><td class="text-right">36%</td></tr>
+       <tr><td><a href="Filament/Resources/IllnessNotificationResource.php.html#18">App\Filament\Resources\IllnessNotificationResource</a></td><td class="text-right">42%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/ListUsers.php.html#13">App\Filament\Resources\UserResource\Pages\ListUsers</a></td><td class="text-right">44%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource.php.html#41">App\Filament\Resources\UserResource</a></td><td class="text-right">70%</td></tr>
+       <tr><td><a href="Policies/IllnessNotificationPolicy.php.html#9">App\Policies\IllnessNotificationPolicy</a></td><td class="text-right">77%</td></tr>
+       <tr><td><a href="Policies/UserPolicy.php.html#8">App\Policies\UserPolicy</a></td><td class="text-right">77%</td></tr>
+       <tr><td><a href="Models/User.php.html#17">App\Models\User</a></td><td class="text-right">87%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Filament/Resources/CustomerResource.php.html#24">App\Filament\Resources\CustomerResource</a></td><td class="text-right">311</td></tr>
+       <tr><td><a href="Filament/Resources/BillResource.php.html#22">App\Filament\Resources\BillResource</a></td><td class="text-right">153</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/PermissionsUser.php.html#16">App\Filament\Resources\UserResource\Pages\PermissionsUser</a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Filament/Resources/IllnessNotificationResource/Widgets/StatsOverview.php.html#11">App\Filament\Resources\IllnessNotificationResource\Widgets\StatsOverview</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Policies/PermissionPolicy.php.html#9">App\Policies\PermissionPolicy</a></td><td class="text-right">26</td></tr>
+       <tr><td><a href="Policies/UserPolicy.php.html#8">App\Policies\UserPolicy</a></td><td class="text-right">14</td></tr>
+       <tr><td><a href="Models/Bill.php.html#9">App\Models\Bill</a></td><td class="text-right">13</td></tr>
+       <tr><td><a href="Policies/IllnessNotificationPolicy.php.html#9">App\Policies\IllnessNotificationPolicy</a></td><td class="text-right">11</td></tr>
+       <tr><td><a href="Models/User.php.html#17">App\Models\User</a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource.php.html#41">App\Filament\Resources\UserResource</a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="Livewire/LanguageSwitcher.php.html#9">App\Livewire\LanguageSwitcher</a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/ListUsers.php.html#13">App\Filament\Resources\UserResource\Pages\ListUsers</a></td><td class="text-right">4</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Filament/Resources/BillResource.php.html#32"><abbr title="App\Filament\Resources\BillResource::getModelLabel">getModelLabel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/BillResource.php.html#37"><abbr title="App\Filament\Resources\BillResource::getPluralModelLabel">getPluralModelLabel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/BillResource.php.html#43"><abbr title="App\Filament\Resources\BillResource::form">form</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/BillResource.php.html#156"><abbr title="App\Filament\Resources\BillResource::table">table</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/BillResource.php.html#222"><abbr title="App\Filament\Resources\BillResource::getEloquentQuery">getEloquentQuery</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/BillResource/Pages/EditBill.php.html#15"><abbr title="App\Filament\Resources\BillResource\Pages\EditBill::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/BillResource/Pages/EditBill.php.html#26"><abbr title="App\Filament\Resources\BillResource\Pages\EditBill::getFormActions">getFormActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/BillResource/Pages/ListBills.php.html#13"><abbr title="App\Filament\Resources\BillResource\Pages\ListBills::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/BillResource/Pages/ViewBill.php.html#13"><abbr title="App\Filament\Resources\BillResource\Pages\ViewBill::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/CustomerResource.php.html#36"><abbr title="App\Filament\Resources\CustomerResource::getModelLabel">getModelLabel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/CustomerResource.php.html#41"><abbr title="App\Filament\Resources\CustomerResource::getPluralModelLabel">getPluralModelLabel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/CustomerResource.php.html#46"><abbr title="App\Filament\Resources\CustomerResource::form">form</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/CustomerResource.php.html#262"><abbr title="App\Filament\Resources\CustomerResource::table">table</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/CustomerResource/Pages/CreateCustomer.php.html#15"><abbr title="App\Filament\Resources\CustomerResource\Pages\CreateCustomer::refreshProductOptions">refreshProductOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/CustomerResource/Pages/EditCustomer.php.html#13"><abbr title="App\Filament\Resources\CustomerResource\Pages\EditCustomer::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/CustomerResource/Pages/ListCustomers.php.html#13"><abbr title="App\Filament\Resources\CustomerResource\Pages\ListCustomers::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource.php.html#26"><abbr title="App\Filament\Resources\DepartmentResource::getNavigationGroup">getNavigationGroup</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource.php.html#32"><abbr title="App\Filament\Resources\DepartmentResource::getNavigationIcon">getNavigationIcon</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource.php.html#36"><abbr title="App\Filament\Resources\DepartmentResource::getModelLabel">getModelLabel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource.php.html#41"><abbr title="App\Filament\Resources\DepartmentResource::getPluralModelLabel">getPluralModelLabel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource.php.html#46"><abbr title="App\Filament\Resources\DepartmentResource::form">form</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource.php.html#58"><abbr title="App\Filament\Resources\DepartmentResource::table">table</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource.php.html#111"><abbr title="App\Filament\Resources\DepartmentResource::getEloquentQuery">getEloquentQuery</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource/Pages/EditDepartment.php.html#13"><abbr title="App\Filament\Resources\DepartmentResource\Pages\EditDepartment::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource/Pages/ListDepartments.php.html#13"><abbr title="App\Filament\Resources\DepartmentResource\Pages\ListDepartments::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource/Pages/ViewDepartment.php.html#13"><abbr title="App\Filament\Resources\DepartmentResource\Pages\ViewDepartment::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource/RelationManagers/DepartmentUsersRelationManager.php.html#25"><abbr title="App\Filament\Resources\DepartmentResource\RelationManagers\DepartmentUsersRelationManager::getTitle">getTitle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource/RelationManagers/DepartmentUsersRelationManager.php.html#32"><abbr title="App\Filament\Resources\DepartmentResource\RelationManagers\DepartmentUsersRelationManager::form">form</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/DepartmentResource/RelationManagers/DepartmentUsersRelationManager.php.html#46"><abbr title="App\Filament\Resources\DepartmentResource\RelationManagers\DepartmentUsersRelationManager::table">table</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/IllnessNotificationResource.php.html#107"><abbr title="App\Filament\Resources\IllnessNotificationResource::table">table</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/IllnessNotificationResource/Pages/ListIllnessNotifications.php.html#13"><abbr title="App\Filament\Resources\IllnessNotificationResource\Pages\ListIllnessNotifications::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/IllnessNotificationResource/Pages/ViewIllnessNotification.php.html#13"><abbr title="App\Filament\Resources\IllnessNotificationResource\Pages\ViewIllnessNotification::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/IllnessNotificationResource/Widgets/StatsOverview.php.html#13"><abbr title="App\Filament\Resources\IllnessNotificationResource\Widgets\StatsOverview::getStats">getStats</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource.php.html#29"><abbr title="App\Filament\Resources\PermissionResource::getNavigationGroup">getNavigationGroup</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource.php.html#34"><abbr title="App\Filament\Resources\PermissionResource::form">form</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource.php.html#74"><abbr title="App\Filament\Resources\PermissionResource::table">table</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource/Pages/EditPermission.php.html#13"><abbr title="App\Filament\Resources\PermissionResource\Pages\EditPermission::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource/Pages/EditPermission.php.html#23"><abbr title="App\Filament\Resources\PermissionResource\Pages\EditPermission::getFormActions">getFormActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource/Pages/ListPermissions.php.html#13"><abbr title="App\Filament\Resources\PermissionResource\Pages\ListPermissions::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource/Pages/ViewPermission.php.html#13"><abbr title="App\Filament\Resources\PermissionResource\Pages\ViewPermission::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource/RelationManagers/UsersRelationManager.php.html#22"><abbr title="App\Filament\Resources\PermissionResource\RelationManagers\UsersRelationManager::form">form</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource/RelationManagers/UsersRelationManager.php.html#27"><abbr title="App\Filament\Resources\PermissionResource\RelationManagers\UsersRelationManager::table">table</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/PermissionResource/RelationManagers/UsersRelationManager.php.html#62"><abbr title="App\Filament\Resources\PermissionResource\RelationManagers\UsersRelationManager::getFormActions">getFormActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/SPProductResource.php.html#27"><abbr title="App\Filament\Resources\SPProductResource::getModelLabel">getModelLabel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/SPProductResource.php.html#32"><abbr title="App\Filament\Resources\SPProductResource::getPluralModelLabel">getPluralModelLabel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/SPProductResource.php.html#37"><abbr title="App\Filament\Resources\SPProductResource::form">form</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/SPProductResource.php.html#67"><abbr title="App\Filament\Resources\SPProductResource::table">table</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/SPProductResource/Pages/EditSPProduct.php.html#13"><abbr title="App\Filament\Resources\SPProductResource\Pages\EditSPProduct::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/SPProductResource/Pages/ListSPProducts.php.html#13"><abbr title="App\Filament\Resources\SPProductResource\Pages\ListSPProducts::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/SPProductResource/Pages/ViewSPProduct.php.html#13"><abbr title="App\Filament\Resources\SPProductResource\Pages\ViewSPProduct::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource.php.html#178"><abbr title="App\Filament\Resources\UserResource::infolist">infolist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/PermissionsUser.php.html#21"><abbr title="App\Filament\Resources\UserResource\Pages\PermissionsUser::getBreadcrumbs">getBreadcrumbs</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/PermissionsUser.php.html#31"><abbr title="App\Filament\Resources\UserResource\Pages\PermissionsUser::authorizeAccess">authorizeAccess</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/PermissionsUser.php.html#36"><abbr title="App\Filament\Resources\UserResource\Pages\PermissionsUser::getTitle">getTitle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/PermissionsUser.php.html#43"><abbr title="App\Filament\Resources\UserResource\Pages\PermissionsUser::form">form</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/PermissionsUser.php.html#48"><abbr title="App\Filament\Resources\UserResource\Pages\PermissionsUser::getPermissionsSchema">getPermissionsSchema</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/PermissionsUser.php.html#122"><abbr title="App\Filament\Resources\UserResource\Pages\PermissionsUser::getFormActions">getFormActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/ViewUser.php.html#14"><abbr title="App\Filament\Resources\UserResource\Pages\ViewUser::getHeaderActions">getHeaderActions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/RelationManagers/DepartmentsRelationManager.php.html#17"><abbr title="App\Filament\Resources\UserResource\RelationManagers\DepartmentsRelationManager::form">form</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/RelationManagers/DepartmentsRelationManager.php.html#28"><abbr title="App\Filament\Resources\UserResource\RelationManagers\DepartmentsRelationManager::table">table</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/BillPDFController.php.html#12"><abbr title="App\Http\Controllers\BillPDFController::generatePDF">generatePDF</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/IllnessNotificationPDFController.php.html#12"><abbr title="App\Http\Controllers\IllnessNotificationPDFController::generatePDF">generatePDF</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Livewire/LanguageSwitcher.php.html#19"><abbr title="App\Livewire\LanguageSwitcher::switchLanguage">switchLanguage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Bill.php.html#29"><abbr title="App\Models\Bill::getTotalPriceAttribute">getTotalPriceAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Bill.php.html#37"><abbr title="App\Models\Bill::customer">customer</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Bill.php.html#42"><abbr title="App\Models\Bill::positions">positions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Customer.php.html#17"><abbr title="App\Models\Customer::getFullNameAttribute">getFullNameAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Customer.php.html#21"><abbr title="App\Models\Customer::bills">bills</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Department.php.html#16"><abbr title="App\Models\Department::users">users</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Department.php.html#22"><abbr title="App\Models\Department::department_users">department_users</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Position.php.html#14"><abbr title="App\Models\Position::bill">bill</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Position.php.html#19"><abbr title="App\Models\Position::sp_product">sp_product</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/SPProduct.php.html#16"><abbr title="App\Models\SPProduct::positions">positions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/User.php.html#90"><abbr title="App\Models\User::filteredPermissions">filteredPermissions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/BillPolicy.php.html#22"><abbr title="App\Policies\BillPolicy::view">view</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/BillPolicy.php.html#38"><abbr title="App\Policies\BillPolicy::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/BillPolicy.php.html#46"><abbr title="App\Policies\BillPolicy::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/BillPolicy.php.html#54"><abbr title="App\Policies\BillPolicy::restore">restore</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/BillPolicy.php.html#62"><abbr title="App\Policies\BillPolicy::forceDelete">forceDelete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/BillPolicy.php.html#67"><abbr title="App\Policies\BillPolicy::replicateBill">replicateBill</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/BillPolicy.php.html#72"><abbr title="App\Policies\BillPolicy::reorderBill">reorderBill</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/CustomerPolicy.php.html#22"><abbr title="App\Policies\CustomerPolicy::view">view</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/CustomerPolicy.php.html#38"><abbr title="App\Policies\CustomerPolicy::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/CustomerPolicy.php.html#46"><abbr title="App\Policies\CustomerPolicy::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/CustomerPolicy.php.html#54"><abbr title="App\Policies\CustomerPolicy::restore">restore</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/CustomerPolicy.php.html#62"><abbr title="App\Policies\CustomerPolicy::forceDelete">forceDelete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/CustomerPolicy.php.html#67"><abbr title="App\Policies\CustomerPolicy::replicateCustomer">replicateCustomer</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/CustomerPolicy.php.html#72"><abbr title="App\Policies\CustomerPolicy::reorderCustomer">reorderCustomer</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/DepartmentPolicy.php.html#22"><abbr title="App\Policies\DepartmentPolicy::view">view</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/DepartmentPolicy.php.html#39"><abbr title="App\Policies\DepartmentPolicy::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/DepartmentPolicy.php.html#48"><abbr title="App\Policies\DepartmentPolicy::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/DepartmentPolicy.php.html#56"><abbr title="App\Policies\DepartmentPolicy::restore">restore</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/DepartmentPolicy.php.html#64"><abbr title="App\Policies\DepartmentPolicy::forceDelete">forceDelete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/DepartmentPolicy.php.html#68"><abbr title="App\Policies\DepartmentPolicy::replicateUser">replicateUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/DepartmentPolicy.php.html#73"><abbr title="App\Policies\DepartmentPolicy::reorderUser">reorderUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/IllnessNotificationPolicy.php.html#67"><abbr title="App\Policies\IllnessNotificationPolicy::replicateUser">replicateUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/IllnessNotificationPolicy.php.html#72"><abbr title="App\Policies\IllnessNotificationPolicy::reorderUser">reorderUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/PermissionPolicy.php.html#24"><abbr title="App\Policies\PermissionPolicy::view">view</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/PermissionPolicy.php.html#32"><abbr title="App\Policies\PermissionPolicy::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/PermissionPolicy.php.html#40"><abbr title="App\Policies\PermissionPolicy::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/PermissionPolicy.php.html#48"><abbr title="App\Policies\PermissionPolicy::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/PermissionPolicy.php.html#56"><abbr title="App\Policies\PermissionPolicy::restore">restore</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/PermissionPolicy.php.html#64"><abbr title="App\Policies\PermissionPolicy::forceDelete">forceDelete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/SPProductPolicy.php.html#22"><abbr title="App\Policies\SPProductPolicy::view">view</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/SPProductPolicy.php.html#38"><abbr title="App\Policies\SPProductPolicy::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/SPProductPolicy.php.html#46"><abbr title="App\Policies\SPProductPolicy::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/SPProductPolicy.php.html#54"><abbr title="App\Policies\SPProductPolicy::restore">restore</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/SPProductPolicy.php.html#62"><abbr title="App\Policies\SPProductPolicy::forceDelete">forceDelete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/SPProductPolicy.php.html#67"><abbr title="App\Policies\SPProductPolicy::replicateSPProduct">replicateSPProduct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/SPProductPolicy.php.html#72"><abbr title="App\Policies\SPProductPolicy::reorderSPProduct">reorderSPProduct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/UserPolicy.php.html#66"><abbr title="App\Policies\UserPolicy::replicateUser">replicateUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Policies/UserPolicy.php.html#71"><abbr title="App\Policies\UserPolicy::reorderUser">reorderUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/ListUsers.php.html#24"><abbr title="App\Filament\Resources\UserResource\Pages\ListUsers::getTabs">getTabs</abbr></a></td><td class="text-right">33%</td></tr>
+       <tr><td><a href="Models/User.php.html#46"><abbr title="App\Models\User::getFilamentAvatarUrl">getFilamentAvatarUrl</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Models/Bill.php.html#20"><abbr title="App\Models\Bill::boot">boot</abbr></a></td><td class="text-right">75%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Filament/Resources/CustomerResource.php.html#46"><abbr title="App\Filament\Resources\CustomerResource::form">form</abbr></a></td><td class="text-right">182</td></tr>
+       <tr><td><a href="Filament/Resources/BillResource.php.html#43"><abbr title="App\Filament\Resources\BillResource::form">form</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Filament/Resources/IllnessNotificationResource/Widgets/StatsOverview.php.html#13"><abbr title="App\Filament\Resources\IllnessNotificationResource\Widgets\StatsOverview::getStats">getStats</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/PermissionsUser.php.html#48"><abbr title="App\Filament\Resources\UserResource\Pages\PermissionsUser::getPermissionsSchema">getPermissionsSchema</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Livewire/LanguageSwitcher.php.html#19"><abbr title="App\Livewire\LanguageSwitcher::switchLanguage">switchLanguage</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Models/Bill.php.html#29"><abbr title="App\Models\Bill::getTotalPriceAttribute">getTotalPriceAttribute</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Filament/Resources/UserResource/Pages/ListUsers.php.html#24"><abbr title="App\Filament\Resources\UserResource\Pages\ListUsers::getTabs">getTabs</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Models/User.php.html#46"><abbr title="App\Models\User::getFilamentAvatarUrl">getFilamentAvatarUrl</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 10.1.16</a> using <a href="https://www.php.net/" target="_top">PHP 8.3.11</a> and <a href="https://phpunit.de/">PHPUnit 10.5.17</a> at Thu Sep 19 12:39:32 UTC 2024.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="_js/jquery.min.js?v=10.1.16" type="text/javascript"></script>
+  <script src="_js/d3.min.js?v=10.1.16" type="text/javascript"></script>
+  <script src="_js/nv.d3.min.js?v=10.1.16" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([29,2,3,4,3,2,0,0,3,1,0,16], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([112,0,0,0,1,0,0,1,1,0,0,67], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,2,"<a href=\"Filament\/AvatarProviders\/BigUiAvatarsProvider.php.html#12\">App\\Filament\\AvatarProviders\\BigUiAvatarsProvider<\/a>"],[5.921052631578947,13,"<a href=\"Filament\/Resources\/BillResource.php.html#22\">App\\Filament\\Resources\\BillResource<\/a>"],[100,0,"<a href=\"Filament\/Resources\/BillResource\/Pages\/CreateBill.php.html#9\">App\\Filament\\Resources\\BillResource\\Pages\\CreateBill<\/a>"],[0,2,"<a href=\"Filament\/Resources\/BillResource\/Pages\/EditBill.php.html#10\">App\\Filament\\Resources\\BillResource\\Pages\\EditBill<\/a>"],[0,1,"<a href=\"Filament\/Resources\/BillResource\/Pages\/ListBills.php.html#9\">App\\Filament\\Resources\\BillResource\\Pages\\ListBills<\/a>"],[0,1,"<a href=\"Filament\/Resources\/BillResource\/Pages\/ViewBill.php.html#9\">App\\Filament\\Resources\\BillResource\\Pages\\ViewBill<\/a>"],[3.2128514056224895,18,"<a href=\"Filament\/Resources\/CustomerResource.php.html#24\">App\\Filament\\Resources\\CustomerResource<\/a>"],[0,1,"<a href=\"Filament\/Resources\/CustomerResource\/Pages\/CreateCustomer.php.html#9\">App\\Filament\\Resources\\CustomerResource\\Pages\\CreateCustomer<\/a>"],[0,1,"<a href=\"Filament\/Resources\/CustomerResource\/Pages\/EditCustomer.php.html#9\">App\\Filament\\Resources\\CustomerResource\\Pages\\EditCustomer<\/a>"],[0,1,"<a href=\"Filament\/Resources\/CustomerResource\/Pages\/ListCustomers.php.html#9\">App\\Filament\\Resources\\CustomerResource\\Pages\\ListCustomers<\/a>"],[14.545454545454545,9,"<a href=\"Filament\/Resources\/DepartmentResource.php.html#20\">App\\Filament\\Resources\\DepartmentResource<\/a>"],[100,0,"<a href=\"Filament\/Resources\/DepartmentResource\/Pages\/CreateDepartment.php.html#9\">App\\Filament\\Resources\\DepartmentResource\\Pages\\CreateDepartment<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource\/Pages\/EditDepartment.php.html#9\">App\\Filament\\Resources\\DepartmentResource\\Pages\\EditDepartment<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource\/Pages\/ListDepartments.php.html#9\">App\\Filament\\Resources\\DepartmentResource\\Pages\\ListDepartments<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource\/Pages\/ViewDepartment.php.html#9\">App\\Filament\\Resources\\DepartmentResource\\Pages\\ViewDepartment<\/a>"],[0,3,"<a href=\"Filament\/Resources\/DepartmentResource\/RelationManagers\/DepartmentUsersRelationManager.php.html#17\">App\\Filament\\Resources\\DepartmentResource\\RelationManagers\\DepartmentUsersRelationManager<\/a>"],[42.60355029585799,7,"<a href=\"Filament\/Resources\/IllnessNotificationResource.php.html#18\">App\\Filament\\Resources\\IllnessNotificationResource<\/a>"],[100,0,"<a href=\"Filament\/Resources\/IllnessNotificationResource\/Pages\/CreateIllnessNotification.php.html#9\">App\\Filament\\Resources\\IllnessNotificationResource\\Pages\\CreateIllnessNotification<\/a>"],[100,2,"<a href=\"Filament\/Resources\/IllnessNotificationResource\/Pages\/EditIllnessNotification.php.html#10\">App\\Filament\\Resources\\IllnessNotificationResource\\Pages\\EditIllnessNotification<\/a>"],[0,1,"<a href=\"Filament\/Resources\/IllnessNotificationResource\/Pages\/ListIllnessNotifications.php.html#9\">App\\Filament\\Resources\\IllnessNotificationResource\\Pages\\ListIllnessNotifications<\/a>"],[0,1,"<a href=\"Filament\/Resources\/IllnessNotificationResource\/Pages\/ViewIllnessNotification.php.html#9\">App\\Filament\\Resources\\IllnessNotificationResource\\Pages\\ViewIllnessNotification<\/a>"],[0,7,"<a href=\"Filament\/Resources\/IllnessNotificationResource\/Widgets\/StatsOverview.php.html#11\">App\\Filament\\Resources\\IllnessNotificationResource\\Widgets\\StatsOverview<\/a>"],[10.144927536231885,5,"<a href=\"Filament\/Resources\/PermissionResource.php.html#21\">App\\Filament\\Resources\\PermissionResource<\/a>"],[100,0,"<a href=\"Filament\/Resources\/PermissionResource\/Pages\/CreatePermission.php.html#9\">App\\Filament\\Resources\\PermissionResource\\Pages\\CreatePermission<\/a>"],[0,2,"<a href=\"Filament\/Resources\/PermissionResource\/Pages\/EditPermission.php.html#9\">App\\Filament\\Resources\\PermissionResource\\Pages\\EditPermission<\/a>"],[0,1,"<a href=\"Filament\/Resources\/PermissionResource\/Pages\/ListPermissions.php.html#9\">App\\Filament\\Resources\\PermissionResource\\Pages\\ListPermissions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/PermissionResource\/Pages\/ViewPermission.php.html#9\">App\\Filament\\Resources\\PermissionResource\\Pages\\ViewPermission<\/a>"],[0,3,"<a href=\"Filament\/Resources\/PermissionResource\/RelationManagers\/UsersRelationManager.php.html#13\">App\\Filament\\Resources\\PermissionResource\\RelationManagers\\UsersRelationManager<\/a>"],[12.32876712328767,6,"<a href=\"Filament\/Resources\/SPProductResource.php.html#17\">App\\Filament\\Resources\\SPProductResource<\/a>"],[100,0,"<a href=\"Filament\/Resources\/SPProductResource\/Pages\/CreateSPProduct.php.html#9\">App\\Filament\\Resources\\SPProductResource\\Pages\\CreateSPProduct<\/a>"],[0,1,"<a href=\"Filament\/Resources\/SPProductResource\/Pages\/EditSPProduct.php.html#9\">App\\Filament\\Resources\\SPProductResource\\Pages\\EditSPProduct<\/a>"],[0,1,"<a href=\"Filament\/Resources\/SPProductResource\/Pages\/ListSPProducts.php.html#9\">App\\Filament\\Resources\\SPProductResource\\Pages\\ListSPProducts<\/a>"],[0,1,"<a href=\"Filament\/Resources\/SPProductResource\/Pages\/ViewSPProduct.php.html#9\">App\\Filament\\Resources\\SPProductResource\\Pages\\ViewSPProduct<\/a>"],[70.56074766355141,8,"<a href=\"Filament\/Resources\/UserResource.php.html#41\">App\\Filament\\Resources\\UserResource<\/a>"],[100,0,"<a href=\"Filament\/Resources\/UserResource\/Pages\/CreateUser.php.html#9\">App\\Filament\\Resources\\UserResource\\Pages\\CreateUser<\/a>"],[100,4,"<a href=\"Filament\/Resources\/UserResource\/Pages\/EditUser.php.html#9\">App\\Filament\\Resources\\UserResource\\Pages\\EditUser<\/a>"],[44.44444444444444,3,"<a href=\"Filament\/Resources\/UserResource\/Pages\/ListUsers.php.html#13\">App\\Filament\\Resources\\UserResource\\Pages\\ListUsers<\/a>"],[0,10,"<a href=\"Filament\/Resources\/UserResource\/Pages\/PermissionsUser.php.html#16\">App\\Filament\\Resources\\UserResource\\Pages\\PermissionsUser<\/a>"],[0,1,"<a href=\"Filament\/Resources\/UserResource\/Pages\/ViewUser.php.html#9\">App\\Filament\\Resources\\UserResource\\Pages\\ViewUser<\/a>"],[0,2,"<a href=\"Filament\/Resources\/UserResource\/RelationManagers\/DepartmentsRelationManager.php.html#13\">App\\Filament\\Resources\\UserResource\\RelationManagers\\DepartmentsRelationManager<\/a>"],[0,1,"<a href=\"Http\/Controllers\/BillPDFController.php.html#10\">App\\Http\\Controllers\\BillPDFController<\/a>"],[100,0,"<a href=\"Http\/Controllers\/Controller.php.html#5\">App\\Http\\Controllers\\Controller<\/a>"],[0,1,"<a href=\"Http\/Controllers\/IllnessNotificationPDFController.php.html#10\">App\\Http\\Controllers\\IllnessNotificationPDFController<\/a>"],[100,1,"<a href=\"Http\/Middleware\/SetLocal.php.html#11\">App\\Http\\Middleware\\SetLocal<\/a>"],[36,4,"<a href=\"Livewire\/LanguageSwitcher.php.html#9\">App\\Livewire\\LanguageSwitcher<\/a>"],[30,5,"<a href=\"Models\/Bill.php.html#9\">App\\Models\\Bill<\/a>"],[0,2,"<a href=\"Models\/Customer.php.html#9\">App\\Models\\Customer<\/a>"],[0,2,"<a href=\"Models\/Department.php.html#10\">App\\Models\\Department<\/a>"],[100,0,"<a href=\"Models\/DepartmentUser.php.html#7\">App\\Models\\DepartmentUser<\/a>"],[100,2,"<a href=\"Models\/IllnessNotification.php.html#10\">App\\Models\\IllnessNotification<\/a>"],[100,0,"<a href=\"Models\/Permission.php.html#8\">App\\Models\\Permission<\/a>"],[0,2,"<a href=\"Models\/Position.php.html#8\">App\\Models\\Position<\/a>"],[0,1,"<a href=\"Models\/SPProduct.php.html#9\">App\\Models\\SPProduct<\/a>"],[87.5,10,"<a href=\"Models\/User.php.html#17\">App\\Models\\User<\/a>"],[22.22222222222222,9,"<a href=\"Policies\/BillPolicy.php.html#9\">App\\Policies\\BillPolicy<\/a>"],[22.22222222222222,9,"<a href=\"Policies\/CustomerPolicy.php.html#9\">App\\Policies\\CustomerPolicy<\/a>"],[22.22222222222222,9,"<a href=\"Policies\/DepartmentPolicy.php.html#9\">App\\Policies\\DepartmentPolicy<\/a>"],[77.77777777777779,10,"<a href=\"Policies\/IllnessNotificationPolicy.php.html#9\">App\\Policies\\IllnessNotificationPolicy<\/a>"],[33.33333333333333,8,"<a href=\"Policies\/PermissionPolicy.php.html#9\">App\\Policies\\PermissionPolicy<\/a>"],[22.22222222222222,9,"<a href=\"Policies\/SPProductPolicy.php.html#9\">App\\Policies\\SPProductPolicy<\/a>"],[77.77777777777779,13,"<a href=\"Policies\/UserPolicy.php.html#8\">App\\Policies\\UserPolicy<\/a>"],[100,2,"<a href=\"Providers\/AppServiceProvider.php.html#7\">App\\Providers\\AppServiceProvider<\/a>"],[100,1,"<a href=\"Providers\/Filament\/AdminPanelProvider.php.html#30\">App\\Providers\\Filament\\AdminPanelProvider<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,2,"<a href=\"Filament\/AvatarProviders\/BigUiAvatarsProvider.php.html#14\">App\\Filament\\AvatarProviders\\BigUiAvatarsProvider::get<\/a>"],[0,1,"<a href=\"Filament\/Resources\/BillResource.php.html#32\">App\\Filament\\Resources\\BillResource::getModelLabel<\/a>"],[0,1,"<a href=\"Filament\/Resources\/BillResource.php.html#37\">App\\Filament\\Resources\\BillResource::getPluralModelLabel<\/a>"],[0,7,"<a href=\"Filament\/Resources\/BillResource.php.html#43\">App\\Filament\\Resources\\BillResource::form<\/a>"],[0,1,"<a href=\"Filament\/Resources\/BillResource.php.html#156\">App\\Filament\\Resources\\BillResource::table<\/a>"],[100,1,"<a href=\"Filament\/Resources\/BillResource.php.html#205\">App\\Filament\\Resources\\BillResource::getRelations<\/a>"],[100,1,"<a href=\"Filament\/Resources\/BillResource.php.html#212\">App\\Filament\\Resources\\BillResource::getPages<\/a>"],[0,1,"<a href=\"Filament\/Resources\/BillResource.php.html#222\">App\\Filament\\Resources\\BillResource::getEloquentQuery<\/a>"],[0,1,"<a href=\"Filament\/Resources\/BillResource\/Pages\/EditBill.php.html#15\">App\\Filament\\Resources\\BillResource\\Pages\\EditBill::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/BillResource\/Pages\/EditBill.php.html#26\">App\\Filament\\Resources\\BillResource\\Pages\\EditBill::getFormActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/BillResource\/Pages\/ListBills.php.html#13\">App\\Filament\\Resources\\BillResource\\Pages\\ListBills::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/BillResource\/Pages\/ViewBill.php.html#13\">App\\Filament\\Resources\\BillResource\\Pages\\ViewBill::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/CustomerResource.php.html#36\">App\\Filament\\Resources\\CustomerResource::getModelLabel<\/a>"],[0,1,"<a href=\"Filament\/Resources\/CustomerResource.php.html#41\">App\\Filament\\Resources\\CustomerResource::getPluralModelLabel<\/a>"],[0,13,"<a href=\"Filament\/Resources\/CustomerResource.php.html#46\">App\\Filament\\Resources\\CustomerResource::form<\/a>"],[0,1,"<a href=\"Filament\/Resources\/CustomerResource.php.html#262\">App\\Filament\\Resources\\CustomerResource::table<\/a>"],[100,1,"<a href=\"Filament\/Resources\/CustomerResource.php.html#319\">App\\Filament\\Resources\\CustomerResource::getRelations<\/a>"],[100,1,"<a href=\"Filament\/Resources\/CustomerResource.php.html#326\">App\\Filament\\Resources\\CustomerResource::getPages<\/a>"],[0,1,"<a href=\"Filament\/Resources\/CustomerResource\/Pages\/CreateCustomer.php.html#15\">App\\Filament\\Resources\\CustomerResource\\Pages\\CreateCustomer::refreshProductOptions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/CustomerResource\/Pages\/EditCustomer.php.html#13\">App\\Filament\\Resources\\CustomerResource\\Pages\\EditCustomer::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/CustomerResource\/Pages\/ListCustomers.php.html#13\">App\\Filament\\Resources\\CustomerResource\\Pages\\ListCustomers::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource.php.html#26\">App\\Filament\\Resources\\DepartmentResource::getNavigationGroup<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource.php.html#32\">App\\Filament\\Resources\\DepartmentResource::getNavigationIcon<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource.php.html#36\">App\\Filament\\Resources\\DepartmentResource::getModelLabel<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource.php.html#41\">App\\Filament\\Resources\\DepartmentResource::getPluralModelLabel<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource.php.html#46\">App\\Filament\\Resources\\DepartmentResource::form<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource.php.html#58\">App\\Filament\\Resources\\DepartmentResource::table<\/a>"],[100,1,"<a href=\"Filament\/Resources\/DepartmentResource.php.html#94\">App\\Filament\\Resources\\DepartmentResource::getRelations<\/a>"],[100,1,"<a href=\"Filament\/Resources\/DepartmentResource.php.html#101\">App\\Filament\\Resources\\DepartmentResource::getPages<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource.php.html#111\">App\\Filament\\Resources\\DepartmentResource::getEloquentQuery<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource\/Pages\/EditDepartment.php.html#13\">App\\Filament\\Resources\\DepartmentResource\\Pages\\EditDepartment::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource\/Pages\/ListDepartments.php.html#13\">App\\Filament\\Resources\\DepartmentResource\\Pages\\ListDepartments::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource\/Pages\/ViewDepartment.php.html#13\">App\\Filament\\Resources\\DepartmentResource\\Pages\\ViewDepartment::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource\/RelationManagers\/DepartmentUsersRelationManager.php.html#25\">App\\Filament\\Resources\\DepartmentResource\\RelationManagers\\DepartmentUsersRelationManager::getTitle<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource\/RelationManagers\/DepartmentUsersRelationManager.php.html#32\">App\\Filament\\Resources\\DepartmentResource\\RelationManagers\\DepartmentUsersRelationManager::form<\/a>"],[0,1,"<a href=\"Filament\/Resources\/DepartmentResource\/RelationManagers\/DepartmentUsersRelationManager.php.html#46\">App\\Filament\\Resources\\DepartmentResource\\RelationManagers\\DepartmentUsersRelationManager::table<\/a>"],[100,1,"<a href=\"Filament\/Resources\/IllnessNotificationResource.php.html#24\">App\\Filament\\Resources\\IllnessNotificationResource::getModelLabel<\/a>"],[100,1,"<a href=\"Filament\/Resources\/IllnessNotificationResource.php.html#29\">App\\Filament\\Resources\\IllnessNotificationResource::getPluralModelLabel<\/a>"],[100,1,"<a href=\"Filament\/Resources\/IllnessNotificationResource.php.html#39\">App\\Filament\\Resources\\IllnessNotificationResource::form<\/a>"],[0,1,"<a href=\"Filament\/Resources\/IllnessNotificationResource.php.html#107\">App\\Filament\\Resources\\IllnessNotificationResource::table<\/a>"],[100,1,"<a href=\"Filament\/Resources\/IllnessNotificationResource.php.html#211\">App\\Filament\\Resources\\IllnessNotificationResource::getRelations<\/a>"],[100,1,"<a href=\"Filament\/Resources\/IllnessNotificationResource.php.html#218\">App\\Filament\\Resources\\IllnessNotificationResource::getPages<\/a>"],[100,1,"<a href=\"Filament\/Resources\/IllnessNotificationResource.php.html#228\">App\\Filament\\Resources\\IllnessNotificationResource::getEloquentQuery<\/a>"],[100,1,"<a href=\"Filament\/Resources\/IllnessNotificationResource\/Pages\/EditIllnessNotification.php.html#16\">App\\Filament\\Resources\\IllnessNotificationResource\\Pages\\EditIllnessNotification::getHeaderActions<\/a>"],[100,1,"<a href=\"Filament\/Resources\/IllnessNotificationResource\/Pages\/EditIllnessNotification.php.html#27\">App\\Filament\\Resources\\IllnessNotificationResource\\Pages\\EditIllnessNotification::getFormActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/IllnessNotificationResource\/Pages\/ListIllnessNotifications.php.html#13\">App\\Filament\\Resources\\IllnessNotificationResource\\Pages\\ListIllnessNotifications::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/IllnessNotificationResource\/Pages\/ViewIllnessNotification.php.html#13\">App\\Filament\\Resources\\IllnessNotificationResource\\Pages\\ViewIllnessNotification::getHeaderActions<\/a>"],[0,7,"<a href=\"Filament\/Resources\/IllnessNotificationResource\/Widgets\/StatsOverview.php.html#13\">App\\Filament\\Resources\\IllnessNotificationResource\\Widgets\\StatsOverview::getStats<\/a>"],[0,1,"<a href=\"Filament\/Resources\/PermissionResource.php.html#29\">App\\Filament\\Resources\\PermissionResource::getNavigationGroup<\/a>"],[0,1,"<a href=\"Filament\/Resources\/PermissionResource.php.html#34\">App\\Filament\\Resources\\PermissionResource::form<\/a>"],[0,1,"<a href=\"Filament\/Resources\/PermissionResource.php.html#74\">App\\Filament\\Resources\\PermissionResource::table<\/a>"],[100,1,"<a href=\"Filament\/Resources\/PermissionResource.php.html#107\">App\\Filament\\Resources\\PermissionResource::getRelations<\/a>"],[100,1,"<a href=\"Filament\/Resources\/PermissionResource.php.html#114\">App\\Filament\\Resources\\PermissionResource::getPages<\/a>"],[0,1,"<a href=\"Filament\/Resources\/PermissionResource\/Pages\/EditPermission.php.html#13\">App\\Filament\\Resources\\PermissionResource\\Pages\\EditPermission::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/PermissionResource\/Pages\/EditPermission.php.html#23\">App\\Filament\\Resources\\PermissionResource\\Pages\\EditPermission::getFormActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/PermissionResource\/Pages\/ListPermissions.php.html#13\">App\\Filament\\Resources\\PermissionResource\\Pages\\ListPermissions::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/PermissionResource\/Pages\/ViewPermission.php.html#13\">App\\Filament\\Resources\\PermissionResource\\Pages\\ViewPermission::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/PermissionResource\/RelationManagers\/UsersRelationManager.php.html#22\">App\\Filament\\Resources\\PermissionResource\\RelationManagers\\UsersRelationManager::form<\/a>"],[0,1,"<a href=\"Filament\/Resources\/PermissionResource\/RelationManagers\/UsersRelationManager.php.html#27\">App\\Filament\\Resources\\PermissionResource\\RelationManagers\\UsersRelationManager::table<\/a>"],[0,1,"<a href=\"Filament\/Resources\/PermissionResource\/RelationManagers\/UsersRelationManager.php.html#62\">App\\Filament\\Resources\\PermissionResource\\RelationManagers\\UsersRelationManager::getFormActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/SPProductResource.php.html#27\">App\\Filament\\Resources\\SPProductResource::getModelLabel<\/a>"],[0,1,"<a href=\"Filament\/Resources\/SPProductResource.php.html#32\">App\\Filament\\Resources\\SPProductResource::getPluralModelLabel<\/a>"],[0,1,"<a href=\"Filament\/Resources\/SPProductResource.php.html#37\">App\\Filament\\Resources\\SPProductResource::form<\/a>"],[0,1,"<a href=\"Filament\/Resources\/SPProductResource.php.html#67\">App\\Filament\\Resources\\SPProductResource::table<\/a>"],[100,1,"<a href=\"Filament\/Resources\/SPProductResource.php.html#107\">App\\Filament\\Resources\\SPProductResource::getRelations<\/a>"],[100,1,"<a href=\"Filament\/Resources\/SPProductResource.php.html#114\">App\\Filament\\Resources\\SPProductResource::getPages<\/a>"],[0,1,"<a href=\"Filament\/Resources\/SPProductResource\/Pages\/EditSPProduct.php.html#13\">App\\Filament\\Resources\\SPProductResource\\Pages\\EditSPProduct::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/SPProductResource\/Pages\/ListSPProducts.php.html#13\">App\\Filament\\Resources\\SPProductResource\\Pages\\ListSPProducts::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/SPProductResource\/Pages\/ViewSPProduct.php.html#13\">App\\Filament\\Resources\\SPProductResource\\Pages\\ViewSPProduct::getHeaderActions<\/a>"],[100,1,"<a href=\"Filament\/Resources\/UserResource.php.html#50\">App\\Filament\\Resources\\UserResource::getModelLabel<\/a>"],[100,1,"<a href=\"Filament\/Resources\/UserResource.php.html#55\">App\\Filament\\Resources\\UserResource::getPluralModelLabel<\/a>"],[100,2,"<a href=\"Filament\/Resources\/UserResource.php.html#60\">App\\Filament\\Resources\\UserResource::form<\/a>"],[0,1,"<a href=\"Filament\/Resources\/UserResource.php.html#178\">App\\Filament\\Resources\\UserResource::infolist<\/a>"],[100,1,"<a href=\"Filament\/Resources\/UserResource.php.html#254\">App\\Filament\\Resources\\UserResource::table<\/a>"],[100,1,"<a href=\"Filament\/Resources\/UserResource.php.html#318\">App\\Filament\\Resources\\UserResource::getRelations<\/a>"],[100,1,"<a href=\"Filament\/Resources\/UserResource.php.html#325\">App\\Filament\\Resources\\UserResource::getPages<\/a>"],[100,1,"<a href=\"Filament\/Resources\/UserResource\/Pages\/EditUser.php.html#13\">App\\Filament\\Resources\\UserResource\\Pages\\EditUser::getBreadcrumbs<\/a>"],[100,2,"<a href=\"Filament\/Resources\/UserResource\/Pages\/EditUser.php.html#24\">App\\Filament\\Resources\\UserResource\\Pages\\EditUser::getTitle<\/a>"],[100,1,"<a href=\"Filament\/Resources\/UserResource\/Pages\/EditUser.php.html#33\">App\\Filament\\Resources\\UserResource\\Pages\\EditUser::getHeaderActions<\/a>"],[100,1,"<a href=\"Filament\/Resources\/UserResource\/Pages\/ListUsers.php.html#17\">App\\Filament\\Resources\\UserResource\\Pages\\ListUsers::getHeaderActions<\/a>"],[33.33333333333333,2,"<a href=\"Filament\/Resources\/UserResource\/Pages\/ListUsers.php.html#24\">App\\Filament\\Resources\\UserResource\\Pages\\ListUsers::getTabs<\/a>"],[0,1,"<a href=\"Filament\/Resources\/UserResource\/Pages\/PermissionsUser.php.html#21\">App\\Filament\\Resources\\UserResource\\Pages\\PermissionsUser::getBreadcrumbs<\/a>"],[0,1,"<a href=\"Filament\/Resources\/UserResource\/Pages\/PermissionsUser.php.html#31\">App\\Filament\\Resources\\UserResource\\Pages\\PermissionsUser::authorizeAccess<\/a>"],[0,1,"<a href=\"Filament\/Resources\/UserResource\/Pages\/PermissionsUser.php.html#36\">App\\Filament\\Resources\\UserResource\\Pages\\PermissionsUser::getTitle<\/a>"],[0,1,"<a href=\"Filament\/Resources\/UserResource\/Pages\/PermissionsUser.php.html#43\">App\\Filament\\Resources\\UserResource\\Pages\\PermissionsUser::form<\/a>"],[0,5,"<a href=\"Filament\/Resources\/UserResource\/Pages\/PermissionsUser.php.html#48\">App\\Filament\\Resources\\UserResource\\Pages\\PermissionsUser::getPermissionsSchema<\/a>"],[0,1,"<a href=\"Filament\/Resources\/UserResource\/Pages\/PermissionsUser.php.html#122\">App\\Filament\\Resources\\UserResource\\Pages\\PermissionsUser::getFormActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/UserResource\/Pages\/ViewUser.php.html#14\">App\\Filament\\Resources\\UserResource\\Pages\\ViewUser::getHeaderActions<\/a>"],[0,1,"<a href=\"Filament\/Resources\/UserResource\/RelationManagers\/DepartmentsRelationManager.php.html#17\">App\\Filament\\Resources\\UserResource\\RelationManagers\\DepartmentsRelationManager::form<\/a>"],[0,1,"<a href=\"Filament\/Resources\/UserResource\/RelationManagers\/DepartmentsRelationManager.php.html#28\">App\\Filament\\Resources\\UserResource\\RelationManagers\\DepartmentsRelationManager::table<\/a>"],[0,1,"<a href=\"Http\/Controllers\/BillPDFController.php.html#12\">App\\Http\\Controllers\\BillPDFController::generatePDF<\/a>"],[0,1,"<a href=\"Http\/Controllers\/IllnessNotificationPDFController.php.html#12\">App\\Http\\Controllers\\IllnessNotificationPDFController::generatePDF<\/a>"],[100,1,"<a href=\"Http\/Middleware\/SetLocal.php.html#18\">App\\Http\\Middleware\\SetLocal::handle<\/a>"],[100,1,"<a href=\"Livewire\/LanguageSwitcher.php.html#13\">App\\Livewire\\LanguageSwitcher::mount<\/a>"],[0,2,"<a href=\"Livewire\/LanguageSwitcher.php.html#19\">App\\Livewire\\LanguageSwitcher::switchLanguage<\/a>"],[100,1,"<a href=\"Livewire\/LanguageSwitcher.php.html#45\">App\\Livewire\\LanguageSwitcher::render<\/a>"],[75,1,"<a href=\"Models\/Bill.php.html#20\">App\\Models\\Bill::boot<\/a>"],[0,2,"<a href=\"Models\/Bill.php.html#29\">App\\Models\\Bill::getTotalPriceAttribute<\/a>"],[0,1,"<a href=\"Models\/Bill.php.html#37\">App\\Models\\Bill::customer<\/a>"],[0,1,"<a href=\"Models\/Bill.php.html#42\">App\\Models\\Bill::positions<\/a>"],[0,1,"<a href=\"Models\/Customer.php.html#17\">App\\Models\\Customer::getFullNameAttribute<\/a>"],[0,1,"<a href=\"Models\/Customer.php.html#21\">App\\Models\\Customer::bills<\/a>"],[0,1,"<a href=\"Models\/Department.php.html#16\">App\\Models\\Department::users<\/a>"],[0,1,"<a href=\"Models\/Department.php.html#22\">App\\Models\\Department::department_users<\/a>"],[100,1,"<a href=\"Models\/IllnessNotification.php.html#17\">App\\Models\\IllnessNotification::user<\/a>"],[100,1,"<a href=\"Models\/IllnessNotification.php.html#22\">App\\Models\\IllnessNotification::reportedTo<\/a>"],[0,1,"<a href=\"Models\/Position.php.html#14\">App\\Models\\Position::bill<\/a>"],[0,1,"<a href=\"Models\/Position.php.html#19\">App\\Models\\Position::sp_product<\/a>"],[0,1,"<a href=\"Models\/SPProduct.php.html#16\">App\\Models\\SPProduct::positions<\/a>"],[100,1,"<a href=\"Models\/User.php.html#41\">App\\Models\\User::getFullNameAttribute<\/a>"],[66.66666666666666,2,"<a href=\"Models\/User.php.html#46\">App\\Models\\User::getFilamentAvatarUrl<\/a>"],[100,1,"<a href=\"Models\/User.php.html#54\">App\\Models\\User::getFilamentName<\/a>"],[100,1,"<a href=\"Models\/User.php.html#64\">App\\Models\\User::casts<\/a>"],[100,1,"<a href=\"Models\/User.php.html#73\">App\\Models\\User::department_user<\/a>"],[100,1,"<a href=\"Models\/User.php.html#79\">App\\Models\\User::departments<\/a>"],[100,1,"<a href=\"Models\/User.php.html#85\">App\\Models\\User::illness_notifications<\/a>"],[0,1,"<a href=\"Models\/User.php.html#90\">App\\Models\\User::filteredPermissions<\/a>"],[100,1,"<a href=\"Models\/User.php.html#94\">App\\Models\\User::canAccessPanel<\/a>"],[100,1,"<a href=\"Policies\/BillPolicy.php.html#14\">App\\Policies\\BillPolicy::viewAny<\/a>"],[0,1,"<a href=\"Policies\/BillPolicy.php.html#22\">App\\Policies\\BillPolicy::view<\/a>"],[100,1,"<a href=\"Policies\/BillPolicy.php.html#30\">App\\Policies\\BillPolicy::create<\/a>"],[0,1,"<a href=\"Policies\/BillPolicy.php.html#38\">App\\Policies\\BillPolicy::update<\/a>"],[0,1,"<a href=\"Policies\/BillPolicy.php.html#46\">App\\Policies\\BillPolicy::delete<\/a>"],[0,1,"<a href=\"Policies\/BillPolicy.php.html#54\">App\\Policies\\BillPolicy::restore<\/a>"],[0,1,"<a href=\"Policies\/BillPolicy.php.html#62\">App\\Policies\\BillPolicy::forceDelete<\/a>"],[0,1,"<a href=\"Policies\/BillPolicy.php.html#67\">App\\Policies\\BillPolicy::replicateBill<\/a>"],[0,1,"<a href=\"Policies\/BillPolicy.php.html#72\">App\\Policies\\BillPolicy::reorderBill<\/a>"],[100,1,"<a href=\"Policies\/CustomerPolicy.php.html#14\">App\\Policies\\CustomerPolicy::viewAny<\/a>"],[0,1,"<a href=\"Policies\/CustomerPolicy.php.html#22\">App\\Policies\\CustomerPolicy::view<\/a>"],[100,1,"<a href=\"Policies\/CustomerPolicy.php.html#30\">App\\Policies\\CustomerPolicy::create<\/a>"],[0,1,"<a href=\"Policies\/CustomerPolicy.php.html#38\">App\\Policies\\CustomerPolicy::update<\/a>"],[0,1,"<a href=\"Policies\/CustomerPolicy.php.html#46\">App\\Policies\\CustomerPolicy::delete<\/a>"],[0,1,"<a href=\"Policies\/CustomerPolicy.php.html#54\">App\\Policies\\CustomerPolicy::restore<\/a>"],[0,1,"<a href=\"Policies\/CustomerPolicy.php.html#62\">App\\Policies\\CustomerPolicy::forceDelete<\/a>"],[0,1,"<a href=\"Policies\/CustomerPolicy.php.html#67\">App\\Policies\\CustomerPolicy::replicateCustomer<\/a>"],[0,1,"<a href=\"Policies\/CustomerPolicy.php.html#72\">App\\Policies\\CustomerPolicy::reorderCustomer<\/a>"],[100,1,"<a href=\"Policies\/DepartmentPolicy.php.html#14\">App\\Policies\\DepartmentPolicy::viewAny<\/a>"],[0,1,"<a href=\"Policies\/DepartmentPolicy.php.html#22\">App\\Policies\\DepartmentPolicy::view<\/a>"],[100,1,"<a href=\"Policies\/DepartmentPolicy.php.html#30\">App\\Policies\\DepartmentPolicy::create<\/a>"],[0,1,"<a href=\"Policies\/DepartmentPolicy.php.html#39\">App\\Policies\\DepartmentPolicy::update<\/a>"],[0,1,"<a href=\"Policies\/DepartmentPolicy.php.html#48\">App\\Policies\\DepartmentPolicy::delete<\/a>"],[0,1,"<a href=\"Policies\/DepartmentPolicy.php.html#56\">App\\Policies\\DepartmentPolicy::restore<\/a>"],[0,1,"<a href=\"Policies\/DepartmentPolicy.php.html#64\">App\\Policies\\DepartmentPolicy::forceDelete<\/a>"],[0,1,"<a href=\"Policies\/DepartmentPolicy.php.html#68\">App\\Policies\\DepartmentPolicy::replicateUser<\/a>"],[0,1,"<a href=\"Policies\/DepartmentPolicy.php.html#73\">App\\Policies\\DepartmentPolicy::reorderUser<\/a>"],[100,1,"<a href=\"Policies\/IllnessNotificationPolicy.php.html#14\">App\\Policies\\IllnessNotificationPolicy::viewAny<\/a>"],[100,2,"<a href=\"Policies\/IllnessNotificationPolicy.php.html#22\">App\\Policies\\IllnessNotificationPolicy::view<\/a>"],[100,1,"<a href=\"Policies\/IllnessNotificationPolicy.php.html#30\">App\\Policies\\IllnessNotificationPolicy::create<\/a>"],[100,1,"<a href=\"Policies\/IllnessNotificationPolicy.php.html#38\">App\\Policies\\IllnessNotificationPolicy::update<\/a>"],[100,1,"<a href=\"Policies\/IllnessNotificationPolicy.php.html#46\">App\\Policies\\IllnessNotificationPolicy::delete<\/a>"],[100,1,"<a href=\"Policies\/IllnessNotificationPolicy.php.html#54\">App\\Policies\\IllnessNotificationPolicy::restore<\/a>"],[100,1,"<a href=\"Policies\/IllnessNotificationPolicy.php.html#62\">App\\Policies\\IllnessNotificationPolicy::forceDelete<\/a>"],[0,1,"<a href=\"Policies\/IllnessNotificationPolicy.php.html#67\">App\\Policies\\IllnessNotificationPolicy::replicateUser<\/a>"],[0,1,"<a href=\"Policies\/IllnessNotificationPolicy.php.html#72\">App\\Policies\\IllnessNotificationPolicy::reorderUser<\/a>"],[100,2,"<a href=\"Policies\/PermissionPolicy.php.html#14\">App\\Policies\\PermissionPolicy::viewAny<\/a>"],[0,1,"<a href=\"Policies\/PermissionPolicy.php.html#24\">App\\Policies\\PermissionPolicy::view<\/a>"],[0,1,"<a href=\"Policies\/PermissionPolicy.php.html#32\">App\\Policies\\PermissionPolicy::create<\/a>"],[0,1,"<a href=\"Policies\/PermissionPolicy.php.html#40\">App\\Policies\\PermissionPolicy::update<\/a>"],[0,1,"<a href=\"Policies\/PermissionPolicy.php.html#48\">App\\Policies\\PermissionPolicy::delete<\/a>"],[0,1,"<a href=\"Policies\/PermissionPolicy.php.html#56\">App\\Policies\\PermissionPolicy::restore<\/a>"],[0,1,"<a href=\"Policies\/PermissionPolicy.php.html#64\">App\\Policies\\PermissionPolicy::forceDelete<\/a>"],[100,1,"<a href=\"Policies\/SPProductPolicy.php.html#14\">App\\Policies\\SPProductPolicy::viewAny<\/a>"],[0,1,"<a href=\"Policies\/SPProductPolicy.php.html#22\">App\\Policies\\SPProductPolicy::view<\/a>"],[100,1,"<a href=\"Policies\/SPProductPolicy.php.html#30\">App\\Policies\\SPProductPolicy::create<\/a>"],[0,1,"<a href=\"Policies\/SPProductPolicy.php.html#38\">App\\Policies\\SPProductPolicy::update<\/a>"],[0,1,"<a href=\"Policies\/SPProductPolicy.php.html#46\">App\\Policies\\SPProductPolicy::delete<\/a>"],[0,1,"<a href=\"Policies\/SPProductPolicy.php.html#54\">App\\Policies\\SPProductPolicy::restore<\/a>"],[0,1,"<a href=\"Policies\/SPProductPolicy.php.html#62\">App\\Policies\\SPProductPolicy::forceDelete<\/a>"],[0,1,"<a href=\"Policies\/SPProductPolicy.php.html#67\">App\\Policies\\SPProductPolicy::replicateSPProduct<\/a>"],[0,1,"<a href=\"Policies\/SPProductPolicy.php.html#72\">App\\Policies\\SPProductPolicy::reorderSPProduct<\/a>"],[100,2,"<a href=\"Policies\/UserPolicy.php.html#13\">App\\Policies\\UserPolicy::viewAny<\/a>"],[100,2,"<a href=\"Policies\/UserPolicy.php.html#21\">App\\Policies\\UserPolicy::view<\/a>"],[100,1,"<a href=\"Policies\/UserPolicy.php.html#29\">App\\Policies\\UserPolicy::create<\/a>"],[100,2,"<a href=\"Policies\/UserPolicy.php.html#37\">App\\Policies\\UserPolicy::update<\/a>"],[100,2,"<a href=\"Policies\/UserPolicy.php.html#45\">App\\Policies\\UserPolicy::delete<\/a>"],[100,1,"<a href=\"Policies\/UserPolicy.php.html#53\">App\\Policies\\UserPolicy::restore<\/a>"],[100,1,"<a href=\"Policies\/UserPolicy.php.html#61\">App\\Policies\\UserPolicy::forceDelete<\/a>"],[0,1,"<a href=\"Policies\/UserPolicy.php.html#66\">App\\Policies\\UserPolicy::replicateUser<\/a>"],[0,1,"<a href=\"Policies\/UserPolicy.php.html#71\">App\\Policies\\UserPolicy::reorderUser<\/a>"],[100,1,"<a href=\"Providers\/AppServiceProvider.php.html#12\">App\\Providers\\AppServiceProvider::register<\/a>"],[100,1,"<a href=\"Providers\/AppServiceProvider.php.html#20\">App\\Providers\\AppServiceProvider::boot<\/a>"],[100,1,"<a href=\"Providers\/Filament\/AdminPanelProvider.php.html#32\">App\\Providers\\Filament\\AdminPanelProvider::panel<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/kadir/Codes/apv1/app/Models</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css?v=10.1.16" rel="stylesheet" type="text/css">
+  <link href="../_css/nv.d3.min.css?v=10.1.16" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css?v=10.1.16" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">/home/kadir/Codes/apv1/app</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Models</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Customer.php.html#9">App\Models\Customer</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Department.php.html#10">App\Models\Department</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Position.php.html#8">App\Models\Position</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="SPProduct.php.html#9">App\Models\SPProduct</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Bill.php.html#9">App\Models\Bill</a></td><td class="text-right">30%</td></tr>
+       <tr><td><a href="User.php.html#17">App\Models\User</a></td><td class="text-right">87%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Bill.php.html#9">App\Models\Bill</a></td><td class="text-right">13</td></tr>
+       <tr><td><a href="User.php.html#17">App\Models\User</a></td><td class="text-right">10</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Bill.php.html#29"><abbr title="App\Models\Bill::getTotalPriceAttribute">getTotalPriceAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Bill.php.html#37"><abbr title="App\Models\Bill::customer">customer</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Bill.php.html#42"><abbr title="App\Models\Bill::positions">positions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Customer.php.html#17"><abbr title="App\Models\Customer::getFullNameAttribute">getFullNameAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Customer.php.html#21"><abbr title="App\Models\Customer::bills">bills</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Department.php.html#16"><abbr title="App\Models\Department::users">users</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Department.php.html#22"><abbr title="App\Models\Department::department_users">department_users</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Position.php.html#14"><abbr title="App\Models\Position::bill">bill</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Position.php.html#19"><abbr title="App\Models\Position::sp_product">sp_product</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="SPProduct.php.html#16"><abbr title="App\Models\SPProduct::positions">positions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#90"><abbr title="App\Models\User::filteredPermissions">filteredPermissions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#46"><abbr title="App\Models\User::getFilamentAvatarUrl">getFilamentAvatarUrl</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Bill.php.html#20"><abbr title="App\Models\Bill::boot">boot</abbr></a></td><td class="text-right">75%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Bill.php.html#29"><abbr title="App\Models\Bill::getTotalPriceAttribute">getTotalPriceAttribute</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User.php.html#46"><abbr title="App\Models\User::getFilamentAvatarUrl">getFilamentAvatarUrl</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 10.1.16</a> using <a href="https://www.php.net/" target="_top">PHP 8.3.11</a> and <a href="https://phpunit.de/">PHPUnit 10.5.17</a> at Thu Sep 19 12:39:32 UTC 2024.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/jquery.min.js?v=10.1.16" type="text/javascript"></script>
+  <script src="../_js/d3.min.js?v=10.1.16" type="text/javascript"></script>
+  <script src="../_js/nv.d3.min.js?v=10.1.16" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([4,0,0,0,1,0,0,0,0,1,0,3], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([11,0,0,0,0,0,0,1,1,0,0,9], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[30,5,"<a href=\"Bill.php.html#9\">App\\Models\\Bill<\/a>"],[0,2,"<a href=\"Customer.php.html#9\">App\\Models\\Customer<\/a>"],[0,2,"<a href=\"Department.php.html#10\">App\\Models\\Department<\/a>"],[100,0,"<a href=\"DepartmentUser.php.html#7\">App\\Models\\DepartmentUser<\/a>"],[100,2,"<a href=\"IllnessNotification.php.html#10\">App\\Models\\IllnessNotification<\/a>"],[100,0,"<a href=\"Permission.php.html#8\">App\\Models\\Permission<\/a>"],[0,2,"<a href=\"Position.php.html#8\">App\\Models\\Position<\/a>"],[0,1,"<a href=\"SPProduct.php.html#9\">App\\Models\\SPProduct<\/a>"],[87.5,10,"<a href=\"User.php.html#17\">App\\Models\\User<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[75,1,"<a href=\"Bill.php.html#20\">App\\Models\\Bill::boot<\/a>"],[0,2,"<a href=\"Bill.php.html#29\">App\\Models\\Bill::getTotalPriceAttribute<\/a>"],[0,1,"<a href=\"Bill.php.html#37\">App\\Models\\Bill::customer<\/a>"],[0,1,"<a href=\"Bill.php.html#42\">App\\Models\\Bill::positions<\/a>"],[0,1,"<a href=\"Customer.php.html#17\">App\\Models\\Customer::getFullNameAttribute<\/a>"],[0,1,"<a href=\"Customer.php.html#21\">App\\Models\\Customer::bills<\/a>"],[0,1,"<a href=\"Department.php.html#16\">App\\Models\\Department::users<\/a>"],[0,1,"<a href=\"Department.php.html#22\">App\\Models\\Department::department_users<\/a>"],[100,1,"<a href=\"IllnessNotification.php.html#17\">App\\Models\\IllnessNotification::user<\/a>"],[100,1,"<a href=\"IllnessNotification.php.html#22\">App\\Models\\IllnessNotification::reportedTo<\/a>"],[0,1,"<a href=\"Position.php.html#14\">App\\Models\\Position::bill<\/a>"],[0,1,"<a href=\"Position.php.html#19\">App\\Models\\Position::sp_product<\/a>"],[0,1,"<a href=\"SPProduct.php.html#16\">App\\Models\\SPProduct::positions<\/a>"],[100,1,"<a href=\"User.php.html#41\">App\\Models\\User::getFullNameAttribute<\/a>"],[66.66666666666666,2,"<a href=\"User.php.html#46\">App\\Models\\User::getFilamentAvatarUrl<\/a>"],[100,1,"<a href=\"User.php.html#54\">App\\Models\\User::getFilamentName<\/a>"],[100,1,"<a href=\"User.php.html#64\">App\\Models\\User::casts<\/a>"],[100,1,"<a href=\"User.php.html#73\">App\\Models\\User::department_user<\/a>"],[100,1,"<a href=\"User.php.html#79\">App\\Models\\User::departments<\/a>"],[100,1,"<a href=\"User.php.html#85\">App\\Models\\User::illness_notifications<\/a>"],[0,1,"<a href=\"User.php.html#90\">App\\Models\\User::filteredPermissions<\/a>"],[100,1,"<a href=\"User.php.html#94\">App\\Models\\User::canAccessPanel<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
