@@ -4,21 +4,11 @@ namespace App\Filament\Resources\PermissionResource\RelationManagers;
 
 use App\Filament\Resources\UserResource\Pages\PermissionsUser;
 use App\Models\User;
-use Filament\Actions\Action;
-use Filament\Forms;
-use Filament\Forms\Components\Fieldset;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
-use Filament\Notifications\Notification;
-use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Js;
-use Spatie\Permission\Models\Permission;
+
 
 class UsersRelationManager extends RelationManager
 {

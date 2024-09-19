@@ -27,9 +27,9 @@ class SPProductSeeder extends Seeder
             ];
 
         foreach ($titles as $title) {
-            SPProduct::factory()->create([
+            SPProduct::factory([
                 'name' => $title
-            ]);
+            ])->create();
         }
 
     }
