@@ -17,6 +17,7 @@ class PermissionsUser extends EditRecord
 {
     protected static string $resource = UserResource::class;
 
+    protected ?bool $hasUnsavedDataChangesAlert = false;
     public function getBreadcrumbs(): array
     {
         $resource = static::getResource();
