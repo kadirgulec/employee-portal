@@ -13,10 +13,17 @@ class EditPermission extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make(),
-            Actions\DeleteAction::make(),
-            Actions\ForceDeleteAction::make(),
-            Actions\RestoreAction::make(),
+//            Actions\ViewAction::make(),
+//            Actions\DeleteAction::make(),
+//            Actions\ForceDeleteAction::make(),
+//            Actions\RestoreAction::make(),
         ];
+    }
+
+    protected function getFormActions(): array
+    {
+        return [
+            $this->getCancelFormAction(),
+            ];
     }
 }

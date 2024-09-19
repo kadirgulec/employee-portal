@@ -15,6 +15,12 @@ class ViewUser extends ViewRecord
     {
         return [
             Actions\EditAction::make(),
+            Actions\Action::make('permissions')
+                ->label(__('filament-panels::translations.user.permissions'))
+                ->url($this->record->id. '/permissions')
+                ->visible(auth()->user()->can('backend.users.permissions'))
+            ->icon('heroicon-o-lock-open')
+            ->outlined(),
         ];
     }
 }

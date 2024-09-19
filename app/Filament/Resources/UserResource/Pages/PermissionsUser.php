@@ -21,9 +21,10 @@ class PermissionsUser extends EditRecord
     {
         $resource = static::getResource();
         return [
-            static::$breadcrumb ?? $resource::getUrl('index')=> __('filament-panels::translations.user.plural'),
-            static::$breadcrumb ??  'edit' => $this->record->full_name,
-            static::$breadcrumb ?? __('filament-panels::translations.user.permissions')];
+            static::$breadcrumb ?? $resource::getUrl('index') => __('filament-panels::translations.user.plural'),
+            static::$breadcrumb ?? $resource::getUrl('view', [$this->record]) => $this->record->full_name,
+            static::$breadcrumb ?? __('filament-panels::translations.user.permissions')
+        ];
     }
 
     protected function authorizeAccess(): void
@@ -33,12 +34,17 @@ class PermissionsUser extends EditRecord
 
     public function getTitle(): string
     {
-        return $this->record->full_name . ': ' . __('filament-panels::translations.user.permissions');
+        return $this->record->full_name.': '.__('filament-panels::translations.user.permissions');
 
     }
 
 
     public function form(Form $form): Form
+    {
+        return self::getPermissionsSchema($form);
+    }
+
+    public static function getPermissionsSchema(Form $form): Form
     {
         return $form
             ->schema(

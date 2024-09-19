@@ -7,6 +7,7 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\Department;
 use App\Models\User;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\SelectAction;
 use Filament\AvatarProviders\UiAvatarsProvider;
 use Filament\Forms;
@@ -326,11 +327,12 @@ class UserResource extends Resource
         return [
             'index' => Pages\ListUsers::route('/'),
             'create' => Pages\CreateUser::route('/create'),
-//            'view' => Pages\ViewUser::route('/{record}'),
+            'view' => Pages\ViewUser::route('/{record}'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
             'permissions' => Pages\PermissionsUser::route('/{record}/permissions'),
         ];
     }
+
 
 //    public static function getEloquentQuery(): Builder
 //    {
