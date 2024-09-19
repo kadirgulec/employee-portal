@@ -37,7 +37,7 @@ class UsersRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('name')
+            ->recordTitle(fn(User $user): string => optional($user)->full_name)
             ->columns([
                 Tables\Columns\TextColumn::make('full_name'),
                 Tables\Columns\ImageColumn::make('avatar')
