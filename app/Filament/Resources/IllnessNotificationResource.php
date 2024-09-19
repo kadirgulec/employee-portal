@@ -97,10 +97,10 @@ class IllnessNotificationResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\DatePicker::make('sent_at')
                 ->label(__('filament-panels::translations.illness_notifications.sent_at'))
-                ->hidden(!auth()->user()->can('update IllnessNotification')),
+                ->hidden(!auth()->user()->can('backend.illness-notifications.update')),
                 Forms\Components\TextInput::make('sent_to')
                 ->label(__('filament-panels::translations.illness_notifications.sent_to'))
-                    ->hidden(!auth()->user()->can('update IllnessNotification')),
+                    ->hidden(!auth()->user()->can('backend.illness-notifications.update')),
             ]);
     }
 
@@ -188,7 +188,7 @@ class IllnessNotificationResource extends Resource
                                     $data['illness_notification_after']));
                     }),
 
-                Tables\Filters\TrashedFilter::make()->visible(auth()->user()->can('restore IllnessNotification')),
+                Tables\Filters\TrashedFilter::make()->visible(auth()->user()->can('backend.illness-notifications.restore')),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

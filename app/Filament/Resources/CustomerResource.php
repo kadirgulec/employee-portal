@@ -75,10 +75,10 @@ class CustomerResource extends Resource
                     ->schema([
                         Forms\Components\Repeater::make('bills')
                             ->addActionLabel(__('filament-panels::translations.bill.add'))
+
                             ->itemLabel(fn(array $state): ?string => date('d.m.Y', strtotime($state['date'])))
                             ->relationship('bills', fn($query) => $query->orderByDesc('date'))
                             ->collapsed()
-//                            ->orderColumn('date')
                             ->defaultItems(0)
                             ->deleteAction(
                                 fn(Action $action) => $action->requiresConfirmation())
@@ -95,7 +95,6 @@ class CustomerResource extends Resource
 
 
                                     })
-                                    ->visible(fn($record) => $record)
                                     ->icon('heroicon-m-document-arrow-down')
                                     ->color('info')
                                     ->openUrlInNewTab()
@@ -319,7 +318,7 @@ class CustomerResource extends Resource
                     ->searchable(),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make()->visible(auth()->user()->can('restore Customer')),
+                Tables\Filters\TrashedFilter::make()->visible(auth()->user()->can('backend.customers.restore')),
             ])
             ->actions([
 
