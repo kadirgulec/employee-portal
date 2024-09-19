@@ -52,6 +52,7 @@ return [
             'technic' => 'Technik',
         ],
         'users' => 'Mitarbeiter',
+        'add_user' => 'Mitarbeiter Hinzufügen',
     ],
     'illness_notifications' => [
         'single' => 'Krankmeldung',

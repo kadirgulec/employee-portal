@@ -53,6 +53,7 @@ return [
                 'technic' => 'Technic',
             ],
         'users' => 'Employees',
+        'add_user' => 'Add Employee',
     ],
 
     'illness_notifications' => [

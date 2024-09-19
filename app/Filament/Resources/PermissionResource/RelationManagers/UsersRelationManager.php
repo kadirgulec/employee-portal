@@ -38,7 +38,8 @@ class UsersRelationManager extends RelationManager
             ])
             ->headerActions([
                 Tables\Actions\AttachAction::make()
-                ->preloadRecordSelect(),
+                    ->preloadRecordSelect()
+                    ->recordSelectSearchColumns(['first_name', 'last_name']),
             ])
             ->actions([
 //                Tables\Actions\EditAction::make()

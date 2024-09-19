@@ -11,6 +11,7 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class DepartmentUsersRelationManager extends RelationManager
@@ -18,16 +19,28 @@ class DepartmentUsersRelationManager extends RelationManager
     protected static string $relationship = 'department_users';
 
 
+    /**
+     * @return string
+     */
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    {
+        return __('filament-panels::translations.department.users');
+
+    }
+
+
     public function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Select::make('full_name')
+                    ->label(__('filament-panels::translations.user.name'))
                     ->required()
                     ->options(User::all()->pluck('full_name', 'id'))
                     ->searchable()
                     ->preload(),
-            ]);
+            ])
+            ;
     }
 
     public function table(Table $table): Table
@@ -35,15 +48,17 @@ class DepartmentUsersRelationManager extends RelationManager
         return $table
             ->recordTitle(fn(User $user): string => optional($user)->full_name)
             ->columns([
-                Tables\Columns\TextColumn::make('full_name'),
+                Tables\Columns\TextColumn::make('full_name')
+                    ->label(__('filament-panels::translations.user.name')),
                 Tables\Columns\ImageColumn::make('avatar')
                     ->circular(),
                 Tables\Columns\IconColumn::make('leader')
-                    ->icon(fn(string $state): string => match($state) {
+                    ->label(__('filament-panels::translations.user.leader'))
+                    ->icon(fn(string $state): string => match ($state) {
                         '1' => 'heroicon-o-trophy',
                         '0' => 'heroicon-o-user-circle',
                     })
-                    ->color(fn(string $state): string => match($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         '1' => 'success',
                         '0' => 'danger',
                     })
@@ -53,9 +68,11 @@ class DepartmentUsersRelationManager extends RelationManager
             ])
             ->headerActions([
                 Tables\Actions\AttachAction::make()
+                    ->modalHeading(__('filament-panels::translations.department.add_user'))
                     ->preloadRecordSelect()
                     ->recordSelectSearchColumns(['first_name', 'last_name'])
                     ->color('primary'),
+
             ])
             ->actions([
 //                Tables\Actions\EditAction::make(),
