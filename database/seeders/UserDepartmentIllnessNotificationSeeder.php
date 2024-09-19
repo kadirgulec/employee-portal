@@ -18,9 +18,9 @@ class UserDepartmentIllnessNotificationSeeder extends Seeder
         //create users with 3 illness notification each and a department
         $departments = Department::all();
         foreach ($departments as $department) {
-            for ($i = 0; $i <= 20; $i++) {
+            for ($i = 0; $i <= 10; $i++) {
                 $user = User::factory()
-                    ->has(IllnessNotification::factory(), 'illness_notifications')
+                    ->has(IllnessNotification::factory()->count(3), 'illness_notifications')
                     ->create();
 
 

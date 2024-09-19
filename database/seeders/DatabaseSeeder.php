@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             UserDepartmentIllnessNotificationSeeder::class,
 
             SPProductSeeder::class,
+            CustomerSeeder::class,
         ]);
 
 
