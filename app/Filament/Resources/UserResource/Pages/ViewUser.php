@@ -19,7 +19,7 @@ class ViewUser extends ViewRecord
                 ->label(__('filament-panels::translations.user.permissions'))
                 ->url($this->record->id. '/permissions')
                 ->visible(auth()->user()->can('backend.users.permissions'))
-            ->icon('heroicon-o-lock-open')
+            ->icon('heroicon-o-key')
             ->outlined(),
         ];
     }

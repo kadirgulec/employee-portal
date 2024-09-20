@@ -28,7 +28,9 @@ class StatsOverview extends BaseWidget
                         return 'danger';
                     }
                 })()),
-            Stat::make('Krankmeldung rate', (function () {
+
+
+            Stat::make('illness-notification rate', (function () {
                 $today = Carbon::today();
                 $illUsers = IllnessNotification::whereDate('illness_notification_at', $today)->count();
                 $totalUsers = User::count();
@@ -61,10 +63,12 @@ class StatsOverview extends BaseWidget
 
                     return $todayCount < 5 ? 'success' : 'danger';
                 })()),
+
+
             Stat::make('Mitarbeiter', (function () {
                 return User::count();
             }))
-            ->label('Total ' . __('filament-panels::translations.user.plural'))
+            ->label('Total ' . __('filament-panels::translations.user.plural')),
 
         ];
     }

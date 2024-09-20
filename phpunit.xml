@@ -38,9 +38,9 @@
             <clover outputFile="build/logs/clover.xml"/>
         </report>
     </coverage>
-    
+
     <logging>
         <junit outputFile="build/log/tests.xml"/>
     </logging>
-    
+
 </phpunit>

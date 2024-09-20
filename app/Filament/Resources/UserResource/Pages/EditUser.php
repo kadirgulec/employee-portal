@@ -37,7 +37,7 @@ class EditUser extends EditRecord
                 ->label(__('filament-panels::translations.user.permissions'))
                 ->url('permissions')
                 ->outlined()
-                ->icon('heroicon-o-lock-open')
+                ->icon('heroicon-o-key')
                 ->visible(auth()->user()->can('backend.users.permissions')),
 //            Actions\ViewAction::make(),
             Actions\DeleteAction::make(),

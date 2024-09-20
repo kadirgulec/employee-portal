@@ -121,35 +121,6 @@ class UserResource extends Resource
                     ->label(__('filament-panels::translations.user.mobile'))
                     ->tel(),
 
-//                Forms\Components\Select::make('roles')->multiple()->relationship('roles', 'name')->preload(),
-//                Forms\Components\Select::make('permissions')
-//                    ->label(__('filament-panels::translations.user.permissions'))
-//                    ->hintAction(Action::make('select all')
-//                        ->label(__('filament-panels::translations.select_all'))
-//                        ->action(function ($set) {
-//                            $allPermissionIds = Permission::all()->pluck('id')->toArray();
-//                            $set('permissions', $allPermissionIds);
-//                        }))
-//                    ->multiple()
-//                    ->relationship('permissions', 'name')
-//                    ->preload(),
-
-//                Forms\Components\CheckboxList::make('permissions')
-//                    ->hidden(!auth()->user()->can('admin Permission'))
-//                    ->label(__('filament-panels::translations.user.permissions'))
-//                    ->options(Permission::all()->pluck('name', 'id'))
-//                    ->hintAction(
-//                        Action::make('select_all')
-//                            ->label(__('filament-panels::translations.select_all'))
-//                            ->action(function ($set) {
-//                                $allPermissionIds = Permission::all()->pluck('id')->toArray();
-//                                $set('permissions', $allPermissionIds);
-//                            })
-//                    )
-//                    ->relationship('permissions', 'name')
-//                    ->columns(4)  // Display the toggle buttons in 4 columns
-//                    ->columnSpanFull(),
-
                 Forms\Components\Section::make(__('filament-panels::translations.department.plural'))
                     ->disabled(!auth()->user()->can('backend.departments.update'))
                     ->schema([
@@ -179,72 +150,121 @@ class UserResource extends Resource
     {
 
         return $infolist
+            ->columns(4)
             ->schema([
-                Fieldset::make('Personal Information')
-                    ->label(__('filament-panels::translations.personal_information'))
+
+                ImageEntry::make('avatar')
+                    ->defaultImageUrl(fn($record) => asset('assets/avatars/avatar-'. $record->gender . '.png'))
+                    ->hiddenLabel()
+                    ->size(200)
+                    ->circular()
+                    ->columnSpan(1),
+
+
+                Section::make()
+                    ->columns(2)
+                    ->columnSpan(3)
                     ->schema([
-                        //Full Name and Avatar
-                        Split::make([
-                            Grid::make(1)
-                                ->schema([
-                                    Split::make([
-                                        ImageEntry::make('avatar')
-                                            ->hiddenLabel()
-                                            ->defaultImageUrl(fn($record) => (new BigUiAvatarsProvider())->get($record))
-                                            ->grow(false)
-                                            ->circular(),
-                                        Grid::make(1)
-                                            ->schema([
-                                                TextEntry::make('full_name')
-                                                    ->hiddenLabel()
-                                                    ->weight('bold'),
-                                                TextEntry::make('position')
-                                                    ->hiddenLabel()
-                                                    ->size(TextEntry\TextEntrySize::ExtraSmall)
-                                                    ->extraAttributes(['style' => 'margin-top:-1.5rem']),
-                                            ]),
+                        TextEntry::make('full_name')
+                            ->hiddenLabel()
+                            ->columnSpanFull()
+                            ->size(TextEntry\TextEntrySize::Large)
+                            ->weight('bold'),
 
-                                    ]),
-                                    TextEntry::make('personal_number')
-                                        ->label(__('filament-panels::translations.personal_number'))
-                                        ->inlineLabel(),
-                                ]),
+                        TextEntry::make('position')
+                            ->hiddenLabel()
+                            ->columnSpanFull()
+                            ->size(TextEntry\TextEntrySize::ExtraSmall)
+                            ->extraAttributes(['style' => 'margin-top:-1.5rem']),
 
-                            //Other Information
-                            Grid::make(1)
-                                ->schema([
-                                    TextEntry::make('email')
-                                        ->inlineLabel(),
-                                    TextEntry::make('phone')
-                                        ->label(__('filament-panels::translations.user.phone'))
-                                        ->inlineLabel(),
-                                    TextEntry::make('mobile')
-                                        ->label(__('filament-panels::translations.user.mobile'))
-                                        ->inlineLabel(),
-                                    TextEntry::make('birth_date')
-                                        ->inlineLabel()
-                                        ->label(__('filament-panels::translations.user.birth_date'))
-                                        ->default(now()->format('d-m-Y')),
-                                ]),
-                        ])->from('md'),
-                    ])->columns(1),
+                        TextEntry::make('email')
+                            ->hiddenLabel()
+                            ->icon('heroicon-o-envelope'),
 
-                Grid::make([
-                    'default' => 1,
-                    'sm' => 2
-                ])
-                    ->schema([
-                        TextEntry::make('departments.name')
-                            ->label(__('filament-panels::translations.department.plural'))
-                            ->listWithLineBreaks(),
-                        TextEntry::make('illness_notifications.illness_notification_at')
-                            ->label(__('filament-panels::translations.illness_notifications.plural'))
-                            ->since()
-//                    ->visible(fn ($record) => auth()->user()->getKey() == $record->user_id)
-                            ->listWithLineBreaks()
-                            ->limitList(2)
-                            ->expandableLimitedList(),
-                    ])
+                        TextEntry::make('phone')
+                            ->icon('heroicon-o-phone')
+                            ->label(__('filament-panels::translations.user.phone'))
+                            ->hiddenLabel(),
+
+                        TextEntry::make('mobile')
+                            ->label(__('filament-panels::translations.user.mobile'))
+                            ->hiddenLabel()
+                            ->icon('heroicon-o-device-phone-mobile'),
+
+                        TextEntry::make('birth_date')
+                            ->icon('heroicon-o-cake')
+                            ->hiddenLabel()
+                            ->label(__('filament-panels::translations.user.birth_date'))
+                            ->default(now()->format('d-m-Y')),
+
+                    ]),
+
+
+//                Fieldset::make('Personal Information')
+//                    ->label(__('filament-panels::translations.personal_information'))
+//                    ->schema([
+//                        //Full Name and Avatar
+//                        Split::make([
+//                            Grid::make(1)
+//                                ->schema([
+//                                    Split::make([
+//                                        ImageEntry::make('avatar')
+//                                            ->hiddenLabel()
+//                                            ->defaultImageUrl(fn($record) => (new BigUiAvatarsProvider())->get($record))
+//                                            ->grow(false)
+//                                            ->circular(),
+//                                        Grid::make(1)
+//                                            ->schema([
+//                                                TextEntry::make('full_name')
+//                                                    ->hiddenLabel()
+//                                                    ->weight('bold'),
+//                                                TextEntry::make('position')
+//                                                    ->hiddenLabel()
+//                                                    ->size(TextEntry\TextEntrySize::ExtraSmall)
+//                                                    ->extraAttributes(['style' => 'margin-top:-1.5rem']),
+//                                            ]),
+//
+//                                    ]),
+//                                    TextEntry::make('personal_number')
+//                                        ->label(__('filament-panels::translations.personal_number'))
+//                                        ->inlineLabel(),
+//                                ]),
+//
+//                            //Other Information
+//                            Grid::make(1)
+//                                ->schema([
+//                                    TextEntry::make('email')
+//                                        ->inlineLabel(),
+//                                    TextEntry::make('phone')
+//                                        ->label(__('filament-panels::translations.user.phone'))
+//                                        ->inlineLabel(),
+//                                    TextEntry::make('mobile')
+//                                        ->label(__('filament-panels::translations.user.mobile'))
+//                                        ->inlineLabel(),
+//                                    TextEntry::make('birth_date')
+//                                        ->inlineLabel()
+//                                        ->label(__('filament-panels::translations.user.birth_date'))
+//                                        ->default(now()->format('d-m-Y')),
+//                                ]),
+//                        ])->from('md'),
+//                    ])->columns(1),
+//
+//                Grid::make([
+//                    'default' => 1,
+//                    'sm' => 2
+//                ])
+//                    ->schema([
+//                        TextEntry::make('departments.name')
+//                            ->label(__('filament-panels::translations.department.plural'))
+//                            ->listWithLineBreaks(),
+//                        TextEntry::make('illness_notifications.illness_notification_at')
+//                            ->label(__('filament-panels::translations.illness_notifications.plural'))
+//                            ->since()
+////                    ->visible(fn ($record) => auth()->user()->getKey() == $record->user_id)
+//                            ->listWithLineBreaks()
+//                            ->limitList(2)
+//                            ->expandableLimitedList(),
+//                    ])
 
             ]);
 
@@ -257,7 +277,8 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\Layout\Stack::make([
                     Tables\Columns\ImageColumn::make('avatar')
-                        ->defaultImageUrl(fn($record) => (new BigUiAvatarsProvider())->get($record))->circular()
+                        ->defaultImageUrl(fn($record) => asset('assets/avatars/avatar-'. $record->gender . '.png'))
+                        ->circular()
                         ->height('100%')
                         ->width('100%')
                         ->alignCenter(),
