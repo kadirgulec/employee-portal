@@ -29,6 +29,10 @@ class EditUser extends EditRecord
             : __('filament-panels::translations.user.edit.male');
     }
 
+    public function getRelationManagers(): array
+    {
+        return [];
+    }
 
     protected function getHeaderActions(): array
     {

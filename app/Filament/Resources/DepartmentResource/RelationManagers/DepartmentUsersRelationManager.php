@@ -29,19 +29,7 @@ class DepartmentUsersRelationManager extends RelationManager
     }
 
 
-    public function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                Forms\Components\Select::make('full_name')
-                    ->label(__('filament-panels::translations.user.name'))
-                    ->required()
-                    ->options(User::all()->pluck('full_name', 'id'))
-                    ->searchable()
-                    ->preload(),
-            ])
-            ;
-    }
+
 
     public function table(Table $table): Table
     {

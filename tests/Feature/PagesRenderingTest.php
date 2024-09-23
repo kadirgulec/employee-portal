@@ -2,6 +2,7 @@
 
 use App\Filament\Resources\IllnessNotificationResource\Pages\CreateIllnessNotification;
 use App\Filament\Resources\IllnessNotificationResource\Pages\EditIllnessNotification;
+use App\Filament\Resources\IllnessNotificationResource\Pages\ListIllnessNotifications;
 use App\Filament\Resources\UserResource\Pages\CreateUser;
 use App\Filament\Resources\UserResource\Pages\EditUser;
 use App\Models\IllnessNotification;
@@ -27,11 +28,11 @@ describe('logged user', function () {
         $this->actingAs(User::factory()->create());
     });
     routeTesting('it render dashboard')
-        ->include('/')
+        ->include(['/', 'users'])
         ->assertSuccessful();
 
     routeTesting('it forbids unauthorised users')
-        ->exclude(['login', 'up', 'livewire/*', 'filament/*', '/'])
+        ->exclude(['login', 'up', 'livewire/*', 'filament/*', '/', 'users'])
         ->ignoreRoutesWithMissingBindings()
         ->assertForbidden();
 });
@@ -104,5 +105,10 @@ describe('IllnessNotification contact', function () {
         livewire(CreateIllnessNotification::class)
             ->assertSuccessful();
 
+    });
+
+    it('can render illness notification list', function () {
+        livewire(ListIllnessNotifications::class)
+        ->assertSuccessful();
     });
 });

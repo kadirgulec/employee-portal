@@ -21,7 +21,7 @@ uses(
 uses(
     \Tests\AuthTestCase::class,
         RefreshDatabase::class,
-)->in('Feature/*Crud*.php');
+)->in('Feature/UserCrudValidationTest.php', 'Feature/*Resource*.php');
 
 /*
 |--------------------------------------------------------------------------

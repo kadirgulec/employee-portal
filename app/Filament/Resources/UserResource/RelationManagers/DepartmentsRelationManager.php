@@ -8,45 +8,36 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class DepartmentsRelationManager extends RelationManager
 {
     protected static string $relationship = 'departments';
 
-    public function form(Form $form): Form
+    public static function canViewForRecord(Model $ownerRecord, string $pageClass): bool
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Toggle::make('leader'),
-            ]);
+        return true;
     }
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    {
+        if(isset($ownerRecord->departments) && count($ownerRecord->departments) > 1) {
+            return __('filament-panels::translations.department.plural');
+        }
+        return __('filament-panels::translations.department.single');
+    }
+
 
     public function table(Table $table): Table
     {
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('name')
+                ->formatStateUsing(fn ($state) => __('filament-panels::translations.department.tabs.' . str($state)->slug()->toString())),
                 Tables\Columns\IconColumn::make('leader')->boolean(),
             ])
-            ->filters([
-                //
-            ])
-            ->headerActions([
-//                Tables\Actions\CreateAction::make(),
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->paginated(false);
+
     }
 }

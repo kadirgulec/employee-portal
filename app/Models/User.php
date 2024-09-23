@@ -87,10 +87,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName
         return $this->hasMany(IllnessNotification::class);
     }
 
-    public function filteredPermissions()
-    {
-       return $this->permissions()->where('name', 'like', "%.users.%");
-    }
     public function canAccessPanel(Panel $panel): bool
     {
         return true;

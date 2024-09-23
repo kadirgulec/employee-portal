@@ -131,8 +131,16 @@ class UserResource extends Resource
                             ->schema([
                                 Select::make('department_id')
                                     ->hiddenLabel()
+                                    ->native(false)
                                     ->hidden(!auth()->user()->can('backend.departments.update'))
-                                    ->options(Department::all()->pluck('name', 'id')),
+                                    ->options(function () {
+                                        $departments = Department::all()->pluck('name', 'id');
+                                        foreach ($departments as $key => $value) {
+                                            $departments[$key] = __('filament-panels::translations.department.tabs.'.str($value)->slug()->toString());
+                                        }
+                                        return $departments;
+
+                                    }),
                                 Forms\Components\Toggle::make('leader')
                                     ->label(__('filament-panels::translations.user.leader'))
                             ])
@@ -154,7 +162,7 @@ class UserResource extends Resource
             ->schema([
 
                 ImageEntry::make('avatar')
-                    ->defaultImageUrl(fn($record) => asset('assets/avatars/avatar-'. $record->gender . '.png'))
+                    ->defaultImageUrl(fn($record) => asset('assets/avatars/avatar-'.$record->gender.'.png'))
                     ->hiddenLabel()
                     ->size(200)
                     ->circular()
@@ -196,6 +204,7 @@ class UserResource extends Resource
                             ->hiddenLabel()
                             ->label(__('filament-panels::translations.user.birth_date'))
                             ->default(now()->format('d-m-Y')),
+
 
                     ]),
 
@@ -277,7 +286,7 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\Layout\Stack::make([
                     Tables\Columns\ImageColumn::make('avatar')
-                        ->defaultImageUrl(fn($record) => asset('assets/avatars/avatar-'. $record->gender . '.png'))
+                        ->defaultImageUrl(fn($record) => asset('assets/avatars/avatar-'.$record->gender.'.png'))
                         ->circular()
                         ->height('100%')
                         ->width('100%')
@@ -339,6 +348,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
+            RelationManagers\DepartmentsRelationManager::class,
         ];
     }
 
