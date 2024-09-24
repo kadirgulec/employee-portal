@@ -32,6 +32,14 @@ abstract class AuthTestCase extends TestCase
         Permission::create(['name' => 'backend.customers.view']);
         Permission::create(['name' => 'backend.customers.create']);
         Permission::create(['name' => 'backend.customers.update']);
+        Permission::create(['name' => 'backend.sp-products.view-any']);
+        Permission::create(['name' => 'backend.sp-products.view']);
+        Permission::create(['name' => 'backend.sp-products.create']);
+        Permission::create(['name' => 'backend.sp-products.update']);
+        Permission::create(['name' => 'backend.bills.view-any']);
+        Permission::create(['name' => 'backend.bills.view']);
+        Permission::create(['name' => 'backend.bills.create']);
+        Permission::create(['name' => 'backend.bills.update']);
         $user->givePermissionTo([
             'backend.users.view-any',
             'backend.users.view',

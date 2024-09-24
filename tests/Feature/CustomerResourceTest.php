@@ -15,7 +15,7 @@ describe('without permissions', function () {
     });
 
     it('forbids customer listing', function () {
-        $this->get(CustomerResource::getUrl('index'))
+        $this->get(CustomerResource::getUrl())
             ->assertForbidden();
     });
 
@@ -36,7 +36,9 @@ describe('without permissions', function () {
 describe('->view-any, ->view, ->update , ->create', function () {
     beforeEach(function () {
         auth()->user()->givePermissionTo([
-            'backend.customers.view-any', 'backend.customers.view', 'backend.customers.update',
+            'backend.customers.view-any',
+            'backend.customers.view',
+            'backend.customers.update',
             'backend.customers.create'
         ]);
         $this->customers = Customer::factory()->count(5)->create();

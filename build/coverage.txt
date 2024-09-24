@@ -1,15 +1,21 @@
 
 
 [1;37;40mCode Coverage Report:        [0m
-[1;37;40m  2024-09-23 13:19:42        [0m
+[1;37;40m  2024-09-24 07:50:25        [0m
 [1;37;40m                             [0m
 [1;37;40m Summary:                    [0m
-[37;41m  Classes: 43.40% (23/53)    [0m
-[30;43m  Methods: 62.98% (114/181)  [0m
-[30;43m  Lines:   71.35% (1133/1588)[0m
+[30;43m  Classes: 57.69% (30/52)    [0m
+[30;43m  Methods: 78.89% (142/180)  [0m
+[30;43m  Lines:   87.90% (1395/1587)[0m
 
 App\Filament\Resources\BillResource
-  [37;41mMethods:  28.57% ( 2/ 7)[0m   [37;41mLines:   5.92% (  9/152)[0m
+  [30;43mMethods:  85.71% ( 6/ 7)[0m   [30;43mLines:  88.82% (135/152)[0m
+App\Filament\Resources\BillResource\Pages\EditBill
+  [37;41mMethods:  50.00% ( 1/ 2)[0m   [30;43mLines:  88.89% ( 16/ 18)[0m
+App\Filament\Resources\BillResource\Pages\ListBills
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  3/  3)[0m
+App\Filament\Resources\BillResource\Pages\ViewBill
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  9/  9)[0m
 App\Filament\Resources\CustomerResource
   [30;43mMethods:  83.33% ( 5/ 6)[0m   [30;43mLines:  86.35% (215/249)[0m
 App\Filament\Resources\CustomerResource\Pages\EditCustomer
@@ -37,7 +43,13 @@ App\Filament\Resources\IllnessNotificationResource\Widgets\StatsOverview
 App\Filament\Resources\PermissionResource
   [30;43mMethods:  60.00% ( 3/ 5)[0m   [37;41mLines:  11.59% (  8/ 69)[0m
 App\Filament\Resources\SPProductResource
-  [37;41mMethods:  33.33% ( 2/ 6)[0m   [37;41mLines:  12.33% (  9/ 73)[0m
+  [30;42mMethods: 100.00% ( 6/ 6)[0m   [30;42mLines: 100.00% ( 73/ 73)[0m
+App\Filament\Resources\SPProductResource\Pages\EditSPProduct
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  6/  6)[0m
+App\Filament\Resources\SPProductResource\Pages\ListSPProducts
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  3/  3)[0m
+App\Filament\Resources\SPProductResource\Pages\ViewSPProduct
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  3/  3)[0m
 App\Filament\Resources\UserResource
   [30;43mMethods:  85.71% ( 6/ 7)[0m   [30;42mLines:  98.49% (261/265)[0m
 App\Filament\Resources\UserResource\Pages\EditUser
@@ -50,6 +62,8 @@ App\Filament\Resources\UserResource\Pages\ViewUser
   [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  9/  9)[0m
 App\Filament\Resources\UserResource\RelationManagers\DepartmentsRelationManager
   [30;42mMethods: 100.00% ( 3/ 3)[0m   [30;42mLines: 100.00% ( 12/ 12)[0m
+App\Http\Controllers\BillPDFController
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% ( 16/ 16)[0m
 App\Http\Controllers\IllnessNotificationPDFController
   [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% ( 17/ 17)[0m
 App\Http\Middleware\SetLocal
@@ -57,7 +71,7 @@ App\Http\Middleware\SetLocal
 App\Livewire\LanguageSwitcher
   [30;42mMethods: 100.00% ( 3/ 3)[0m   [30;42mLines: 100.00% ( 25/ 25)[0m
 App\Models\Bill
-  [37;41mMethods:   0.00% ( 0/ 4)[0m   [37;41mLines:  30.00% (  3/ 10)[0m
+  [30;43mMethods:  75.00% ( 3/ 4)[0m   [30;42mLines:  90.00% (  9/ 10)[0m
 App\Models\Customer
   [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% (  2/  2)[0m
 App\Models\Department
@@ -67,7 +81,7 @@ App\Models\IllnessNotification
 App\Models\User
   [30;42mMethods: 100.00% ( 8/ 8)[0m   [30;42mLines: 100.00% ( 15/ 15)[0m
 App\Policies\BillPolicy
-  [37;41mMethods:  22.22% ( 2/ 9)[0m   [37;41mLines:  22.22% (  2/  9)[0m
+  [30;43mMethods:  77.78% ( 7/ 9)[0m   [30;43mLines:  77.78% (  7/  9)[0m
 App\Policies\CustomerPolicy
   [30;43mMethods:  77.78% ( 7/ 9)[0m   [30;43mLines:  77.78% (  7/  9)[0m
 App\Policies\DepartmentPolicy
@@ -77,7 +91,7 @@ App\Policies\IllnessNotificationPolicy
 App\Policies\PermissionPolicy
   [37;41mMethods:  14.29% ( 1/ 7)[0m   [37;41mLines:  33.33% (  3/  9)[0m
 App\Policies\SPProductPolicy
-  [37;41mMethods:  22.22% ( 2/ 9)[0m   [37;41mLines:  22.22% (  2/  9)[0m
+  [30;43mMethods:  77.78% ( 7/ 9)[0m   [30;43mLines:  77.78% (  7/  9)[0m
 App\Policies\UserPolicy
   [30;43mMethods:  77.78% ( 7/ 9)[0m   [30;43mLines:  77.78% (  7/  9)[0m
 App\Providers\AppServiceProvider

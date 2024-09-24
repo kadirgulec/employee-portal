@@ -10,11 +10,4 @@ class CreateCustomer extends CreateRecord
 {
     protected static string $resource = CustomerResource::class;
 
-    protected $listeners = ['productCreated' => 'refreshProductOptions'];
-
-    public function refreshProductOptions(): void
-    {
-
-        $this->livewire->refresh();
-    }
 }

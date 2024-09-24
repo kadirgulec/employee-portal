@@ -212,7 +212,7 @@ class CustomerResource extends Resource
                                                     ->numeric()
                                                     ->required(),
                                             ])
-                                            ->action(function (array $data, SPProduct $product) {
+                                            ->action(function (array $data, SPProduct $product, $set) {
 
                                                 $product->create($data);
 
