@@ -19,10 +19,10 @@ class UsersRelationManager extends RelationManager
 //        return 'name';
 //    }
 
-    public function form(Form $form): Form
-    {
-        return PermissionsUser::getPermissionsSchema($form);
-    }
+//    public function form(Form $form): Form
+//    {
+//        return PermissionsUser::getPermissionsSchema($form);
+//    }
 
     public function table(Table $table): Table
     {
@@ -59,10 +59,10 @@ class UsersRelationManager extends RelationManager
             ]);
     }
 
-    public function getFormActions(): array
-    {
-        return [
-
-        ];
-    }
+//    public function getFormActions(): array
+//    {
+//        return [
+//
+//        ];
+//    }
 }

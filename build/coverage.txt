@@ -1,12 +1,12 @@
 
 
 [1;37;40mCode Coverage Report:        [0m
-[1;37;40m  2024-09-24 07:50:25        [0m
+[1;37;40m  2024-09-24 08:59:50        [0m
 [1;37;40m                             [0m
 [1;37;40m Summary:                    [0m
-[30;43m  Classes: 57.69% (30/52)    [0m
-[30;43m  Methods: 78.89% (142/180)  [0m
-[30;43m  Lines:   87.90% (1395/1587)[0m
+[30;43m  Classes: 66.67% (34/51)    [0m
+[30;43m  Methods: 84.18% (149/177)  [0m
+[30;42m  Lines:   94.37% (1492/1581)[0m
 
 App\Filament\Resources\BillResource
   [30;43mMethods:  85.71% ( 6/ 7)[0m   [30;43mLines:  88.82% (135/152)[0m
@@ -41,7 +41,13 @@ App\Filament\Resources\IllnessNotificationResource\Pages\ViewIllnessNotification
 App\Filament\Resources\IllnessNotificationResource\Widgets\StatsOverview
   [37;41mMethods:   0.00% ( 0/ 1)[0m   [30;42mLines:  97.78% ( 44/ 45)[0m
 App\Filament\Resources\PermissionResource
-  [30;43mMethods:  60.00% ( 3/ 5)[0m   [37;41mLines:  11.59% (  8/ 69)[0m
+  [30;42mMethods: 100.00% ( 5/ 5)[0m   [30;42mLines: 100.00% ( 69/ 69)[0m
+App\Filament\Resources\PermissionResource\Pages\EditPermission
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% (  9/  9)[0m
+App\Filament\Resources\PermissionResource\Pages\ListPermissions
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  2/  2)[0m
+App\Filament\Resources\PermissionResource\RelationManagers\UsersRelationManager
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% ( 24/ 24)[0m
 App\Filament\Resources\SPProductResource
   [30;42mMethods: 100.00% ( 6/ 6)[0m   [30;42mLines: 100.00% ( 73/ 73)[0m
 App\Filament\Resources\SPProductResource\Pages\EditSPProduct
@@ -89,7 +95,7 @@ App\Policies\DepartmentPolicy
 App\Policies\IllnessNotificationPolicy
   [30;43mMethods:  77.78% ( 7/ 9)[0m   [30;43mLines:  77.78% (  7/  9)[0m
 App\Policies\PermissionPolicy
-  [37;41mMethods:  14.29% ( 1/ 7)[0m   [37;41mLines:  33.33% (  3/  9)[0m
+  [37;41mMethods:  28.57% ( 2/ 7)[0m   [37;41mLines:  44.44% (  4/  9)[0m
 App\Policies\SPProductPolicy
   [30;43mMethods:  77.78% ( 7/ 9)[0m   [30;43mLines:  77.78% (  7/  9)[0m
 App\Policies\UserPolicy
