@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SPProductResource\Pages;
-use App\Filament\Resources\SPProductResource\RelationManagers;
 use App\Models\SPProduct;
 use Filament\Forms;
 use Filament\Forms\Components\RichEditor;

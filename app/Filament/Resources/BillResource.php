@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\BillResource\Pages;
-use App\Filament\Resources\BillResource\RelationManagers;
 use App\Models\Bill;
 use App\Models\Customer;
 use App\Models\SPProduct;

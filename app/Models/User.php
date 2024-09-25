@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,6 +17,11 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements FilamentUser, HasAvatar, HasName
 {
     use HasFactory, Notifiable, softDeletes, HasRoles;
+
+    public string $full_name;
+    public string $avatar;
+    public string $first_name;
+    public string $last_name;
 
     /**
      * The attributes that are mass assignable.
@@ -70,19 +75,25 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName
         ];
     }
 
-    public function department_user()
+    /**
+     * Get the pivot table for Department and User
+     * makes it easier to work with Filament
+     *
+     * @return HasMany
+     */
+    public function department_user(): HasMany
     {
         return $this->hasMany(DepartmentUser::class);
 
     }
 
-    public function departments()
+    public function departments(): BelongsToMany
     {
         return $this->belongsToMany(Department::class)
             ->withPivot('leader');
     }
 
-    public function illness_notifications(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function illness_notifications(): HasMany
     {
         return $this->hasMany(IllnessNotification::class);
     }

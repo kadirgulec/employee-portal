@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\IllnessNotificationResource\Pages;
-use App\Filament\Resources\IllnessNotificationResource\RelationManagers;
 use App\Models\IllnessNotification;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
