@@ -21,6 +21,11 @@ class ListUsers extends ListRecords
         ];
     }
 
+    /**
+     * dynamically creates department filter tabs
+     *
+     * @return array|Tab[]
+     */
     public function getTabs(): array
     {
         $tabs = ['all' => Tab::make(__('filament-panels::translations.department.tabs.all'))->badge($this->getModel()::count())];
@@ -35,7 +40,7 @@ class ListUsers extends ListRecords
 
             $tabs[$slug] = Tab::make($name)
                 ->label(__('filament-panels::translations.department.tabs.' . $slug))
-                ->badge($department->users()->count()) // Badge showing the number of users in the department
+                ->badge($department->users()->count())
                 ->modifyQueryUsing(function (Builder $query) use ($department) {
                     // Filter users by their department
                     return $query->whereHas('departments', function ($query) use ($department) {
