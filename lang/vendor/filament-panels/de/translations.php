@@ -38,6 +38,12 @@ return [
         'permissions' => 'Berechtigungen',
         'leader' => 'Abteilungleiter',
         'add_department' => 'Department hinzufügen',
+        'active' =>[
+            'label' => 'Mitarbeiterstatus',
+            'all' => 'Alle Mitarbieter',
+            'true' => 'Aktiv',
+            'false' => 'nicht Aktiv',
+        ],
     ],
     'department' => [
         'single' => 'Abteilung',

@@ -38,6 +38,12 @@ return [
         'permissions' => 'Permissions',
         'leader' => 'Department Manager',
         'add_department' => 'Add Department',
+        'active' =>[
+            'label' => 'Employee Status',
+            'all' => 'All Employees',
+            'true' => 'Active',
+            'false' => 'Inactive',
+        ],
     ],
     'department' => [
         'single' => 'Department',
