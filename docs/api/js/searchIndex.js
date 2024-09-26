@@ -101,6 +101,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Filament-Resources-BillResource.html#method_table"
         },                {
+            "fqsen": "\\App\\Filament\\Resources\\BillResource\u003A\u003AsetTotalPrice\u0028\u0029",
+            "name": "setTotalPrice",
+            "summary": "",
+            "url": "classes/App-Filament-Resources-BillResource.html#method_setTotalPrice"
+        },                {
             "fqsen": "\\App\\Filament\\Resources\\BillResource\u003A\u003AgetRelations\u0028\u0029",
             "name": "getRelations",
             "summary": "",
@@ -971,20 +976,15 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Models-Bill.html#method_getTotalPriceAttribute"
         },                {
-            "fqsen": "\\App\\Models\\Bill\u003A\u003A\u0024customer",
+            "fqsen": "\\App\\Models\\Bill\u003A\u003Acustomer\u0028\u0029",
             "name": "customer",
             "summary": "",
-            "url": "classes/App-Models-Bill.html#property_customer"
+            "url": "classes/App-Models-Bill.html#method_customer"
         },                {
-            "fqsen": "\\App\\Models\\Bill\u003A\u003A\u0024positions",
+            "fqsen": "\\App\\Models\\Bill\u003A\u003Apositions\u0028\u0029",
             "name": "positions",
             "summary": "",
-            "url": "classes/App-Models-Bill.html#property_positions"
-        },                {
-            "fqsen": "\\App\\Models\\Bill\u003A\u003A\u0024date",
-            "name": "date",
-            "summary": "",
-            "url": "classes/App-Models-Bill.html#property_date"
+            "url": "classes/App-Models-Bill.html#method_positions"
         },                {
             "fqsen": "\\App\\Models\\Bill\u003A\u003A\u0024fillable",
             "name": "fillable",
@@ -1025,16 +1025,6 @@ Search.appendIndex(
             "name": "appends",
             "summary": "",
             "url": "classes/App-Models-Customer.html#property_appends"
-        },                {
-            "fqsen": "\\App\\Models\\Customer\u003A\u003A\u0024first_name",
-            "name": "first_name",
-            "summary": "",
-            "url": "classes/App-Models-Customer.html#property_first_name"
-        },                {
-            "fqsen": "\\App\\Models\\Customer\u003A\u003A\u0024last_name",
-            "name": "last_name",
-            "summary": "",
-            "url": "classes/App-Models-Customer.html#property_last_name"
         },                {
             "fqsen": "\\App\\Models\\Department",
             "name": "Department",
@@ -1143,17 +1133,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003AgetFullNameAttribute\u0028\u0029",
             "name": "getFullNameAttribute",
-            "summary": "",
+            "summary": "Get\u0020the\u0020user\u0027s\u0020full\u0020name\u0020by\u0020combining\u0020first\u0020name\u0020and\u0020last\u0020name.",
             "url": "classes/App-Models-User.html#method_getFullNameAttribute"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003AgetFilamentAvatarUrl\u0028\u0029",
             "name": "getFilamentAvatarUrl",
-            "summary": "",
+            "summary": "Get\u0020the\u0020URL\u0020for\u0020the\u0020user\u0027s\u0020Filament\u0020avatar.",
             "url": "classes/App-Models-User.html#method_getFilamentAvatarUrl"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003AgetFilamentName\u0028\u0029",
             "name": "getFilamentName",
-            "summary": "",
+            "summary": "Get\u0020the\u0020user\u0027s\u0020full\u0020name\u0020for\u0020Filament.",
             "url": "classes/App-Models-User.html#method_getFilamentName"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003Acasts\u0028\u0029",
@@ -1163,43 +1153,23 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003Adepartment_user\u0028\u0029",
             "name": "department_user",
-            "summary": "Get\u0020the\u0020pivot\u0020table\u0020for\u0020Department\u0020and\u0020User\nmakes\u0020it\u0020easier\u0020to\u0020work\u0020with\u0020Filament",
+            "summary": "Get\u0020the\u0020user\u0027s\u0020associated\u0020departments.",
             "url": "classes/App-Models-User.html#method_department_user"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003Adepartments\u0028\u0029",
             "name": "departments",
-            "summary": "",
+            "summary": "Get\u0020the\u0020departments\u0020the\u0020user\u0020belongs\u0020to.",
             "url": "classes/App-Models-User.html#method_departments"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003Aillness_notifications\u0028\u0029",
             "name": "illness_notifications",
-            "summary": "",
+            "summary": "Get\u0020the\u0020illness\u0020notifications\u0020associated\u0020with\u0020the\u0020user.",
             "url": "classes/App-Models-User.html#method_illness_notifications"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003AcanAccessPanel\u0028\u0029",
             "name": "canAccessPanel",
-            "summary": "",
+            "summary": "Determine\u0020if\u0020the\u0020user\u0020can\u0020access\u0020the\u0020specified\u0020panel.",
             "url": "classes/App-Models-User.html#method_canAccessPanel"
-        },                {
-            "fqsen": "\\App\\Models\\User\u003A\u003A\u0024full_name",
-            "name": "full_name",
-            "summary": "",
-            "url": "classes/App-Models-User.html#property_full_name"
-        },                {
-            "fqsen": "\\App\\Models\\User\u003A\u003A\u0024avatar",
-            "name": "avatar",
-            "summary": "",
-            "url": "classes/App-Models-User.html#property_avatar"
-        },                {
-            "fqsen": "\\App\\Models\\User\u003A\u003A\u0024first_name",
-            "name": "first_name",
-            "summary": "",
-            "url": "classes/App-Models-User.html#property_first_name"
-        },                {
-            "fqsen": "\\App\\Models\\User\u003A\u003A\u0024last_name",
-            "name": "last_name",
-            "summary": "",
-            "url": "classes/App-Models-User.html#property_last_name"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003A\u0024guarded",
             "name": "guarded",
@@ -1213,7 +1183,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003A\u0024appends",
             "name": "appends",
-            "summary": "",
+            "summary": "The\u0020accessors\u0020to\u0020append\u0020to\u0020the\u0020model\u0027s\u0020array\u0020form.",
             "url": "classes/App-Models-User.html#property_appends"
         },                {
             "fqsen": "\\App\\Policies\\BillPolicy",

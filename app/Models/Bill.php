@@ -9,14 +9,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property Carbon $date
+ * @property Customer $customer
+ * @property HasMany $positions
+ *
+ */
 class Bill extends Model
 {
     use HasFactory, softDeletes;
-
-    public Carbon $date;
-    public Customer $customer;
-    public HasMany $positions;
-
     protected $fillable = [
         'date',
         'customer_id',

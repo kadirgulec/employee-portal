@@ -63,10 +63,12 @@ class CustomerResource extends Resource
                     ->email(),
                 Forms\Components\TextInput::make('mobile')
                     ->label(__('filament-panels::translations.customer.mobile'))
-                    ->tel(),
+                    ->tel()
+                    ->telRegex('/^[+]?[0-9]{0,2}[ ]?[(]?[0-9]{1,5}[)]?[ \/\-0-9]+$/'),
                 Forms\Components\TextInput::make('phone')
                     ->label(__('filament-panels::translations.customer.phone'))
-                    ->tel(),
+                    ->tel()
+                    ->telRegex('/^[+]?[0-9]{0,2}[ ]?[(]?[0-9]{1,5}[)]?[ \/\-0-9]+$/'),
 
                 //Bills section
                 Forms\Components\Section::make(__('filament-panels::translations.bill.plural'))
@@ -80,7 +82,8 @@ class CustomerResource extends Resource
                             ->collapsed()
                             ->defaultItems(0)
                             ->deleteAction(
-                                fn(Action $action) => $action->requiresConfirmation()->visible(auth()->user()->can('backend.bills.delete'))
+                                fn(Action $action
+                                ) => $action->requiresConfirmation()->visible(auth()->user()->can('backend.bills.delete'))
                             )
                             ->extraItemActions([
                                 Forms\Components\Actions\Action::make('PDF')
@@ -116,18 +119,8 @@ class CustomerResource extends Resource
                                             ->numeric()
                                             ->readOnly()
                                             ->prefix('€')
-                                            ->afterStateHydrated(function (Get $get, Set $set) {
-                                                $positions = $get('positions') ?? [];
-                                                $totalPrice = collect($positions)->sum(function ($position) {
-
-                                                    if ($position['s_p_product_id'] && is_numeric($position['quantity'])) {
-                                                        return $position['quantity'] * SPProduct::find($position['s_p_product_id'])->price;
-                                                    } else {
-                                                        return 0;
-                                                    }
-                                                });
-                                                $set('total_price', $totalPrice);
-                                            }),
+                                            ->afterStateHydrated(fn($get, $set) => BillResource::setTotalPrice($get,
+                                                $set)),
                                     ]),
 
                                 //Positions repeater under Bill repeater
@@ -135,7 +128,8 @@ class CustomerResource extends Resource
                                     ->addActionLabel(__('filament-panels::translations.product.add'))
                                     ->hiddenLabel()
                                     //disable the add Product when the user is not authorised to update or not created the bill
-                                    ->disabled(fn($record) => !auth()->user()->can('backend.bills.update') && auth()->user()->id != optional($record)->created_by && isset($record))
+                                    ->disabled(fn($record
+                                    ) => !auth()->user()->can('backend.bills.update') && auth()->user()->id != optional($record)->created_by && isset($record))
                                     ->itemLabel(fn(array $state): ?string => $state['product_name'])
                                     ->live()
                                     ->collapsible()
@@ -226,32 +220,10 @@ class CustomerResource extends Resource
                                     ])
                                     ->deleteAction(
                                         fn(Action $action, $record) => $action->requiresConfirmation()
-                                            ->visible(auth()->user()->can('backend.bills.update') || auth()->user()->id == optional($record)->created_by ),
+                                            ->visible(auth()->user()->can('backend.bills.update') || auth()->user()->id == optional($record)->created_by),
                                     )
-                                    ->afterStateUpdated(function (Get $get, Set $set) {
-                                        $positions = $get('positions') ?? [];
-                                        $totalPrice = collect($positions)->sum(function ($position) {
-                                            if ($position['s_p_product_id'] && is_numeric($position['quantity']) && is_numeric($position['product_price'])) {
-                                                return $position['quantity'] * $position['product_price'];
-                                            } else {
-                                                return 0;
-                                            }
-
-                                        });
-                                        $set('total_price', $totalPrice);
-                                    })
-                                    ->afterStateHydrated(function (Get $get, Set $set) {
-                                        $positions = $get('positions') ?? [];
-                                        $totalPrice = collect($positions)->sum(function ($position) {
-
-                                            if ($position['s_p_product_id'] && is_numeric($position['quantity']) && is_numeric($position['product_price'])) {
-                                                return $position['quantity'] * $position['product_price'] ?? 0;
-                                            } else {
-                                                return 0;
-                                            }
-                                        });
-                                        $set('total_price', $totalPrice);
-                                    }),
+                                    ->afterStateUpdated(fn($get, $set) => BillResource::setTotalPrice($get, $set))
+                                    ->afterStateHydrated(fn($get, $set) => BillResource::setTotalPrice($get, $set)),
                             ])
 
                     ])

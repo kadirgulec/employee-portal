@@ -120,31 +120,8 @@ class BillResource extends Resource
                             ->numeric(),
                     ])
                     ->live()
-                    ->afterStateUpdated(function (Get $get, Set $set) {
-                        $positions = $get('positions') ?? [];
-
-                        $totalPrice = collect($positions)->sum(function ($position) {
-                            if ($position['product_price'] && is_numeric($position['quantity'])) {
-                                return $position['quantity'] * $position['product_price'];
-                            } else {
-                                return 0;
-                            }
-
-                        });
-                        $set('total_price', $totalPrice);
-                    })
-                    ->afterStateHydrated(function (Get $get, Set $set) {
-                        $positions = $get('positions') ?? [];
-                        $totalPrice = collect($positions)->sum(function ($position) {
-
-                            if ($position['product_price'] && is_numeric($position['quantity'])) {
-                                return $position['quantity'] * $position['product_price'];
-                            } else {
-                                return 0;
-                            }
-                        });
-                        $set('total_price', $totalPrice);
-                    })
+                    ->afterStateUpdated(fn($get,$set) => self::setTotalPrice($get, $set))
+                    ->afterStateHydrated(fn($get,$set) => self::setTotalPrice($get, $set))
                     ->grid(2),
 
 
@@ -201,6 +178,20 @@ class BillResource extends Resource
             ]);
     }
 
+    public static function setTotalPrice(Get $get, Set $set): void
+    {
+        $positions = $get('positions') ?? [];
+
+        $totalPrice = collect($positions)->sum(function ($position) {
+            if ($position['product_price'] && is_numeric($position['quantity'])) {
+                return $position['quantity'] * $position['product_price'];
+            } else {
+                return 0;
+            }
+
+        });
+        $set('total_price', $totalPrice);
+    }
     public static function getRelations(): array
     {
         return [

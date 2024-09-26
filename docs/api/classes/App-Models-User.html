@@ -147,7 +147,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
@@ -214,8 +214,9 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/App-Models-User.html#property_appends">$appends</a>
     <span>
-                        &nbsp;: mixed            </span>
+                        &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
+<dd>The accessors to append to the model&#039;s array form.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/App-Models-User.html#property_guarded">$guarded</a>
@@ -244,44 +245,49 @@
     <span>
                                 &nbsp;: bool    </span>
 </dt>
+<dd>Determine if the user can access the specified panel.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Models-User.html#method_department_user">department_user()</a>
     <span>
                                 &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Relations\HasMany">HasMany</abbr>    </span>
 </dt>
-<dd>Get the pivot table for Department and User
-makes it easier to work with Filament</dd>
+<dd>Get the user&#039;s associated departments.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Models-User.html#method_departments">departments()</a>
     <span>
                                 &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Relations\BelongsToMany">BelongsToMany</abbr>    </span>
 </dt>
+<dd>Get the departments the user belongs to.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Models-User.html#method_getFilamentAvatarUrl">getFilamentAvatarUrl()</a>
     <span>
                                 &nbsp;: string|null    </span>
 </dt>
+<dd>Get the URL for the user&#039;s Filament avatar.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Models-User.html#method_getFilamentName">getFilamentName()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
+<dd>Get the user&#039;s full name for Filament.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Models-User.html#method_getFullNameAttribute">getFullNameAttribute()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
+<dd>Get the user&#039;s full name by combining first name and last name.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Models-User.html#method_illness_notifications">illness_notifications()</a>
     <span>
                                 &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Relations\HasMany">HasMany</abbr>    </span>
 </dt>
+<dd>Get the illness notifications associated with the user.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/App-Models-User.html#method_casts">casts()</a>
@@ -320,7 +326,7 @@ makes it easier to work with Filament</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">0</span>
 
     </aside>
 
@@ -356,7 +362,7 @@ makes it easier to work with Filament</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">23</span>
+    <span class="phpdocumentor-element-found-in__line">0</span>
 
     </aside>
 
@@ -392,7 +398,7 @@ makes it easier to work with Filament</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">0</span>
 
     </aside>
 
@@ -428,7 +434,7 @@ makes it easier to work with Filament</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">0</span>
 
     </aside>
 
@@ -464,15 +470,16 @@ makes it easier to work with Filament</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">The accessors to append to the model&#039;s array form.</p>
+
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$appends</span>
      = <span class="phpdocumentor-signature__default-value">[&#039;full_name&#039;]</span></code>
 
@@ -500,7 +507,7 @@ makes it easier to work with Filament</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
@@ -537,7 +544,7 @@ makes it easier to work with Filament</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">38</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
@@ -579,11 +586,12 @@ makes it easier to work with Filament</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">101</span>
+    <span class="phpdocumentor-element-found-in__line">153</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Determine if the user can access the specified panel.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">canAccessPanel</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Filament\Panel">Panel</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$panel</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
@@ -591,7 +599,10 @@ makes it easier to work with Filament</dd>
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>This method returns true by default, allowing access to any given panel.
+Custom logic can be implemented to restrict access based on the user's role, permissions, or other criteria.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -599,7 +610,9 @@ makes it easier to work with Filament</dd>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Filament\Panel">Panel</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The panel instance to check access for.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -610,6 +623,10 @@ makes it easier to work with Filament</dd>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>True if the user can access the panel, otherwise false.</p>
+</section>
+
             </section>
 
 </article>
@@ -627,12 +644,11 @@ makes it easier to work with Filament</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">84</span>
+    <span class="phpdocumentor-element-found-in__line">112</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Get the pivot table for Department and User
-makes it easier to work with Filament</p>
+        <p class="phpdocumentor-summary">Get the user&#039;s associated departments.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -641,7 +657,9 @@ makes it easier to work with Filament</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Defines a one-to-many relationship between the user and department-user records.</p>
+</section>
+
     
     
 
@@ -667,11 +685,12 @@ makes it easier to work with Filament</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">90</span>
+    <span class="phpdocumentor-element-found-in__line">126</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Get the departments the user belongs to.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">departments</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Database\Eloquent\Relations\BelongsToMany">BelongsToMany</abbr></span></code>
@@ -679,7 +698,10 @@ makes it easier to work with Filament</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Defines a many-to-many relationship between the user and departments.
+Includes the 'leader' pivot field for additional relationship data.</p>
+</section>
+
     
     
 
@@ -705,11 +727,12 @@ makes it easier to work with Filament</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Get the URL for the user&#039;s Filament avatar.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">getFilamentAvatarUrl</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
@@ -717,7 +740,10 @@ makes it easier to work with Filament</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>If the user does not have an avatar, return null. Otherwise, return
+the URL of the avatar stored in the 'storage' directory.</p>
+</section>
+
     
     
 
@@ -726,6 +752,10 @@ makes it easier to work with Filament</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The avatar URL or null if no avatar is set.</p>
+</section>
+
             </section>
 
 </article>
@@ -743,11 +773,12 @@ makes it easier to work with Filament</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">59</span>
+    <span class="phpdocumentor-element-found-in__line">86</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Get the user&#039;s full name for Filament.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">getFilamentName</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
@@ -755,7 +786,9 @@ makes it easier to work with Filament</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>This returns the full name of the user.</p>
+</section>
+
     
     
 
@@ -764,6 +797,10 @@ makes it easier to work with Filament</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The full name of the user.</p>
+</section>
+
             </section>
 
 </article>
@@ -781,11 +818,12 @@ makes it easier to work with Filament</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Get the user&#039;s full name by combining first name and last name.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">getFullNameAttribute</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
@@ -802,6 +840,10 @@ makes it easier to work with Filament</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The full name with each word capitalized.</p>
+</section>
+
             </section>
 
 </article>
@@ -819,11 +861,12 @@ makes it easier to work with Filament</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">96</span>
+    <span class="phpdocumentor-element-found-in__line">139</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Get the illness notifications associated with the user.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">illness_notifications</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Database\Eloquent\Relations\HasMany">HasMany</abbr></span></code>
@@ -831,7 +874,9 @@ makes it easier to work with Filament</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Defines a one-to-many relationship between the user and illness notifications.</p>
+</section>
+
     
     
 
@@ -857,7 +902,7 @@ makes it easier to work with Filament</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">96</span>
 
     </aside>
 

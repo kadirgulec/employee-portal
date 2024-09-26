@@ -1,15 +1,15 @@
 
 
 [1;37;40mCode Coverage Report:        [0m
-[1;37;40m  2024-09-24 08:59:50        [0m
+[1;37;40m  2024-09-25 14:50:40        [0m
 [1;37;40m                             [0m
 [1;37;40m Summary:                    [0m
 [30;43m  Classes: 66.67% (34/51)    [0m
-[30;43m  Methods: 84.18% (149/177)  [0m
-[30;42m  Lines:   94.37% (1492/1581)[0m
+[30;43m  Methods: 83.71% (149/178)  [0m
+[30;42m  Lines:   94.78% (1490/1572)[0m
 
 App\Filament\Resources\BillResource
-  [30;43mMethods:  85.71% ( 6/ 7)[0m   [30;43mLines:  88.82% (135/152)[0m
+  [30;43mMethods:  75.00% ( 6/ 8)[0m   [30;42mLines:  93.01% (133/143)[0m
 App\Filament\Resources\BillResource\Pages\EditBill
   [37;41mMethods:  50.00% ( 1/ 2)[0m   [30;43mLines:  88.89% ( 16/ 18)[0m
 App\Filament\Resources\BillResource\Pages\ListBills
