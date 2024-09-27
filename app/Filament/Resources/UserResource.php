@@ -7,6 +7,7 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\Department;
 use App\Models\User;
+use Exception;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
@@ -190,7 +191,7 @@ class UserResource extends Resource
                                 return $department ? __('filament-panels::translations.department.tabs.'.str($department->name)->slug()->toString()) : null;
                             })
                             ->live()
-                            ->grid(2)
+                            ->grid()
                             ->schema([
 
                                 Select::make('department_id')
@@ -283,7 +284,7 @@ class UserResource extends Resource
      *
      * @param  Table  $table
      * @return Table
-     * @throws \Exception
+     * @throws Exception
      */
     public static function table(Table $table): Table
     {
@@ -361,7 +362,7 @@ class UserResource extends Resource
 
     /**
      *
-     * @return \class-string[]
+     * @return class-string[]
      */
     public static function getRelations(): array
     {

@@ -718,12 +718,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Filament\\Resources\\UserResource\\Pages\\EditUser\u003A\u003AgetBreadcrumbs\u0028\u0029",
             "name": "getBreadcrumbs",
-            "summary": "",
+            "summary": "customizes\u0020the\u0020breadcrumbs",
             "url": "classes/App-Filament-Resources-UserResource-Pages-EditUser.html#method_getBreadcrumbs"
         },                {
             "fqsen": "\\App\\Filament\\Resources\\UserResource\\Pages\\EditUser\u003A\u003AgetTitle\u0028\u0029",
             "name": "getTitle",
-            "summary": "",
+            "summary": "to\u0020obtain\u0020a\u0020gender\u002Dspecific\u0020header",
             "url": "classes/App-Filament-Resources-UserResource-Pages-EditUser.html#method_getTitle"
         },                {
             "fqsen": "\\App\\Filament\\Resources\\UserResource\\Pages\\EditUser\u003A\u003AgetRelationManagers\u0028\u0029",
@@ -753,7 +753,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Filament\\Resources\\UserResource\\Pages\\ListUsers\u003A\u003AgetTabs\u0028\u0029",
             "name": "getTabs",
-            "summary": "",
+            "summary": "dynamically\u0020creates\u0020department\u0020filter\u0020tabs",
             "url": "classes/App-Filament-Resources-UserResource-Pages-ListUsers.html#method_getTabs"
         },                {
             "fqsen": "\\App\\Filament\\Resources\\UserResource\\Pages\\ListUsers\u003A\u003A\u0024resource",
@@ -853,27 +853,27 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Filament\\Resources\\UserResource\u003A\u003AgetModelLabel\u0028\u0029",
             "name": "getModelLabel",
-            "summary": "",
+            "summary": "sets\u0020the\u0020resource\u0020name\u0020for\u0020singular\u0020cases",
             "url": "classes/App-Filament-Resources-UserResource.html#method_getModelLabel"
         },                {
             "fqsen": "\\App\\Filament\\Resources\\UserResource\u003A\u003AgetPluralModelLabel\u0028\u0029",
             "name": "getPluralModelLabel",
-            "summary": "",
+            "summary": "sets\u0020the\u0020resource\u0020name\u0020for\u0020plural\u0020cases",
             "url": "classes/App-Filament-Resources-UserResource.html#method_getPluralModelLabel"
         },                {
             "fqsen": "\\App\\Filament\\Resources\\UserResource\u003A\u003Aform\u0028\u0029",
             "name": "form",
-            "summary": "",
+            "summary": "Create\u0020the\u0020form\u0020schema\u0020for\u0020the\u0020user\u0020management\u0020panel.",
             "url": "classes/App-Filament-Resources-UserResource.html#method_form"
         },                {
             "fqsen": "\\App\\Filament\\Resources\\UserResource\u003A\u003Ainfolist\u0028\u0029",
             "name": "infolist",
-            "summary": "",
+            "summary": "generates\u0020the\u0020user\u0020view\u0020page",
             "url": "classes/App-Filament-Resources-UserResource.html#method_infolist"
         },                {
             "fqsen": "\\App\\Filament\\Resources\\UserResource\u003A\u003Atable\u0028\u0029",
             "name": "table",
-            "summary": "",
+            "summary": "generates\u0020the\u0020user\u0020list\u0020table,\u0020filters\u0020and\u0020actions",
             "url": "classes/App-Filament-Resources-UserResource.html#method_table"
         },                {
             "fqsen": "\\App\\Filament\\Resources\\UserResource\u003A\u003AgetRelations\u0028\u0029",
@@ -888,17 +888,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Filament\\Resources\\UserResource\u003A\u003A\u0024model",
             "name": "model",
-            "summary": "",
+            "summary": "Specifies\u0020the\u0020resource\u0020model",
             "url": "classes/App-Filament-Resources-UserResource.html#property_model"
         },                {
             "fqsen": "\\App\\Filament\\Resources\\UserResource\u003A\u003A\u0024navigationIcon",
             "name": "navigationIcon",
-            "summary": "",
+            "summary": "Sets\u0020the\u0020resource\u0020navigation\u0020icon",
             "url": "classes/App-Filament-Resources-UserResource.html#property_navigationIcon"
         },                {
             "fqsen": "\\App\\Filament\\Resources\\UserResource\u003A\u003A\u0024navigationSort",
             "name": "navigationSort",
-            "summary": "",
+            "summary": "specify\u0020order\u0020of\u0020the\u0020resource\u0020at\u0020navigation",
             "url": "classes/App-Filament-Resources-UserResource.html#property_navigationSort"
         },                {
             "fqsen": "\\App\\Http\\Controllers\\BillPDFController",

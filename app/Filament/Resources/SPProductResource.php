@@ -4,6 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SPProductResource\Pages;
 use App\Models\SPProduct;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Form;
@@ -88,12 +90,22 @@ class SPProductResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make()->visible(auth()->user()->can('restore SPProduct')),
+                Tables\Filters\TrashedFilter::make()->visible(auth()->user()->can('backend.sp-products.restore')),
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-            ])
+            ->actions(
+                [
+                    Tables\Actions\ViewAction::make()
+                        ->hidden(fn($record) => $record->trashed()),
+                    Tables\Actions\EditAction::make()
+                        ->hidden(fn($record) => $record->trashed()),
+                    Tables\Actions\RestoreAction::make()
+                        ->visible(fn($record) => $record->trashed()),
+                    Tables\Actions\ForceDeleteAction::make()
+                        ->visible(fn($record) => $record->trashed()),
+
+                ]
+
+            )
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

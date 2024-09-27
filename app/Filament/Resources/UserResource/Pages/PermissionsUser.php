@@ -58,7 +58,9 @@ class PermissionsUser extends EditRecord
                         ->map(function ($permission) use (&$permissions) {
                             $parts = explode('.', $permission->name);
 
+                            //makes a multidimensional table and the last element is the permission model
                             $permissions[$parts[0]][$parts[1]][$parts[2]] = $permission;
+
                         });
 
                     foreach ($permissions as $key0 => $level0) {
@@ -70,7 +72,7 @@ class PermissionsUser extends EditRecord
                                         $schemaLevel1[] = Fieldset::make(__('filament-panels::permissions.'.$key0.'.'.$key1.'.title'))
                                             ->schema(function () use ($level1) {
                                                 $schemaLevel2 = [];
-                                                foreach ($level1 as $key2 => $permission) {
+                                                foreach ($level1 as $permission) {
 
                                                     $schemaLevel2[] = Toggle::make($permission)
                                                         ->label(__('filament-panels::permissions.'.$permission->name.'.title'))

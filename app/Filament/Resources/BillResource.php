@@ -60,29 +60,18 @@ class BillResource extends Resource
                     ->numeric()
                     ->readOnly()
                     ->prefix('€')
-                    ->afterStateHydrated(function (Get $get, Set $set) {
-                        $positions = $get('positions') ?? [];
-                        $totalPrice = collect($positions)->sum(function ($position) {
-
-                            if ($position['s_p_product_id'] && is_numeric($position['quantity'])) {
-                                return $position['quantity'] * SPProduct::find($position['s_p_product_id'])->price;
-                            } else {
-                                return 0;
-                            }
-                        });
-                        $set('total_price', $totalPrice);
-                    }),
+                    ->afterStateHydrated(fn($get,$set) => self::setTotalPrice($get, $set)),
 
 
                 Forms\Components\Repeater::make('positions')
                     ->addActionLabel(__('filament-panels::translations.product.add'))
-                    ->itemLabel(fn(array $state): ?string => $state['product_name'])
+                    ->itemLabel(fn(array $state): ?string => $state['product_name'] ?? null)
                     ->hiddenLabel()
                     ->relationship()
                     ->columnSpanFull()
                     ->schema([
                         Forms\Components\Select::make('s_p_product_id')
-                            ->label(__('filament-panels::translations.product_name'))
+                            ->label(__('filament-panels::translations.product.name'))
                             ->options(SPProduct::all()->pluck('name', 'id'))
                             ->searchable()
                             ->preload()
@@ -182,8 +171,9 @@ class BillResource extends Resource
     {
         $positions = $get('positions') ?? [];
 
+
         $totalPrice = collect($positions)->sum(function ($position) {
-            if ($position['product_price'] && is_numeric($position['quantity'])) {
+            if (isset($position['product_price']) && is_numeric($position['quantity'])) {
                 return $position['quantity'] * $position['product_price'];
             } else {
                 return 0;

@@ -89,6 +89,7 @@ class CustomerResource extends Resource
                                 Forms\Components\Actions\Action::make('PDF')
                                     ->label('PDF')
                                     ->url(function ($state, array $arguments) {
+
                                         if (isset($state[$arguments['item']]['id'])) {
                                             $itemID = $state[$arguments['item']]['id'];
                                             return route('bill.pdf', $itemID);
@@ -98,6 +99,7 @@ class CustomerResource extends Resource
 
 
                                     })
+                                    ->visible(fn($state, $arguments) => isset($state[$arguments['item']]['id']))
                                     ->icon('heroicon-m-document-arrow-down')
                                     ->color('info')
                                     ->openUrlInNewTab()
