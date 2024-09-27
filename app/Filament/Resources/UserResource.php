@@ -347,12 +347,16 @@ class UserResource extends Resource
                 'all',
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->hidden(fn(User $record) => $record->trashed()),
+                Tables\Actions\EditAction::make()
+                    ->hidden(fn(User $record) => $record->trashed()),
+                Tables\Actions\ForceDeleteAction::make()
+                    ->visible(fn(User $record) => $record->trashed()),
+                Tables\Actions\RestoreAction::make()
+                    ->visible(fn(User $record) => $record->trashed()),
                 ActionGroup::make([
                     Tables\Actions\DeleteAction::make(),
-                    Tables\Actions\ForceDeleteAction::make(),
-                    Tables\Actions\RestoreAction::make(),
                 ])
                     ->color('gray')
                     ->size(ActionSize::Small),

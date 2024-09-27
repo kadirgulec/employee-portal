@@ -40,7 +40,7 @@ class ListUsers extends ListRecords
 
             $tabs[$slug] = Tab::make($name)
                 ->label(__('filament-panels::translations.department.tabs.' . $slug))
-                ->badge($department->users()->count())
+                ->badge($department->department_users()->withoutTrashed()->count())
                 ->modifyQueryUsing(function (Builder $query) use ($department) {
                     // Filter users by their department
                     return $query->whereHas('departments', function ($query) use ($department) {
@@ -48,7 +48,6 @@ class ListUsers extends ListRecords
                     });
                 });
         }
-
 
         return $tabs;
     }
