@@ -7,11 +7,13 @@ use App\Models\Bill;
 use App\Models\Customer;
 use App\Models\SPProduct;
 use Filament\Forms;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -60,7 +62,7 @@ class BillResource extends Resource
                     ->numeric()
                     ->readOnly()
                     ->prefix('€')
-                    ->afterStateHydrated(fn($get,$set) => self::setTotalPrice($get, $set)),
+                    ->afterStateHydrated(fn($get, $set) => self::setTotalPrice($get, $set)),
 
 
                 Forms\Components\Repeater::make('positions')
@@ -69,6 +71,10 @@ class BillResource extends Resource
                     ->hiddenLabel()
                     ->relationship()
                     ->columnSpanFull()
+                    ->live()
+                    ->afterStateUpdated(fn($get, $set) => self::setTotalPrice($get, $set))
+                    ->afterStateHydrated(fn($get, $set) => self::setTotalPrice($get, $set))
+                    ->grid()
                     ->schema([
                         Forms\Components\Select::make('s_p_product_id')
                             ->label(__('filament-panels::translations.product.name'))
@@ -88,7 +94,7 @@ class BillResource extends Resource
                             ->numeric()
                             ->required(),
                         Forms\Components\TextInput::make('product_name')
-                        ->label(__('filament-panels::translations.bill.product_name')),
+                            ->label(__('filament-panels::translations.bill.product_name')),
                         RichEditor::make('product_description')
                             ->label(__('filament-panels::translations.bill.product_description'))
                             ->columnSpanFull()
@@ -97,7 +103,6 @@ class BillResource extends Resource
                                 'italic',
                                 'bulletList',
                                 'orderedList',
-                                'blockquote',
                                 'h3',
                                 'redo',
                                 'strike',
@@ -108,10 +113,48 @@ class BillResource extends Resource
                             ->label(__('filament-panels::translations.bill.unit_price'))
                             ->numeric(),
                     ])
-                    ->live()
-                    ->afterStateUpdated(fn($get,$set) => self::setTotalPrice($get, $set))
-                    ->afterStateHydrated(fn($get,$set) => self::setTotalPrice($get, $set))
-                    ->grid(2),
+                    ->extraItemActions([
+                        Action::make('Create new Product')
+                            ->label(__('filament-panels::translations.product.create_new'))
+                            ->icon('heroicon-m-plus-circle')
+                            ->visible(auth()->user()->can('backend.sp-products.create'))
+                            ->form([
+                                TextInput::make('name')
+                                    ->label(__('filament-panels::translations.product.name'))
+                                    ->required(),
+                                RichEditor::make('description')
+                                    ->label(__('filament-panels::translations.product.description'))
+                                    ->columnSpanFull()
+                                    ->toolbarButtons([
+                                        'bold',
+                                        'italic',
+                                        'bulletList',
+                                        'orderedList',
+                                        'h3',
+                                        'redo',
+                                        'strike',
+                                        'underline',
+                                        'undo',
+                                    ]),
+                                TextInput::make('price')
+                                    ->label(__('filament-panels::translations.product.price'))
+                                    ->numeric()
+                                    ->required(),
+                            ])
+                            ->action(function (array $data, SPProduct $product, $set) {
+
+                                $product->create($data);
+
+                                Notification::make()
+                                    ->title(__('filament-panels::translations.product.notify_created'))
+                                    ->success()
+                                    ->send();
+                            })
+                            ->color('success')
+                            ->modalHeading(__('filament-panels::translations.product.create'))
+                            ->modalWidth('lg')
+                    ])
+                    ,
 
 
             ]);
@@ -147,15 +190,21 @@ class BillResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()->hidden(fn($record) => $record->trashed()),
+                Tables\Actions\EditAction::make()->hidden(fn($record) => $record->trashed()),
                 Tables\Actions\Action::make('PDF')
+                    ->hidden(fn($record) => $record->trashed())
                     ->label('PDF')
                     ->url(fn($record): string => route('bill.pdf', $record))
                     ->color('info')
                     ->icon('heroicon-o-document-arrow-down')
                     ->outlined()
                     ->openUrlInNewTab(),
+
+                Tables\Actions\RestoreAction::make()
+                    ->visible(fn($record) => $record->trashed()),
+                Tables\Actions\ForceDeleteAction::make()
+                    ->visible(fn($record) => $record->trashed()),
 
             ])
             ->bulkActions([
@@ -182,6 +231,7 @@ class BillResource extends Resource
         });
         $set('total_price', $totalPrice);
     }
+
     public static function getRelations(): array
     {
         return [

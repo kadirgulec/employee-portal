@@ -25,7 +25,9 @@ routeTesting('it redirects unlogged users')
 
 describe('logged user', function () {
     beforeEach(function () {
-        $this->actingAs(User::factory()->create());
+        $this->actingAs(User::factory([
+            'email' => 'example@aks-service.de'
+        ])->create());
     });
     routeTesting('it render dashboard')
         ->include(['/', 'users'])
@@ -39,7 +41,9 @@ describe('logged user', function () {
 
 describe('view-any User authenticated user', function () {
     beforeEach(function () {
-        $user = User::factory()->create();
+        $user = User::factory([
+            'email' => 'example@aks-service.de'
+        ])->create();
         Permission::create(['name' => 'backend.users.view-any']);
         $user->givePermissionTo('backend.users.view-any');
         $this->actingAs($user);
@@ -61,7 +65,9 @@ describe('view-any User authenticated user', function () {
 
 describe('edit User and create user authenticated users', function () {
     beforeEach(function () {
-        $user = User::factory()->create();
+        $user = User::factory([
+            'email' => 'example@aks-service.de'
+        ])->create();
         Permission::create(['name' => 'backend.users.view-any']);
         Permission::create(['name' => 'backend.users.update']);
         Permission::create(['name' => 'backend.users.create']);
@@ -81,7 +87,9 @@ describe('edit User and create user authenticated users', function () {
 
 describe('IllnessNotification contact', function () {
     beforeEach(function () {
-        $user = User::factory()->create();
+        $user = User::factory([
+            'email' => 'example@aks-service.de'
+        ])->create();
         Permission::create(['name' => 'backend.illness-notifications.view-any']);
         Permission::create(['name' => 'backend.illness-notifications.update']);
         Permission::create(['name' => 'backend.illness-notifications.create']);

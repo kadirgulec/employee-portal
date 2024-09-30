@@ -183,6 +183,7 @@ class UserResource extends Resource
                     ->schema([
 
                         Forms\Components\Repeater::make('department_user')
+                            ->defaultItems(0)
                             ->hiddenLabel()
                             ->relationship()
                             ->addActionLabel(__('filament-panels::translations.user.add_department'))

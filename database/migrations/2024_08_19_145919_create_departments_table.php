@@ -24,12 +24,19 @@ return new class extends Migration
 
         //Create the pivot Table between User-Department (m-n) relationship.
         Schema::create('department_user', function (Blueprint $table) {
+            //Meta
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreignIdFor(\App\Models\User::class);
-            $table->foreignIdFor(\App\Models\Department::class);
+
+            //fields
             $table->boolean('leader')->default(false);
+            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('user_id');
+
+            //relations
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('department_id')->references('id')->on('departments');
         });
     }
 

@@ -17,11 +17,9 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            //relations
-            $table->foreignIdFor(\App\Models\User::class);
-            $table->foreignIdFor(\App\Models\User::class,'reported_to');
-
             //fields
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('reported_to');
             $table->date('illness_notification_at')->nullable()->default(today());
             $table->date('doctor_visited_at')->nullable();
             $table->dateTime('report_time');
@@ -31,6 +29,10 @@ return new class extends Migration
             $table->text('note')->nullable();
             $table->date('sent_at')->nullable();
             $table->string('sent_to')->nullable();
+
+            //relations
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('reported_to')->references('id')->on('users');
         });
     }
 

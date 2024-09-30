@@ -19,29 +19,13 @@ return new class extends Migration
 
             //fields
             $table->date('date');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('created_by');
 
-            //foreign keys
-            $table->foreignIdFor(\App\Models\Customer::class);
-            $table->foreignIdFor(\App\Models\User::class,'created_by');
+            //relations
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('created_by')->references('id')->on('users');
 
-        });
-
-        Schema::create('positions', function (Blueprint $table) {
-            //meta
-            $table->id();
-            $table->timestamps();
-            $table->softDeletes();
-
-            //fields
-            $table->string('product_name');
-            $table->float('product_price');
-            $table->text('product_description')->nullable();
-            $table->integer('quantity');
-
-
-            //foreign keys
-            $table->foreignIdFor(\App\Models\SPProduct::class);
-            $table->foreignIdFor(\App\Models\Bill::class);
         });
 
         Schema::create('sp_products', function (Blueprint $table) {
@@ -55,6 +39,28 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->float('price');
         });
+
+        Schema::create('positions', function (Blueprint $table) {
+            //meta
+            $table->id();
+            $table->timestamps();
+            $table->softDeletes();
+
+            //fields
+            $table->unsignedBigInteger('s_p_product_id');
+            $table->unsignedBigInteger('bill_id');
+            $table->string('product_name');
+            $table->float('product_price');
+            $table->text('product_description')->nullable();
+            $table->integer('quantity');
+
+
+            //foreign keys
+            $table->foreign('s_p_product_id')->references('id')->on('sp_products');
+            $table->foreign('bill_id')->references('id')->on('bills');
+        });
+
+
 
 
     }

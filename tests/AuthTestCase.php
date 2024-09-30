@@ -15,7 +15,9 @@ abstract class AuthTestCase extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $user = User::factory()->create();
+        $user = User::factory([
+            'email' => 'example@aks-service.de'
+        ])->create();
         Permission::create(['name' => 'backend.users.view-any']);
         Permission::create(['name' => 'backend.users.view']);
         Permission::create(['name' => 'backend.users.create']);
