@@ -178,45 +178,7 @@ class CustomerResource extends Resource
 
                                     ])
                                     ->extraItemActions([
-                                        Action::make('Create new Product')
-                                            ->label(__('filament-panels::translations.product.create_new'))
-                                            ->icon('heroicon-m-plus-circle')
-                                            ->visible(auth()->user()->can('backend.sp-products.create'))
-                                            ->form([
-                                                TextInput::make('name')
-                                                    ->label(__('filament-panels::translations.product.name'))
-                                                    ->required(),
-                                                RichEditor::make('description')
-                                                    ->label(__('filament-panels::translations.product.description'))
-                                                    ->columnSpanFull()
-                                                    ->toolbarButtons([
-                                                        'bold',
-                                                        'italic',
-                                                        'bulletList',
-                                                        'orderedList',
-                                                        'h3',
-                                                        'redo',
-                                                        'strike',
-                                                        'underline',
-                                                        'undo',
-                                                    ]),
-                                                TextInput::make('price')
-                                                    ->label(__('filament-panels::translations.product.price'))
-                                                    ->numeric()
-                                                    ->required(),
-                                            ])
-                                            ->action(function (array $data, SPProduct $product, $set) {
-
-                                                $product->create($data);
-
-                                                Notification::make()
-                                                    ->title(__('filament-panels::translations.product.notify_created'))
-                                                    ->success()
-                                                    ->send();
-                                            })
-                                            ->color('success')
-                                            ->modalHeading(__('filament-panels::translations.product.create'))
-                                            ->modalWidth('lg')
+                                        SPProductResource::actionCreateNewProduct(),
                                     ])
                                     ->deleteAction(
                                         fn(Action $action, $record) => $action->requiresConfirmation()
@@ -267,15 +229,20 @@ class CustomerResource extends Resource
             ])
             ->actions([
 
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->hidden(fn($record) => $record->trashed()),
+                Tables\Actions\EditAction::make()
+                    ->hidden(fn($record) => $record->trashed()),
                 ActionGroup::make([
                     Tables\Actions\DeleteAction::make(),
-                    Tables\Actions\ForceDeleteAction::make(),
-                    Tables\Actions\RestoreAction::make(),
                 ])
                     ->color('gray')
                     ->size(ActionSize::Small),
+                Tables\Actions\RestoreAction::make()
+                    ->visible(fn($record) => $record->trashed()),
+                Tables\Actions\ForceDeleteAction::make()
+                    ->visible(fn($record) => $record->trashed()),
+
 
             ])
             ->bulkActions([

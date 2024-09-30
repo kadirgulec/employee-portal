@@ -99,7 +99,7 @@
     <div class="border-2 border-black -mt-0.5 p-1">
         @foreach($bill->positions as $position)
             <h3 class="font-semibold text-base mt-1">{{$loop->iteration}} - {{$position->product_name}} <span
-                    class="text-sm font-normal">({{$position->product_price}}€ x {{$position->quantity}} = {{$position->product_price * $position->quantity}}€)</span>
+                    class="text-sm font-normal">({{number_format($position->product_price,2,',')}}€ x {{$position->quantity}} = {{number_format($position->product_price * $position->quantity,2,',')}}€)</span>
             </h3>
             <div
                 class="[&>ul>li]:list-disc [&>*]:list-inside [&>h3]:font-semibold [&>*]:px-2 [&>ol>li]:list-decimal [&>ol]:ml-2 [&>ul]:ml-2">

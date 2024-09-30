@@ -15,6 +15,7 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Support\RawJs;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -92,6 +93,9 @@ class BillResource extends Resource
                         Forms\Components\TextInput::make('quantity')
                             ->label(__('filament-panels::translations.bill.quantity'))
                             ->numeric()
+                            ->extraAlpineAttributes([
+                                'x-mask' => '999999',
+                            ])
                             ->required(),
                         Forms\Components\TextInput::make('product_name')
                             ->label(__('filament-panels::translations.bill.product_name')),
@@ -111,50 +115,14 @@ class BillResource extends Resource
                             ]),
                         TextInput::make('product_price')
                             ->label(__('filament-panels::translations.bill.unit_price'))
-                            ->numeric(),
+                            ->required()
+                            ->numeric()
+                            ->dehydrateStateUsing(fn($state) => number_format(floatval($state), 2, '.')),
                     ])
                     ->extraItemActions([
-                        Action::make('Create new Product')
-                            ->label(__('filament-panels::translations.product.create_new'))
-                            ->icon('heroicon-m-plus-circle')
-                            ->visible(auth()->user()->can('backend.sp-products.create'))
-                            ->form([
-                                TextInput::make('name')
-                                    ->label(__('filament-panels::translations.product.name'))
-                                    ->required(),
-                                RichEditor::make('description')
-                                    ->label(__('filament-panels::translations.product.description'))
-                                    ->columnSpanFull()
-                                    ->toolbarButtons([
-                                        'bold',
-                                        'italic',
-                                        'bulletList',
-                                        'orderedList',
-                                        'h3',
-                                        'redo',
-                                        'strike',
-                                        'underline',
-                                        'undo',
-                                    ]),
-                                TextInput::make('price')
-                                    ->label(__('filament-panels::translations.product.price'))
-                                    ->numeric()
-                                    ->required(),
-                            ])
-                            ->action(function (array $data, SPProduct $product, $set) {
-
-                                $product->create($data);
-
-                                Notification::make()
-                                    ->title(__('filament-panels::translations.product.notify_created'))
-                                    ->success()
-                                    ->send();
-                            })
-                            ->color('success')
-                            ->modalHeading(__('filament-panels::translations.product.create'))
-                            ->modalWidth('lg')
+                        SPProductResource::actionCreateNewProduct(),
                     ])
-                    ,
+                ,
 
 
             ]);
@@ -223,13 +191,13 @@ class BillResource extends Resource
 
         $totalPrice = collect($positions)->sum(function ($position) {
             if (isset($position['product_price']) && is_numeric($position['quantity'])) {
-                return $position['quantity'] * $position['product_price'];
+                return intval($position['quantity']) * floatval($position['product_price']);
             } else {
                 return 0;
             }
 
         });
-        $set('total_price', $totalPrice);
+        $set('total_price', number_format($totalPrice, 2));
     }
 
     public static function getRelations(): array

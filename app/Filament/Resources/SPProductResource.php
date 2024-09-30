@@ -7,8 +7,11 @@ use App\Models\SPProduct;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -130,6 +133,51 @@ class SPProductResource extends Resource
             'view' => Pages\ViewSPProduct::route('/{record}'),
             'edit' => Pages\EditSPProduct::route('/{record}/edit'),
         ];
+    }
+
+    public static function actionCreateNewProduct()
+    {
+        return
+            Action::make('Create new Product')
+                ->label(__('filament-panels::translations.product.create_new'))
+                ->icon('heroicon-m-plus-circle')
+                ->visible(auth()->user()->can('backend.sp-products.create'))
+                ->form([
+                    TextInput::make('name')
+                        ->label(__('filament-panels::translations.product.name'))
+                        ->required(),
+                    RichEditor::make('description')
+                        ->label(__('filament-panels::translations.product.description'))
+                        ->columnSpanFull()
+                        ->toolbarButtons([
+                            'bold',
+                            'italic',
+                            'bulletList',
+                            'orderedList',
+                            'h3',
+                            'redo',
+                            'strike',
+                            'underline',
+                            'undo',
+                        ]),
+                    TextInput::make('price')
+                        ->label(__('filament-panels::translations.product.price'))
+                        ->numeric()
+                        ->required(),
+                ])
+                ->action(function (array $data, SPProduct $product, $set) {
+
+                    $product->create($data);
+
+                    Notification::make()
+                        ->title(__('filament-panels::translations.product.notify_created'))
+                        ->success()
+                        ->send();
+                })
+                ->color('success')
+                ->modalHeading(__('filament-panels::translations.product.create'))
+                ->modalWidth('lg')
+        ;
     }
 
 
