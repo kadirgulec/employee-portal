@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rechnung</title>
+    <title>Auftrag</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -17,8 +17,8 @@
 
         </div>
         <div class="auto-cols-auto">
-            <h1 class="text-3xl font-bold">Arbeitsauftrag</h1>
-            <h2 class="text-2xl ">aks Ticket-Nummer: #</h2>
+            <h1 class="text-3xl font-bold">Werkstattauftrag</h1>
+            <h2 class="text-2xl ">ISP Auftrag-Nummer: # {{$bill->id}}</h2>
         </div>
         <div class="place-self-end flex flex-col">
             <div class="self-end">
@@ -52,8 +52,8 @@
 
     <div class="flex justify-between">
         <div>
-            <p class="font-bold text-sm">Zustimmung zur Bearbeitung de folgenden Auftrags:</p>
-            <p><span class="font-bold text-sm">Ticket Überschrift: </span><span>Test</span> / Datum: {{date('d.m.Y', strtotime($bill->date))}}</p>
+            <p class="font-bold text-sm">Zustimmung zur Bearbeitung des folgenden Auftrags:</p>
+            <p><span class="font-bold text-sm"> Datum: </span> {{date('d.m.Y', strtotime($bill->date))}}</p>
         </div>
         <div class="self-start text-right">
             <p class="text-gray-700 text-xs">
@@ -97,6 +97,18 @@
 
     <!--    Produkt-->
     <div class="border-2 border-black -mt-0.5 p-1">
+
+        <div>
+            @if(isset($bill->device_info))
+                <p><span class="font-bold">Gerät: </span>{{$bill->device_info}}</p>
+            @endif
+
+            @if(isset($bill->device_condition))
+                    <p><span class="font-bold">Optische Zustand: </span>{{$bill->device_condition}}</p>
+            @endif
+
+        </div>
+
         @foreach($bill->positions as $position)
             <h3 class="font-semibold text-base mt-1">{{$loop->iteration}} - {{$position->product_name}} <span
                     class="text-sm font-normal">({{number_format($position->product_price,2,',')}}€ x {{$position->quantity}} = {{number_format($position->product_price * $position->quantity,2,',')}}€)</span>
@@ -111,8 +123,14 @@
 
     <!--    Reparaturkostenfreigabe-->
     <div class="mt-2 pl-2">
-        <p class="text-lg">Reparaturkostenfreigabe: <span class="font-bold"> {{number_format($bill->total_price,2,',')}} € zuzüglich MwSt.</span>
-        </p>
+        <p class="text-lg">Reparaturkosten: <span class="font-bold"> {{number_format($bill->total_price,2,',')}} € zuzüglich MwSt.</span></p>
+        @if(isset($bill->cost_approval))
+            <p class="text-lg">Reparaturkostenfreigabe bis: <span class="font-bold"> {{number_format($bill->cost_approval,2,',')}} € zuzüglich MwSt.</span></p>
+        @endif
+
+        @if($bill->payment_method != 0 )
+        <p class="text-lg">Zahlungsart: <span class="font-bold"> {{$bill->payment_method}}</span></p>
+        @endif
         <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis cumque, ex exercitationem
             impedit iure nam reiciendis. Ad aperiam et explicabo fuga neque, nesciunt odit, officia reiciendis rem vero
             voluptatem voluptates. Assumenda commodi eveniet laborum officia perferendis repudiandae temporibus! Et eum

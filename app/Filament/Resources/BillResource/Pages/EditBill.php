@@ -28,8 +28,8 @@ function getFormActions(): array
 {
     return [
         $this->getSaveFormAction(),
-        Action::make('SaveAndPDF')
-            ->label('Save and PDF')
+        Action::make('PDF')
+            ->label('PDF')
             ->action(function ($record) {
                 $this->save();
                 redirect()->route('bill.pdf', $record);

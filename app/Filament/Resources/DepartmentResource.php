@@ -19,16 +19,17 @@ class DepartmentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
-   public static function getNavigationGroup(): ?string
-   {
-       return __('filament-panels::translations.navigation.management');
-   }
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-panels::translations.navigation.management');
+    }
 
 
     public static function getNavigationIcon(): string
     {
         return 'heroicon-o-briefcase';
     }
+
     public static function getModelLabel(): string
     {
         return __('filament-panels::translations.department.single');
@@ -43,11 +44,33 @@ class DepartmentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required(),
+                Forms\Components\Grid::make(4)
+                    ->schema([
+                        Forms\Components\Section::make([
+                            Forms\Components\TextInput::make('name')
+                                ->required(),
 
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
+                            Forms\Components\Textarea::make('description'),
+                        ])
+                            ->columnSpan(3),
+
+                        Forms\Components\Section::make([
+                            Forms\Components\Placeholder::make('id')
+                                ->label('Department id:')
+                                ->content(fn($record) => $record->id),
+
+                            Forms\Components\Placeholder::make('created_at')
+                                ->label('Created at:')
+                                ->content(fn($record) => $record->created_at->toFormattedDateString()),
+
+                            Forms\Components\Placeholder::make('updated_at')
+                                ->label('Updated at:')
+                                ->content(fn($record) => $record->updated_at->toFormattedDateString()),
+                        ])
+                            ->extraAttributes(['class' => 'hidden lg:block'])
+                            ->columnSpan(1),
+                    ])
+
             ]);
     }
 
@@ -64,18 +87,26 @@ class DepartmentResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                    ->formatStateUsing(fn($state
+                    ) => __('filament-panels::translations.department.tabs.'.str($state)->slug()->toString()))
+                    ->searchable(query: function (Builder $query, string $search) {
+
+                        $translatedSearch = __('filament-panels::translations.department.tabs.'.str($search)->slug()->toString());
+//                        dd($translatedSearch);
+                        return $query
+                            ->where('name', 'like', "%{$search}%")
+                            ->orWhere('name', 'like', "%{$translatedSearch}%");
+                    }),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\ImageColumn::make('department_users.avatar')
                     ->label(__('filament-panels::translations.department.users'))
-                ->circular()
-                ->stacked(),
+                    ->circular()
+                    ->stacked(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
-//                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

@@ -105,6 +105,12 @@ return [
         'add' => 'Rechnung addieren',
         'download' => 'Rechnung herunterladen',
         'customer' => 'Kunde',
+        'cost_approval' => 'Kostenfreigabe',
+        'payment_method' => 'Zahlungs Art',
+        'comment' => 'Kommentar',
+        'device_info' => 'Gerät Info',
+        'device_condition' => 'Gerät Optische Zustand',
+        'device_password' => 'Gerät Kennwort',
     ],
     'product' =>
         [

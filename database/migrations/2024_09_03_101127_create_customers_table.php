@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('mobile')->nullable();
             $table->string('phone')->nullable();
+            $table->boolean('DSGVO_accepted')->default(false);
         });
     }
 

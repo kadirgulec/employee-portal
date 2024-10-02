@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CustomerResource\Pages;
 use App\Models\Customer;
 use App\Models\SPProduct;
+use Filament\Forms\Components\Textarea;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
@@ -116,11 +117,40 @@ class CustomerResource extends Resource
                                             ->label(__('filament-panels::translations.bill.date'))
                                             ->native(false)
                                             ->required(),
+
+                                        TextInput::make('cost_approval')
+                                            ->label(__('filament-panels::translations.bill.cost_approval'))
+                                            ->numeric(),
+
+                                        Forms\Components\Select::make('payment_method')
+                                            ->label(__('filament-panels::translations.bill.payment_method'))
+                                            ->options([
+                                                'Bei Abholung' => 'Bei Abholung',
+                                                'Bar' =>'Bar',
+                                                'Karte' =>'Karte',
+                                            ]),
+
+                                        Textarea::make('comment')
+                                            ->label(__('filament-panels::translations.bill.comment'))
+                                            ->rows(4),
+
+                                        Textarea::make('device_info')
+                                            ->label(__('filament-panels::translations.bill.device_info'))
+                                            ->rows(4),
+
+                                        Textarea::make('device_condition')
+                                            ->label(__('filament-panels::translations.bill.device_condition'))
+                                            ->rows(4),
+
+                                        TextInput::make('device_password')
+                                            ->label(__('filament-panels::translations.bill.device_password')),
+
                                         Forms\Components\TextInput::make('total_price')
                                             ->label(__('filament-panels::translations.bill.total_price'))
                                             ->numeric()
                                             ->readOnly()
                                             ->prefix('€')
+                                            ->dehydrated(false)
                                             ->afterStateHydrated(fn($get, $set) => BillResource::setTotalPrice($get,
                                                 $set)),
                                     ]),
@@ -210,13 +240,16 @@ class CustomerResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('first_name')
                     ->label(__('filament-panels::translations.customer.first_name'))
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('last_name')
                     ->label(__('filament-panels::translations.customer.last_name'))
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->label(__('filament-panels::translations.customer.email'))
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('mobile')
                     ->label(__('filament-panels::translations.customer.mobile'))
                     ->searchable(),

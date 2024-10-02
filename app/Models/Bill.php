@@ -8,20 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
+
+//TODO properties must be written
 /**
  * @property Carbon $date
  * @property Customer $customer
  * @property HasMany $positions
+ * @property float $cost_approval
+ *
  *
  */
 class Bill extends Model
 {
-    use HasFactory, softDeletes;
-    protected $fillable = [
-        'date',
-        'customer_id',
-    ];
+    use HasFactory, softDeletes, LogsActivity;
+    protected $guarded = [ ];
 
     protected $casts = [
         'date' => 'date',
@@ -34,6 +37,9 @@ class Bill extends Model
         parent::boot();
         static::creating(function ($model) {
             $model->created_by = auth()->user()->id;
+        });
+        static::softDeleted(function ($model) {
+            $model->deleted_by = auth()->user()->id;
         });
     }
 
@@ -54,5 +60,10 @@ class Bill extends Model
     public function positions(): HasMany
     {
         return $this->hasMany(Position::class);
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults();
     }
 }

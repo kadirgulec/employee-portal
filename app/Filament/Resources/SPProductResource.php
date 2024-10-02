@@ -86,7 +86,8 @@ class SPProductResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('filament-panels::translations.product.name'))
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('price')
                     ->label(__('filament-panels::translations.product.price'))
                     ->money('EUR')
@@ -176,8 +177,7 @@ class SPProductResource extends Resource
                 })
                 ->color('success')
                 ->modalHeading(__('filament-panels::translations.product.create'))
-                ->modalWidth('lg')
-        ;
+                ->modalWidth('lg');
     }
 
 

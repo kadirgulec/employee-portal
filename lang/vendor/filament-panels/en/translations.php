@@ -107,6 +107,13 @@ return [
         'add' => 'Add Bill',
         'download' => 'Download Bill',
         'customer' => 'Customer',
+        'cost_approval' => 'Cost Approval',
+        'payment_method' => 'Payment Method',
+        'comment' => 'Comment',
+        'device_info' => 'Device Info',
+        'device_condition' => 'Device Condition',
+        'device_password' => 'Device Password',
+
     ],
     'product' =>
     [

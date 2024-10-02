@@ -8,6 +8,7 @@ use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -81,7 +82,7 @@ class IllnessNotificationResource extends Resource
                         'AU bei stationärer Krankenhausbehandlung' => 'AU bei stationärer Krankenhausbehandlung',
                     ])
                     ->required(fn(Get $get): bool => filled($get('doctor_visited_at')))
-                    ->hidden(fn(Get $get): bool => !filled($get('doctor_visited_at'))),
+                    ->visible(fn(Get $get): bool => filled($get('doctor_visited_at'))),
 
                 Forms\Components\Select::make('doctor_certificate')
                     ->label(__('filament-panels::translations.illness_notifications.doctor_certificate'))
@@ -89,8 +90,13 @@ class IllnessNotificationResource extends Resource
                         'Erste Bescheinigung' => 'Erste Bescheinigung',
                         'Folge Bescheinigung' => 'Folge Bescheinigung',
                     ])
+                    ->afterStateUpdated(function (Get $get, Set $set): void {
+                        if(!filled($get('doctor_visited_at'))){
+                            $set('doctor_certificate', null);                        }
+
+                    })
                     ->required(fn(Get $get): bool => filled($get('doctor_visited_at')))
-                    ->hidden(fn(Get $get): bool => !filled($get('doctor_visited_at'))),
+                    ->visible(fn(Get $get): bool => filled($get('doctor_visited_at'))),
                 Forms\Components\Textarea::make('note')
                     ->label(__('filament-panels::translations.illness_notifications.notes'))
                     ->columnSpanFull(),
