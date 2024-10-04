@@ -37,6 +37,15 @@ class BillPDFController extends Controller
         $fileName = "{$date} KD Nr. {$id} {$firstName} {$lastName} .pdf";
 //        $fileName = "KD Nr.pdf";
 
+        //change the bill status to 'in_progress' if it is new
+        if($bill->status == 'new'){
+            $bill->update([
+                'status' => 'in_progress',
+                'updated_at' => now(),
+            ]);
+        }
+
+
         // Return the PDF as a download response
         return response()->download($pdfFilePath, $fileName, [
             'Content-Type' => 'application/pdf',

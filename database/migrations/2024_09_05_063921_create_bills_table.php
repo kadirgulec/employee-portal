@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('device_password')->nullable();
             $table->integer('tanss_ticket_number')->nullable();
             $table->dateTime('email_sent_at')->nullable();
+            $table->string('status')->default('new');
 
             //relations
             $table->foreign('customer_id')->references('id')->on('customers');

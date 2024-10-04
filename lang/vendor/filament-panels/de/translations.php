@@ -111,6 +111,7 @@ return [
         'device_info' => 'Gerät Info',
         'device_condition' => 'Gerät Optische Zustand',
         'device_password' => 'Gerät Kennwort',
+        'completed' => 'Auftrag abschließen'
     ],
     'product' =>
         [
