@@ -110,15 +110,26 @@ class CustomerResource extends Resource
                                 Action::make('completed')
                                     ->label(__('filament-panels::translations.bill.completed'))
                                     ->icon('heroicon-s-check')
-                                    ->color(function($state, $arguments) {
-                                        $billId = $state[$arguments['item']]['id'];
-                                        $bill = Bill::find($billId);
-
-                                        if($bill->status !== 'completed'){
-                                            return 'gray';
-                                        }else{
-                                            return 'success';
+                                    ->tooltip(__('filament-panels::translations.bill.completed'))
+                                    ->disabled(function ($state, $arguments){
+                                        if (isset($state[$arguments['item']]['id'])) {
+                                            $billId = $state[$arguments['item']]['id'];
+                                            $bill = Bill::find($billId);
+                                            return $bill->status == 'completed';
                                         }
+                                        return true;
+                                    })
+                                    ->color(function($state, $arguments) {
+                                        $color = 'gray';
+                                        if (isset($state[$arguments['item']]['id'])) {
+                                            $billId = $state[$arguments['item']]['id'];
+                                            $bill = Bill::find($billId);
+
+                                            if ($bill->status == 'completed') {
+                                                $color =  'success';
+                                            }
+                                        }
+                                        return $color;
                                     })
                                     ->action(function ($state, $arguments) {
                                         $billId = $state[$arguments['item']]['id'];
@@ -126,6 +137,11 @@ class CustomerResource extends Resource
                                         $bill->update([
                                             'status' => 'completed',
                                         ]);
+
+                                        Notification::make()
+                                            ->title(__('filament-panels::translations.bill.completed'))
+                                            ->success()
+                                            ->send();
                                     }),
 
                             ])
@@ -182,7 +198,7 @@ class CustomerResource extends Resource
                                     ->hiddenLabel()
                                     ->disabled(fn($record) => Gate::denies('update', $record) && isset($record))
                                     ->itemLabel(fn(array $state): ?string => $state['product_name'])
-                                    ->live()
+                                    ->live(debounce: 1000)
                                     ->collapsible()
                                     ->grid(2)
                                     ->relationship('positions')
@@ -193,7 +209,7 @@ class CustomerResource extends Resource
                                             ->options(SPProduct::all()->pluck('name', 'id'))
                                             ->searchable()
                                             ->preload()
-                                            ->live()
+                                            ->live(debounce: 1000)
                                             ->required()
                                             ->afterStateUpdated(function (Get $get, Set $set) {
                                                 $product = SPProduct::find($get('s_p_product_id'));

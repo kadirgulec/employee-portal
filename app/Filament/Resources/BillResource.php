@@ -103,7 +103,7 @@ class BillResource extends Resource
                     ->hiddenLabel()
                     ->relationship()
                     ->columnSpanFull()
-                    ->live()
+                    ->live(debounce: 1000)
                     ->afterStateUpdated(fn($get, $set) => self::setTotalPrice($get, $set))
                     ->grid()
                     ->schema([
@@ -112,7 +112,7 @@ class BillResource extends Resource
                             ->options(SPProduct::all()->pluck('name', 'id'))
                             ->searchable()
                             ->preload()
-                            ->live()
+                            ->live(debounce: 1000)
                             ->required()
                             ->afterStateUpdated(function (Get $get, Set $set) {
                                 $product = SPProduct::find($get('s_p_product_id'));
@@ -206,6 +206,7 @@ class BillResource extends Resource
                 Tables\Actions\Action::make('completed')
                     ->label(__('filament-panels::translations.bill.completed'))
                     ->hiddenLabel()
+                    ->disabled(fn($record) => $record->status == 'completed')
                     ->icon('heroicon-o-check')
                     ->tooltip(__('filament-panels::translations.bill.completed'))
                     ->requiresConfirmation()
@@ -214,6 +215,11 @@ class BillResource extends Resource
                         $record->update([
                             'status' => 'completed',
                         ]);
+
+                        Notification::make()
+                            ->title(__('filament-panels::translations.bill.completed'))
+                            ->success()
+                            ->send();
                     }),
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\DeleteAction::make()
