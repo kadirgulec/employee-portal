@@ -61,7 +61,8 @@ class IllnessNotificationPolicy
      */
     public function forceDelete(User $user): bool
     {
-        return auth()->user()->can('backend.illness-notifications.force-delete');
+//        return auth()->user()->can('backend.illness-notifications.force-delete');
+        return false;
     }
 
     public function replicateUser(User $user) :bool

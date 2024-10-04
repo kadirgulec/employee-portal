@@ -63,6 +63,7 @@ class PermissionPolicy
      */
     public function forceDelete(User $user, Permission $permission): bool
     {
-        return auth()->user()->can('backend.users.permissions');
+//        return auth()->user()->can('backend.users.permissions');
+        return false;
     }
 }

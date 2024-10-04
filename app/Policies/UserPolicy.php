@@ -20,7 +20,7 @@ class UserPolicy
      */
     public function view(User $user, User $model): bool
     {
-        return auth()->user()->can('backend.users.view') || $user->id === $model->id ;
+        return auth()->user()->can('backend.users.view') || $user->id === $model->id;
     }
 
     /**
@@ -60,15 +60,16 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model): bool
     {
-        return auth()->user()->can('backend.users.force-delete');
+//        return auth()->user()->can('backend.users.force-delete');
+        return false;
     }
 
-    public function replicateUser(User $user) :bool
+    public function replicateUser(User $user): bool
     {
         return auth()->user()->can('backend.users.replicate');
     }
 
-    public function reorderUser(User $user) :bool
+    public function reorderUser(User $user): bool
     {
         return auth()->user()->can('backend.users.reorder');
     }

@@ -61,7 +61,8 @@ class SPProductPolicy
      */
     public function forceDelete(User $user, SPProduct $sPProduct): bool
     {
-        return auth()->user()->can('backend.sp-products.force-delete');
+//        return auth()->user()->can('backend.sp-products.force-delete');
+        return false;
     }
 
     public function replicateSPProduct(SPProduct $SPProduct) :bool

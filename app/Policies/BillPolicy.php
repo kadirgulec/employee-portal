@@ -61,7 +61,8 @@ class BillPolicy
      */
     public function forceDelete(User $user, Bill $bill): bool
     {
-        return auth()->user()->can('backend.bills.force-delete');
+//        return auth()->user()->can('backend.bills.force-delete');
+        return false;
     }
 
     public function replicateBill(Bill $bill) :bool

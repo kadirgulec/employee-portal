@@ -63,7 +63,8 @@ class DepartmentPolicy
      */
     public function forceDelete(User $user, Department $department): bool
     {
-        return auth()->user()->can('backend.departments.force-delete');
+//        return auth()->user()->can('backend.departments.force-delete');
+        return false;
     }
     public function replicateUser(User $user) :bool
     {

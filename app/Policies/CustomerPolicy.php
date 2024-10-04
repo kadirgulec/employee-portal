@@ -61,7 +61,8 @@ class CustomerPolicy
      */
     public function forceDelete(User $user, Customer $customer): bool
     {
-        return auth()->user()->can('backend.customers.force-delete');
+//        return auth()->user()->can('backend.customers.force-delete');
+        return false;
     }
 
     public function replicateCustomer(Customer $customer) :bool
