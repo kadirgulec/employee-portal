@@ -34,10 +34,18 @@ class BillPolicy
 
     /**
      * Determine whether the user can update the model.
+     * User can update the model, if he has the permission and
+     * if the status of model is 'new',
+     * or it is updated(pdf generated) in less than 10 minutes,
+     * and it is created less than 2 hours ago
      */
     public function update(User $user, Bill $bill): bool
     {
-        return auth()->user()->can('backend.bills.update');
+        return auth()->user()->can('backend.bills.update') &&
+            $bill->status != 'completed' &&
+            ($bill->status == 'new' ||
+                ($bill->updated_at > now()->subMinutes(1) &&
+                    $bill->created_at > now()->subHours(2)));
     }
 
     /**
@@ -65,12 +73,12 @@ class BillPolicy
         return false;
     }
 
-    public function replicateBill(Bill $bill) :bool
+    public function replicateBill(Bill $bill): bool
     {
         return auth()->user()->can('backend.bills.replicate');
     }
 
-    public function reorderBill(Bill $bill) :bool
+    public function reorderBill(Bill $bill): bool
     {
         return auth()->user()->can('backend.bills.reorder');
     }

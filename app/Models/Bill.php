@@ -18,8 +18,11 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property Customer $customer
  * @property HasMany $positions
  * @property float $cost_approval
+ * @property string $status
+ * @property Carbon $updated_at
+ * @property Carbon $created_at
  *
- *
+ * @method static find(integer $billId)
  */
 class Bill extends Model
 {

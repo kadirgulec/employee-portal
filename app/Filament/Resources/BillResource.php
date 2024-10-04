@@ -6,6 +6,8 @@ use App\Filament\Resources\BillResource\Pages;
 use App\Models\Bill;
 use App\Models\Customer;
 use App\Models\SPProduct;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\RichEditor;
@@ -182,10 +184,10 @@ class BillResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('customer.full_name')
                     ->label(__('filament-panels::translations.bill.customer'))
-                ->searchable([
-                    'first_name',
-                    'last_name',
-                ]),
+                    ->searchable([
+                        'first_name',
+                        'last_name',
+                    ]),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -201,6 +203,23 @@ class BillResource extends Resource
                     ->icon('heroicon-o-document-arrow-down')
                     ->outlined()
                     ->openUrlInNewTab(),
+                Tables\Actions\Action::make('completed')
+                    ->label(__('filament-panels::translations.bill.completed'))
+                    ->hiddenLabel()
+                    ->icon('heroicon-o-check')
+                    ->tooltip(__('filament-panels::translations.bill.completed'))
+                    ->requiresConfirmation()
+                    ->color(fn($record) => $record->status == 'completed' ? 'success' : 'gray')
+                    ->action(function ($record) {
+                        $record->update([
+                            'status' => 'completed',
+                        ]);
+                    }),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\DeleteAction::make()
+                        ->hidden(fn($record) => $record->trashed()),
+                ])
+                    ->color('gray'),
 
                 Tables\Actions\RestoreAction::make()
                     ->visible(fn($record) => $record->trashed()),

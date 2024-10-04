@@ -3,8 +3,10 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CustomerResource\Pages;
+use App\Models\Bill;
 use App\Models\Customer;
 use App\Models\SPProduct;
+use App\Policies\BillPolicy;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Forms;
@@ -19,6 +21,7 @@ use Filament\Resources\Resource;
 use Filament\Support\Enums\ActionSize;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Gate;
 
 
 class CustomerResource extends Resource
@@ -95,10 +98,7 @@ class CustomerResource extends Resource
                                             $itemID = $state[$arguments['item']]['id'];
                                             return route('bill.pdf', $itemID);
                                         }
-
                                         return null;
-
-
                                     })
                                     ->visible(fn($state, $arguments) => isset($state[$arguments['item']]['id']))
                                     ->icon('heroicon-m-document-arrow-down')
@@ -106,12 +106,33 @@ class CustomerResource extends Resource
                                     ->openUrlInNewTab()
                                     ->button()
                                     ->labeledFrom('md')
-                                    ->outlined()
+                                    ->outlined(),
+                                Action::make('completed')
+                                    ->label(__('filament-panels::translations.bill.completed'))
+                                    ->icon('heroicon-s-check')
+                                    ->color(function($state, $arguments) {
+                                        $billId = $state[$arguments['item']]['id'];
+                                        $bill = Bill::find($billId);
+
+                                        if($bill->status !== 'completed'){
+                                            return 'gray';
+                                        }else{
+                                            return 'success';
+                                        }
+                                    })
+                                    ->action(function ($state, $arguments) {
+                                        $billId = $state[$arguments['item']]['id'];
+                                        $bill = Bill::find($billId);
+                                        $bill->update([
+                                            'status' => 'completed',
+                                        ]);
+                                    }),
 
                             ])
                             ->schema([
                                 //two text fields at top of the Bill repeater
                                 Forms\Components\Grid::make(2)
+                                    ->disabled(fn($record) => Gate::denies('update', $record) && isset($record))
                                     ->schema([
                                         Forms\Components\DatePicker::make('date')
                                             ->label(__('filament-panels::translations.bill.date'))
@@ -126,8 +147,8 @@ class CustomerResource extends Resource
                                             ->label(__('filament-panels::translations.bill.payment_method'))
                                             ->options([
                                                 'Bei Abholung' => 'Bei Abholung',
-                                                'Bar' =>'Bar',
-                                                'Karte' =>'Karte',
+                                                'Bar' => 'Bar',
+                                                'Karte' => 'Karte',
                                             ]),
 
                                         Textarea::make('comment')
@@ -159,9 +180,7 @@ class CustomerResource extends Resource
                                 Forms\Components\Repeater::make('positions')
                                     ->addActionLabel(__('filament-panels::translations.product.add'))
                                     ->hiddenLabel()
-                                    //disable the add Product when the user is not authorised to update or not created the bill
-                                    ->disabled(fn($record
-                                    ) => !auth()->user()->can('backend.bills.update') && auth()->user()->id != optional($record)->created_by && isset($record))
+                                    ->disabled(fn($record) => Gate::denies('update', $record) && isset($record))
                                     ->itemLabel(fn(array $state): ?string => $state['product_name'])
                                     ->live()
                                     ->collapsible()
