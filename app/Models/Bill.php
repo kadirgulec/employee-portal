@@ -13,6 +13,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 
 //TODO properties must be written
+
 /**
  * @property Carbon $date
  * @property Customer $customer
@@ -27,7 +28,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Bill extends Model
 {
     use HasFactory, softDeletes, LogsActivity;
-    protected $guarded = [ ];
+
+    protected $guarded = [];
 
     protected $casts = [
         'date' => 'date',
@@ -55,6 +57,7 @@ class Bill extends Model
         }
         return $totalPrice;
     }
+
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class)->withTrashed();
@@ -67,6 +70,17 @@ class Bill extends Model
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults();
+        return LogOptions::defaults()
+            ->logOnly([
+                'date',
+                'customer',
+                'positions',
+                'cost_approval',
+                'status',
+                'updated_at',
+                'created_at',
+            ])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
     }
 }

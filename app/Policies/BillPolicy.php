@@ -44,7 +44,7 @@ class BillPolicy
         return auth()->user()->can('backend.bills.update') &&
             $bill->status != 'completed' &&
             ($bill->status == 'new' ||
-                ($bill->updated_at > now()->subMinutes(1) &&
+                ($bill->updated_at > now()->subMinutes(10) &&
                     $bill->created_at > now()->subHours(2)));
     }
 
