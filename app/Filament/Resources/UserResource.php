@@ -104,6 +104,7 @@ class UserResource extends Resource
 
                 Forms\Components\FileUpload::make('avatar')
                     ->avatar()
+                    ->directory('images/avatars')
                     ->image()
                     ->imageEditor()
                     ->circleCropper()
