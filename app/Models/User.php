@@ -73,7 +73,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName
         if ($this->avatar === null) {
             return null;
         }
-        return asset('storage').$this->avatar;
+        return asset('storage/' .$this->avatar);
     }
 
     /**

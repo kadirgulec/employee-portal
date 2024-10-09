@@ -66,7 +66,7 @@ class DepartmentResource extends Resource
                             Forms\Components\Placeholder::make('updated_at')
                                 ->label('Updated at:')
                                 ->content(fn($record) => $record->updated_at->toFormattedDateString()),
-                        ])
+                        ])->hidden(fn ($operation) => $operation === 'create')
                             ->extraAttributes(['class' => 'hidden lg:block'])
                             ->columnSpan(1),
                     ])

@@ -86,7 +86,6 @@ class PermissionResource extends Resource
                     ]),
                     Tables\Columns\ImageColumn::make('users.avatar')
                         ->circular()
-                        ->size(70)
                         ->wrap()
                         ->stacked()
                         ->visibleFrom('xl'),
