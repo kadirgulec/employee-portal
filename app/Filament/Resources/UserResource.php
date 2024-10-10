@@ -159,9 +159,12 @@ class UserResource extends Resource
                     ->extraAlpineAttributes([
                         'x-mask' => '9999',
                     ])
+                    ->dehydrateStateUsing(fn(string $state
+                    ): string => Hash::make($state))
+                    ->dehydrated(fn(?string $state
+                    ): bool => filled($state))
                     ->visible(fn($record): bool => $record->id === auth()->user()->id)
-                    ->placeholder('9999')
-                    ->required(fn($record): bool => $record->id === auth()->user()->id),
+                    ->required(fn($record): bool => $record->id === auth()->user()->id && is_null($record->pin)),
 
                 Forms\Components\TextInput::make('title')
                     ->label(__('filament-panels::translations.user.title')),
