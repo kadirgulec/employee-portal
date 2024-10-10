@@ -104,7 +104,7 @@ class DepartmentResource extends Resource
                     ->stacked(),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                Tables\Filters\TrashedFilter::make()->visible(auth()->user()->can('backend.departments.restore')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
