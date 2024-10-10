@@ -95,6 +95,7 @@ class UserResource extends Resource
 
                 Forms\Components\Toggle::make('active')
                     ->required()
+                    ->default(true)
                     ->disabled(!auth()->user()->can('backend.users.update')),
 
                 Forms\Components\Toggle::make('illness_notification_contact')
@@ -163,7 +164,7 @@ class UserResource extends Resource
                     ): string => Hash::make($state))
                     ->dehydrated(fn(?string $state
                     ): bool => filled($state))
-                    ->visible(fn($record): bool => $record->id === auth()->user()->id)
+                    ->visible(fn($record): bool => isset($record) && $record->id === auth()->user()->id)
                     ->required(fn($record): bool => $record->id === auth()->user()->id && is_null($record->pin)),
 
                 Forms\Components\TextInput::make('title')
