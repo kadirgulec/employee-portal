@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('password');
-            $table->char('pin',length: 4); //TODO ask if it is OK!
+            $table->char('pin',length: 4)->nullable(); //TODO ask if it is OK!
             $table->string('avatar')->nullable()->default(null);
             $table->string('gender')->nullable()->default(null);
             $table->date('birth_date')->nullable()->default(null);

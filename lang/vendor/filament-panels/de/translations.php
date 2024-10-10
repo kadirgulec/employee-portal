@@ -8,8 +8,8 @@ return [
     'department_information' => 'Informationen der Abteilung',
     'personal_number' => 'Mitarbeiternummer',
     'select_all' => 'Alle Auswählen',
-    'language_changed' => 'Sprache Geändert',
-    'language_did_not_change' => 'Die Sprache Wurde Nicht Geändert',
+    'language_changed' => 'Sprache geändert',
+    'language_did_not_change' => 'Die Sprache Wurde Nicht geändert',
     'language_flag_link' => 'https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1200px-Flag_of_Germany.svg.png',
 
     'navigation' =>[
@@ -111,7 +111,8 @@ return [
         'device_info' => 'Gerät Info',
         'device_condition' => 'Gerät Optische Zustand',
         'device_password' => 'Gerät Kennwort',
-        'completed' => 'Auftrag abschließen'
+        'completed' => 'Auftrag abschließen',
+        'completed_notification' => 'Auftrag abgeschlossen',
     ],
     'product' =>
         [

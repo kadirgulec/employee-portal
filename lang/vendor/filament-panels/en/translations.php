@@ -113,7 +113,8 @@ return [
         'device_info' => 'Device Info',
         'device_condition' => 'Device Condition',
         'device_password' => 'Device Password',
-        'completed' => 'Complete Order'
+        'completed' => 'Complete Order',
+        'completed_notification' => 'Order Completed',
 
     ],
     'product' =>

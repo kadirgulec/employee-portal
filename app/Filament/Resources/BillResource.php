@@ -217,7 +217,7 @@ class BillResource extends Resource
                         ]);
 
                         Notification::make()
-                            ->title(__('filament-panels::translations.bill.completed'))
+                            ->title(__('filament-panels::translations.bill.completed_notification'))
                             ->success()
                             ->send();
                     }),
