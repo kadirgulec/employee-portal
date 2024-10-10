@@ -9,6 +9,7 @@ use Filament\Actions;
 use Filament\Resources\Components\Tab;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\App;
 
 class ListUsers extends ListRecords
 {
@@ -30,16 +31,16 @@ class ListUsers extends ListRecords
     {
         $tabs = ['all' => Tab::make(__('filament-panels::translations.department.tabs.all'))->badge($this->getModel()::count())];
 
-        $departments = Department::orderBy('name')
+        $locale = App::getLocale();
+        $departments = Department::orderByRaw("JSON_UNQUOTE(JSON_EXTRACT(name, '$.\"$locale\"'))")
             ->get();
-
 
         foreach ($departments as $department) {
             $name = $department->name;
+
             $slug = str($name)->slug()->toString();
 
             $tabs[$slug] = Tab::make($name)
-
                 ->badge($department->department_users()->withoutTrashed()->count())
                 ->modifyQueryUsing(function (Builder $query) use ($department) {
                     // Filter users by their department
