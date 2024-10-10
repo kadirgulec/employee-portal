@@ -19,6 +19,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $first_name
  * @property string $last_name
  * @property string $avatar
+ * @property $pin
  *
  */
 class User extends Authenticatable implements FilamentUser, HasAvatar, HasName
