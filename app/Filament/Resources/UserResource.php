@@ -190,7 +190,7 @@ class UserResource extends Resource
                             ->addActionLabel(__('filament-panels::translations.user.add_department'))
                             ->itemLabel(function (array $state): ?string {
                                 $department = Department::find($state['department_id']);
-                                return $department ? __('filament-panels::translations.department.tabs.'.str($department->name)->slug()->toString()) : null;
+                                return $department?->name;
                             })
                             ->live()
                             ->grid()
@@ -201,12 +201,7 @@ class UserResource extends Resource
                                     ->native(false)
                                     ->hidden(!auth()->user()->can('backend.users.update'))
                                     ->options(function () {
-                                        $departments = Department::all()->pluck('name', 'id');
-                                        foreach ($departments as $key => $value) {
-                                            $departments[$key] = __('filament-panels::translations.department.tabs.'.str($value)->slug()->toString());
-                                        }
-                                        return $departments;
-
+                                        return Department::all()->pluck('name', 'id');
                                     }),
 
                                 Forms\Components\Toggle::make('leader')

@@ -19,9 +19,10 @@ class DepartmentsRelationManager extends RelationManager
     {
         return true;
     }
+
     public static function getTitle(Model $ownerRecord, string $pageClass): string
     {
-        if(isset($ownerRecord->departments) && count($ownerRecord->departments) > 1) {
+        if (isset($ownerRecord->departments) && count($ownerRecord->departments) > 1) {
             return __('filament-panels::translations.department.plural');
         }
         return __('filament-panels::translations.department.single');
@@ -33,8 +34,7 @@ class DepartmentsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                ->formatStateUsing(fn ($state) => __('filament-panels::translations.department.tabs.' . str($state)->slug()->toString())),
+                Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\IconColumn::make('leader')->boolean(),
             ])
             ->paginated(false);

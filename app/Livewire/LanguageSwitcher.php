@@ -50,7 +50,7 @@ class LanguageSwitcher extends Component
             'languages' => [
                 'en' => 'English',
                 'de' => 'Deutsch',
-                'tr' => 'Türkce',
+                'tr' => 'Türkçe',
             ]
         ]);
     }

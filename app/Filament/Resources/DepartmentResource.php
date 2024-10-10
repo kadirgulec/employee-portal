@@ -47,7 +47,14 @@ class DepartmentResource extends Resource
                 Forms\Components\Grid::make(4)
                     ->schema([
                         Forms\Components\Section::make([
-                            Forms\Components\TextInput::make('name')
+                            Forms\Components\TextInput::make('name.de')
+                                ->prefix('de')
+                                ->label('Name')
+                                ->required(),
+
+                            Forms\Components\TextInput::make('name.en')
+                                ->prefix('en')
+                                ->label('Name')
                                 ->required(),
 
                             Forms\Components\Textarea::make('description'),
@@ -87,16 +94,7 @@ class DepartmentResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('name')
-                    ->formatStateUsing(fn($state
-                    ) => __('filament-panels::translations.department.tabs.'.str($state)->slug()->toString()))
-                    ->searchable(query: function (Builder $query, string $search) {
-
-                        $translatedSearch = __('filament-panels::translations.department.tabs.'.str($search)->slug()->toString());
-//                        dd($translatedSearch);
-                        return $query
-                            ->where('name', 'like', "%{$search}%")
-                            ->orWhere('name', 'like', "%{$translatedSearch}%");
-                    }),
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\ImageColumn::make('department_users.avatar')
                     ->label(__('filament-panels::translations.department.users'))
