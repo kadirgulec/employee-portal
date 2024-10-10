@@ -52,6 +52,7 @@ class BillResource extends Resource
                 Forms\Components\DatePicker::make('date')
                     ->label(__('filament-panels::translations.bill.date'))
                     ->required()
+                    ->default(now())
                     ->native(false),
                 Forms\Components\Select::make('customer_id')
                     ->label(__('filament-panels::translations.bill.customer'))
@@ -68,10 +69,11 @@ class BillResource extends Resource
                 Forms\Components\Select::make('payment_method')
                     ->label(__('filament-panels::translations.bill.payment_method'))
                     ->options([
-                        'Bei Abholung' => 'Bei Abholung',
                         'Bar' => 'Bar',
                         'Karte' => 'Karte',
-                    ]),
+                        'Bei Abholung' => 'Bei Abholung',
+                    ])
+                    ->default('Bar'),
 
                 Textarea::make('comment')
                     ->label(__('filament-panels::translations.bill.comment'))
@@ -123,6 +125,7 @@ class BillResource extends Resource
                         Forms\Components\TextInput::make('quantity')
                             ->label(__('filament-panels::translations.bill.quantity'))
                             ->numeric()
+                            ->default(1)
                             ->extraAlpineAttributes([
                                 'x-mask' => '999999',
                             ])

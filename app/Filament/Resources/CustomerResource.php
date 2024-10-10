@@ -111,7 +111,7 @@ class CustomerResource extends Resource
                                     ->label(__('filament-panels::translations.bill.completed'))
                                     ->icon('heroicon-s-check')
                                     ->tooltip(__('filament-panels::translations.bill.completed'))
-                                    ->disabled(function ($state, $arguments){
+                                    ->disabled(function ($state, $arguments) {
                                         if (isset($state[$arguments['item']]['id'])) {
                                             $billId = $state[$arguments['item']]['id'];
                                             $bill = Bill::find($billId);
@@ -119,14 +119,14 @@ class CustomerResource extends Resource
                                         }
                                         return true;
                                     })
-                                    ->color(function($state, $arguments) {
+                                    ->color(function ($state, $arguments) {
                                         $color = 'gray';
                                         if (isset($state[$arguments['item']]['id'])) {
                                             $billId = $state[$arguments['item']]['id'];
                                             $bill = Bill::find($billId);
 
                                             if ($bill->status == 'completed') {
-                                                $color =  'success';
+                                                $color = 'success';
                                             }
                                         }
                                         return $color;
@@ -153,6 +153,7 @@ class CustomerResource extends Resource
                                         Forms\Components\DatePicker::make('date')
                                             ->label(__('filament-panels::translations.bill.date'))
                                             ->native(false)
+                                            ->default(now())
                                             ->required(),
 
                                         TextInput::make('cost_approval')
@@ -162,10 +163,11 @@ class CustomerResource extends Resource
                                         Forms\Components\Select::make('payment_method')
                                             ->label(__('filament-panels::translations.bill.payment_method'))
                                             ->options([
-                                                'Bei Abholung' => 'Bei Abholung',
                                                 'Bar' => 'Bar',
                                                 'Karte' => 'Karte',
-                                            ]),
+                                                'Bei Abholung' => 'Bei Abholung',
+                                            ])
+                                            ->default('Bar'),
 
                                         Textarea::make('comment')
                                             ->label(__('filament-panels::translations.bill.comment'))
@@ -220,6 +222,7 @@ class CustomerResource extends Resource
                                         Forms\Components\TextInput::make('quantity')
                                             ->label(__('filament-panels::translations.bill.quantity'))
                                             ->numeric()
+                                            ->default(1)
                                             ->required(),
                                         TextInput::make('product_name')
                                             ->label(__('filament-panels::translations.bill.product_name')),

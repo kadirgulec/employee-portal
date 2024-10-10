@@ -35,7 +35,9 @@ class DepartmentsRelationManager extends RelationManager
             ->recordTitleAttribute('name')
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\IconColumn::make('leader')->boolean(),
+                Tables\Columns\IconColumn::make('leader')
+                    ->label(__('filament-panels::translations.user.leader'))
+                    ->boolean(),
             ])
             ->paginated(false);
 
