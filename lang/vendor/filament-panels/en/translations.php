@@ -44,6 +44,7 @@ return [
             'true' => 'Active',
             'false' => 'Inactive',
         ],
+        'please_set_your_pin' => 'You have to set your pin to use this application.',
     ],
     'department' => [
         'single' => 'Department',

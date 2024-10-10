@@ -44,6 +44,7 @@ return [
             'true' => 'Aktiv',
             'false' => 'nicht Aktiv',
         ],
+        'please_set_your_pin' => 'Sie müssen Ihre PIN eingeben, um diese Anwendung zu verwenden.',
     ],
     'department' => [
         'single' => 'Abteilung',

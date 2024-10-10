@@ -159,8 +159,9 @@ class UserResource extends Resource
                     ->extraAlpineAttributes([
                         'x-mask' => '9999',
                     ])
+                    ->visible(fn($record): bool => $record->id === auth()->user()->id)
                     ->placeholder('9999')
-                    ->required(),
+                    ->required(fn($record): bool => $record->id === auth()->user()->id),
 
                 Forms\Components\TextInput::make('title')
                     ->label(__('filament-panels::translations.user.title')),

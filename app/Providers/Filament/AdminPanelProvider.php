@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use App\Filament\AvatarProviders\BigUiAvatarsProvider;
 use App\Filament\Resources\IllnessNotificationResource;
 use App\Filament\Resources\UserResource;
+use App\Http\Middleware\Pin;
 use App\Http\Middleware\SetLocal;
 use Filament\AvatarProviders\UiAvatarsProvider;
 use Filament\Http\Middleware\Authenticate;
@@ -79,6 +80,7 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
                 SetLocal::class,
+                Pin::class,
             ])
             ->authMiddleware([
                 Authenticate::class,
