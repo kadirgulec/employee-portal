@@ -79,6 +79,28 @@ class PermissionSeeder extends Seeder
             'backend.departments.force-delete',
             'backend.departments.replicate',
             'backend.departments.reorder',
+
+            //work instructions
+            'backend.work-instructions.view-any',
+            'backend.work-instructions.view',
+            'backend.work-instructions.create',
+            'backend.work-instructions.update',
+            'backend.work-instructions.delete',
+            'backend.work-instructions.restore',
+            'backend.work-instructions.force-delete',
+            'backend.work-instructions.replicate',
+            'backend.work-instructions.reorder',
+
+            //groups
+            'backend.groups.view-any',
+            'backend.groups.view',
+            'backend.groups.create',
+            'backend.groups.update',
+            'backend.groups.delete',
+            'backend.groups.restore',
+            'backend.groups.force-delete',
+            'backend.groups.replicate',
+            'backend.groups.reorder',
         ];
 
         foreach ($permissions as $permission) {

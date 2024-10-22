@@ -20,11 +20,10 @@ class GroupsRelationManager extends RelationManager
         return $ownerRecord->groups->count();
     }
 
-    //TODO
-//    public static function canViewForRecord(Model $ownerRecord, string $pageClass): bool
-//    {
-//        return auth()->user()->can('backend.work-instructions.edit');
-//    }
+    public static function canViewForRecord(Model $ownerRecord, string $pageClass): bool
+    {
+        return auth()->user()->can('backend.work-instructions.update');
+    }
 
     public function form(Form $form): Form
     {

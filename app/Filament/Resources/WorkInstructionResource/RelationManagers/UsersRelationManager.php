@@ -21,6 +21,11 @@ class UsersRelationManager extends RelationManager
         return $ownerRecord->users->count();
     }
 
+    public static function canViewForRecord(Model $ownerRecord, string $pageClass): bool
+    {
+        return auth()->user()->can('backend.work-instructions.update');
+    }
+
     public function table(Table $table): Table
     {
         return $table
