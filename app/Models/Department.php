@@ -27,7 +27,8 @@ class Department extends Model
 
     public function department_users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)
+            ->withPivot('leader');
     }
 
 

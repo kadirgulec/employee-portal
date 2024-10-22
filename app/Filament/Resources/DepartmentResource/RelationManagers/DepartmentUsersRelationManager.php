@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\DepartmentResource\RelationManagers;
 
 use App\Models\User;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -21,8 +22,6 @@ class DepartmentUsersRelationManager extends RelationManager
         return __('filament-panels::translations.department.users');
 
     }
-
-
 
 
     public function table(Table $table): Table
@@ -53,17 +52,25 @@ class DepartmentUsersRelationManager extends RelationManager
                     ->modalHeading(__('filament-panels::translations.department.add_user'))
                     ->preloadRecordSelect()
                     ->recordSelectSearchColumns(['first_name', 'last_name'])
-                    ->color('primary'),
+                    ->color('primary')
+                    ->form(fn(Tables\Actions\AttachAction $action): array => [
+                        $action->getRecordSelect(),
+                        Toggle::make('leader')
+                            ->label(__('filament-panels::translations.user.leader'))
+                    ]),
 
             ])
             ->actions([
-//                Tables\Actions\EditAction::make(),
-//                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->form(fn(Tables\Actions\EditAction $action): array => [
+                        Toggle::make('leader')
+                            ->label(__('filament-panels::translations.user.leader'))
+                    ]),
                 Tables\Actions\DetachAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DetachBulkAction::make(),
                 ]),
             ]);
     }
