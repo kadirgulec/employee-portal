@@ -142,6 +142,18 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName
         return $this->hasMany(IllnessNotification::class);
     }
 
+    public function workInstructions(): BelongsToMany
+    {
+        return $this->belongsToMany(WorkInstruction::class)
+            ->withPivot(['confirmed_at', 'last_reminder_at']);
+    }
+
+    public function groups(): BelongsToMany
+    {
+        return $this->belongsToMany(Group::class);
+    }
+
+
     /**
      * Determine if the user can access the specified panel.
      *
