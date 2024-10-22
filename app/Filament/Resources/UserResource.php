@@ -158,6 +158,7 @@ class UserResource extends Resource
                     ->numeric()
                     ->length(4)
                     ->extraAlpineAttributes([
+                        'x-model' => 'pin',
                         'x-mask' => '9999',
                     ])
                     ->dehydrateStateUsing(fn(string $state
