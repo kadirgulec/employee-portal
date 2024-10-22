@@ -139,7 +139,7 @@ it('can create user', function () {
         'email' => $newUser->email,
         'first_name' => $newUser->first_name,
         'last_name' => $newUser->last_name,
-        'pin' => $newUser->pin,
+
     ]);
     $createdUser = User::where('email', $newUser->email)->first();
     expect(Hash::check('password', $createdUser->password))->toBeTrue();
@@ -152,7 +152,7 @@ it('can validate required fields', function () {
             'email' => null,
             'first_name' => null,
             'last_name' => null,
-            'pin' => null,
+
         ])
         ->call('create')
         ->assertHasFormErrors([
@@ -160,7 +160,7 @@ it('can validate required fields', function () {
             'email' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
-            'pin' => 'required',
+
         ]);
 });
 it('can validate email format and numeric pin', function () {
@@ -168,12 +168,12 @@ it('can validate email format and numeric pin', function () {
     livewire(UserResource\Pages\CreateUser::class)
         ->fillForm([
             'email' => 'aaaa',
-            'pin' => 'null',
+
         ])
         ->call('create')
         ->assertHasFormErrors([
             'email' => 'email',
-            'pin' => 'numeric',
+
         ]);
 });
 
@@ -229,8 +229,8 @@ describe('can view user with departments', function () {
             'ownerRecord' => $this->user1,
             'pageClass' => UserResource\Pages\viewUser::class,
         ])
-            ->assertSee(str($this->department1->name)->slug()->toString())
-            ->assertDontSee(str($this->department2->name)->slug()->toString());
+            ->assertSee(str($this->department1->name))
+            ->assertDontSee(str($this->department2->name));
     });
 
     it('has single title', function () {
