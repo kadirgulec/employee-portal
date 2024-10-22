@@ -6,7 +6,6 @@ use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\App;
 use Illuminate\View\View;
 use Livewire\Component;
-use Livewire\Features\SupportJsEvaluation\HandlesJsEvaluation;
 
 class LanguageSwitcher extends Component
 {

@@ -6,7 +6,6 @@ use App\Filament\Resources\CustomerResource\Pages;
 use App\Models\Bill;
 use App\Models\Customer;
 use App\Models\SPProduct;
-use App\Policies\BillPolicy;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Forms;
@@ -147,7 +146,7 @@ class CustomerResource extends Resource
                             ])
                             ->schema([
                                 //two text fields at top of the Bill repeater
-                                Forms\Components\Grid::make(2)
+                                Forms\Components\Grid::make()
                                     ->disabled(fn($record) => Gate::denies('update', $record) && isset($record))
                                     ->schema([
                                         Forms\Components\DatePicker::make('date')
@@ -202,7 +201,7 @@ class CustomerResource extends Resource
                                     ->itemLabel(fn(array $state): ?string => $state['product_name'])
                                     ->live(debounce: 1000)
                                     ->collapsible()
-                                    ->grid(2)
+                                    ->grid()
                                     ->relationship('positions')
                                     ->schema([
                                         //select a product field

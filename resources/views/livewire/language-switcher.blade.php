@@ -18,7 +18,6 @@
         x-transition:leave-end="transform opacity-0 scale-95"
         class="fi-dropdown-panel absolute z-10 w-32  divide-y divide-gray-100 rounded-lg bg-white shadow-lg ring-1 ring-gray-950/5 transition dark:divide-white/5 dark:bg-gray-900 dark:ring-white/10 !max-w-[14rem]">
 
-
         @foreach($languages as $code => $name)
             <button
                 x-show="open"

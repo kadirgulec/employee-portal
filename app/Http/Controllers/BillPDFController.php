@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bill;
-use App\Models\IllnessNotification;
-use Illuminate\Http\Request;
 use Spatie\Browsershot\Browsershot;
 
 class BillPDFController extends Controller
@@ -49,7 +47,7 @@ class BillPDFController extends Controller
         // Return the PDF as a download response
         return response()->download($pdfFilePath, $fileName, [
             'Content-Type' => 'application/pdf',
-        ])->deleteFileAfterSend(true); // Optionally delete the file after it's sent
+        ])->deleteFileAfterSend(); // Optionally delete the file after it's sent
     }
 
 //    public function viewPDF(Bill $bill){

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\IllnessNotification;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Http\Request;
 use Spatie\Browsershot\Browsershot;
 
 class IllnessNotificationPDFController extends Controller
@@ -40,7 +38,7 @@ class IllnessNotificationPDFController extends Controller
         // Return the PDF as a download response
         return response()->download($pdfFilePath, $fileName, [
             'Content-Type' => 'application/pdf',
-        ])->deleteFileAfterSend(true); // Optionally delete the file after it's sent
+        ])->deleteFileAfterSend(); // Optionally delete the file after it's sent
     }
 
 

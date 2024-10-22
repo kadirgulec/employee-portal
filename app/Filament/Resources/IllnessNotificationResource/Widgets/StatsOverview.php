@@ -29,7 +29,6 @@ class StatsOverview extends BaseWidget
                     }
                 })()),
 
-
             Stat::make('illness-notification rate', (function () {
                 $today = Carbon::today();
                 $illUsers = IllnessNotification::whereDate('illness_notification_at', $today)->count();

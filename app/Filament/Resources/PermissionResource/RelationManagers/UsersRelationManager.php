@@ -2,9 +2,7 @@
 
 namespace App\Filament\Resources\PermissionResource\RelationManagers;
 
-use App\Filament\Resources\UserResource\Pages\PermissionsUser;
 use App\Models\User;
-use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
