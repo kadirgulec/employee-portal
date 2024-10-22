@@ -33,6 +33,7 @@ return new class extends Migration
             $table->unsignedBigInteger('work_instruction_id');
             $table->unsignedBigInteger('user_id');
             $table->dateTime('confirmed_at')->nullable();
+            $table->text('rejection_reason')->nullable();
             $table->dateTime('last_reminder_email_at')->nullable();
 
             //relations
