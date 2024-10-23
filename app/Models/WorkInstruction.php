@@ -12,6 +12,26 @@ class WorkInstruction extends Model
 
     protected $guarded = [];
 
+    //attributes
+    public function getStatusAttribute(): string
+    {
+        if ($this->users()->wherePivot('user_id', auth()->id())->wherePivot('confirmed_at', null)->exists()) {
+            return 'rejected';
+        } elseif ($this->users()->wherePivot('user_id', auth()->id())->exists()) {
+            return 'confirmed';
+        } elseif ($this->created_at->isToday() || $this->created_at->isYesterday()) {
+            return 'new';
+        } elseif ($this->updated_at->isToday() || $this->updated_at->isYesterday()) {
+            return 'updated';
+        } elseif ($this->created_at->isLastWeek()) {
+            return 'waiting';
+        } else {
+            return 'warning';
+        }
+    }
+
+
+    //relations
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)

@@ -22,6 +22,23 @@ class WorkInstructionResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
 
+    public static function getEloquentQuery(): Builder
+    {
+        if(auth()->user()->can('backend.work-instructions.update')) {
+            return parent::getEloquentQuery();
+        }else{
+            return parent::getEloquentQuery()
+                ->whereHas('users', function (Builder $query) {
+                    $query->where('user_id', auth()->user()->id);
+                })
+                ->orWhereHas('groups', function (Builder $query) {
+                    $query->whereHas('users', function (Builder $query) {
+                        $query->where('user_id', auth()->user()->id);
+                    });
+                });
+        }
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -53,6 +70,16 @@ class WorkInstructionResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'new' => 'primary',
+                        'confirmed' => 'success',
+                        'rejected' => 'gray',
+                        'updated' => 'info',
+                        'waiting' => 'warning',
+                        'warning' => 'danger'
+                    }),
             ])
             ->filters([
                 //
