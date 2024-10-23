@@ -20,41 +20,62 @@ class WorkInstructionResource extends Resource
     protected static ?string $model = WorkInstruction::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-
-    public static function getEloquentQuery(): Builder
-    {
-        if(auth()->user()->can('backend.work-instructions.update')) {
-            return parent::getEloquentQuery();
-        }else{
-            return parent::getEloquentQuery()
-                ->whereHas('users', function (Builder $query) {
-                    $query->where('user_id', auth()->user()->id);
-                })
-                ->orWhereHas('groups', function (Builder $query) {
-                    $query->whereHas('users', function (Builder $query) {
-                        $query->where('user_id', auth()->user()->id);
-                    });
-                });
-        }
-    }
-
+    
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->disabled(function ($record, $operation) {
+
+                        if ($operation === 'create') {
+                            return false;
+                        }
+                        return $record->users()->wherePivotNotNull('confirmed_at')->exists()
+                            || $record->users()->wherePivotNotNull('rejection_reason')->exists();
+                    }),
                 Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
-                Forms\Components\FileUpload::make('document'),
+                    ->columnSpanFull()
+                    ->disabled(function ($record, $operation) {
+
+                        if ($operation === 'create') {
+                            return false;
+                        }
+                        return $record->users()->wherePivotNotNull('confirmed_at')->exists()
+                            || $record->users()->wherePivotNotNull('rejection_reason')->exists();
+                    }),
+                Forms\Components\FileUpload::make('document')
+                    ->disabled(function ($record, $operation) {
+
+                        if ($operation === 'create') {
+                            return false;
+                        }
+                        return $record->users()->wherePivotNotNull('confirmed_at')->exists()
+                            || $record->users()->wherePivotNotNull('rejection_reason')->exists();
+                    }),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function (WorkInstruction $record) {
+                if (auth()->user()->can('backend.work-instructions.update')) {
+                    return parent::getEloquentQuery();
+                } else {
+                    return parent::getEloquentQuery()
+                        ->whereHas('users', function (Builder $query) {
+                            $query->where('user_id', auth()->user()->id);
+                        })
+                        ->orWhereHas('groups', function (Builder $query) {
+                            $query->whereHas('users', function (Builder $query) {
+                                $query->where('user_id', auth()->user()->id);
+                            });
+                        });
+                }
+            })
             ->columns([
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

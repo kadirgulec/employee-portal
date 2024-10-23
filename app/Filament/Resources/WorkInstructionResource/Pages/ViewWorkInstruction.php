@@ -12,6 +12,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Get;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,7 +27,15 @@ class ViewWorkInstruction extends ViewRecord
             Actions\EditAction::make(),
 
             Action::make('confirm')
-                ->hidden(fn (WorkInstruction $record) => $record->users()->wherePivot('user_id', auth()->user()->id)->exists())
+                //hidden if it is confirmed or rejected
+                //and if it is not for the users group
+                ->hidden(function (WorkInstruction $record) {
+                    return ($record->users()->wherePivotNotNull('confirmed_at')->exists()
+                            || $record->users()->wherePivotNotNull('rejection_reason')->exists())
+                        || ($record->groups()->whereHas('users', function (Builder $query) {
+                            $query->where('user_id', auth()->user()->id);
+                        })->doesntExist());
+                })
                 ->form([
                     TextInput::make('pin')
                         ->mask('9999')
@@ -43,7 +52,12 @@ class ViewWorkInstruction extends ViewRecord
 
                     $userId = auth()->user()->id;
 
-                    if (!$record->users()->wherePivot('user_id' , $userId)->exists()) {
+                    if ($record->users()->wherePivot('user_id', $userId)->exists()) {
+                        $workInstruction = $record->users()->wherePivot('user_id', $userId);
+                        $workInstruction->update([
+                            'confirmed_at' => now(),
+                        ]);
+                    } else {
                         $record->users()->attach($userId, [
                             'created_at' => now(),
                             'confirmed_at' => now(),
@@ -53,7 +67,13 @@ class ViewWorkInstruction extends ViewRecord
                 ->color('success'),
 
             Action::make('reject')
-                ->hidden(fn (WorkInstruction $record) => $record->users()->wherePivot('user_id', auth()->user()->id)->exists())
+                ->hidden(function (WorkInstruction $record) {
+                    return ($record->users()->wherePivotNotNull('confirmed_at')->exists()
+                            || $record->users()->wherePivotNotNull('rejection_reason')->exists())
+                        || ($record->groups()->whereHas('users', function (Builder $query) {
+                            $query->where('user_id', auth()->user()->id);
+                        })->doesntExist());
+                })
                 ->form([
                     Textarea::make('reason')
                         ->required()
@@ -62,7 +82,7 @@ class ViewWorkInstruction extends ViewRecord
                 ->action(function (array $data, WorkInstruction $record) {
                     $userId = auth()->user()->id;
 
-                    if (!$record->users()->wherePivot('user_id' , $userId)->exists()) {
+                    if (!$record->users()->wherePivot('user_id', $userId)->exists()) {
                         $record->users()->attach($userId, [
                             'created_at' => now(),
                             'rejection_reason' => $data['reason'],

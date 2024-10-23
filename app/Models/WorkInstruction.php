@@ -38,7 +38,7 @@ class WorkInstruction extends Model
             ->withPivot(['confirmed_at', 'last_reminder_email_at']);
     }
 
-    public function groups()
+    public function groups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class);
     }
