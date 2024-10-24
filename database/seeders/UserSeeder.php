@@ -14,24 +14,24 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $developers = [
-            'tb' => [
-                'illness_notification_contact' => true,
-                'name' => 'tb',
-                'email' => 'tb@aks-service.de',
-                'first_name' => 'Tobias',
-                'last_name' => 'Braun',
-                'gender' => 'Male',
-                'avatar' => '/01J84NXVCNHHEBGXPDQHH5AXRZ.jpg'
-            ],
-            'jp' => [
-                'illness_notification_contact' => false,
-                'name' => 'jp',
-                'email' => 'jp@aks-service.de',
-                'first_name' => 'Justin',
-                'last_name' => 'Preuß',
-                'gender' => 'Male',
-                'avatar' => '/01J84NW49V59J4ZF5EVZ8WS1PJ.jpg'
-            ],
+//            'tb' => [
+//                'illness_notification_contact' => true,
+//                'name' => 'tb',
+//                'email' => 'tb@aks-service.de',
+//                'first_name' => 'Tobias',
+//                'last_name' => 'Braun',
+//                'gender' => 'Male',
+//                'avatar' => '/01J84NXVCNHHEBGXPDQHH5AXRZ.jpg'
+//            ],
+//            'jp' => [
+//                'illness_notification_contact' => false,
+//                'name' => 'jp',
+//                'email' => 'jp@aks-service.de',
+//                'first_name' => 'Justin',
+//                'last_name' => 'Preuß',
+//                'gender' => 'Male',
+//                'avatar' => '/01J84NW49V59J4ZF5EVZ8WS1PJ.jpg'
+//            ],
             'kg' => [
                 'illness_notification_contact' => true,
                 'name' => 'kadirguelec',
@@ -41,15 +41,15 @@ class UserSeeder extends Seeder
                 'gender' => 'Male',
                 'avatar' => '/01J5Z3PDSYENPDJS3R93MGWHNR.jpg',
             ],
-            'fh' => [
-                'illness_notification_contact' => false,
-                'name' => 'fh',
-                'email' => 'fh@aks-service.de',
-                'first_name' => 'Fabian',
-                'last_name' => 'Haupt',
-                'gender' => 'Male',
-                'avatar' => '/01J84NKKM5TJ20FAHV9KA7B2P8.jpg',
-            ],
+//            'fh' => [
+//                'illness_notification_contact' => false,
+//                'name' => 'fh',
+//                'email' => 'fh@aks-service.de',
+//                'first_name' => 'Fabian',
+//                'last_name' => 'Haupt',
+//                'gender' => 'Male',
+//                'avatar' => '/01J84NKKM5TJ20FAHV9KA7B2P8.jpg',
+//            ],
         ];
 
         foreach ($developers as $developer) {

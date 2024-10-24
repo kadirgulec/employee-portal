@@ -12,8 +12,8 @@ return [
     'language_did_not_change' => 'Language Did Not Change',
     'language_flag_link' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/2560px-Flag_of_the_United_Kingdom_%283-5%29.svg.png',
 
-    'navigation' =>[
-      'management' => 'Management',
+    'navigation' => [
+        'management' => 'Management',
     ],
 
     'user' => [
@@ -38,13 +38,17 @@ return [
         'permissions' => 'Permissions',
         'leader' => 'Department Manager',
         'add_department' => 'Add Department',
-        'active' =>[
+        'active' => [
             'label' => 'Employee Status',
             'all' => 'All Employees',
             'true' => 'Active',
             'false' => 'Inactive',
         ],
         'please_set_your_pin' => 'You have to set your pin to use this application.',
+        'full_name' => 'Full Name',
+        'confirmed_at' => 'Confirmed at',
+        'rejection_reason' => 'Rejection Reason',
+
     ],
     'department' => [
         'single' => 'Department',
@@ -83,7 +87,7 @@ return [
         'rate' => 'Share of Illness Notifications',
     ],
 
-    'customer'=>[
+    'customer' => [
         'single' => 'Customer',
         'plural' => 'Customers',
         'first_name' => 'First Name',
@@ -119,15 +123,45 @@ return [
 
     ],
     'product' =>
-    [
-        'single' => 'Product',
-        'plural' => 'Products',
-        'add' => 'Add Product',
-        'create_new' => 'Create New Product',
-        'name' => 'Name',
-        'description' => 'Description',
-        'price' => 'Price',
-        'notify_created' => 'Product Created',
-    ],
+        [
+            'single' => 'Product',
+            'plural' => 'Products',
+            'add' => 'Add Product',
+            'create_new' => 'Create New Product',
+            'name' => 'Name',
+            'description' => 'Description',
+            'price' => 'Price',
+            'notify_created' => 'Product Created',
+        ],
+
+    'work-instruction' =>
+        [
+            'single' => 'Work Instruction',
+            'plural' => 'Work Instructions',
+            'add' => 'Add Work Instruction',
+            'create_new' => 'Create New Work Instruction',
+            'title' => 'Title',
+            'description' => 'Description',
+            'document' => 'Document',
+            'status' =>
+                [
+                    'status' => 'Status',
+                    'rejected' => 'rejected',
+                    'confirmed' => 'confirmed',
+                    'new' => 'new',
+                    'updated' => 'updated',
+                    'waiting' => 'waiting',
+                    'warning' => 'warning',
+                ],
+        ],
+    'group' =>
+        [
+            'single' => 'Group',
+            'plural' => 'Groups',
+            'name' => 'Name',
+            'description' => 'Description',
+            'members' => 'Members',
+            'add_group' => 'Add Group',
+        ]
 
 ];

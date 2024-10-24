@@ -12,7 +12,7 @@ return [
     'language_did_not_change' => 'Die Sprache Wurde Nicht geändert',
     'language_flag_link' => 'https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1200px-Flag_of_Germany.svg.png',
 
-    'navigation' =>[
+    'navigation' => [
         'management' => 'Verwaltung',
     ],
 
@@ -38,13 +38,16 @@ return [
         'permissions' => 'Berechtigungen',
         'leader' => 'Abteilungleiter',
         'add_department' => 'Department hinzufügen',
-        'active' =>[
+        'active' => [
             'label' => 'Mitarbeiterstatus',
             'all' => 'Alle Mitarbieter',
             'true' => 'Aktiv',
             'false' => 'nicht Aktiv',
         ],
         'please_set_your_pin' => 'Sie müssen Ihre PIN eingeben, um diese Anwendung zu verwenden.',
+        'full_name' => 'Name',
+        'confirmed_at' => 'Bestätigt am',
+        'rejection_reason' => 'Ablehnungsgrund',
     ],
     'department' => [
         'single' => 'Abteilung',
@@ -81,7 +84,7 @@ return [
         'rate' => 'Anteil der Krankmeldungen',
     ],
 
-    'customer'=>[
+    'customer' => [
         'single' => 'Kunde',
         'plural' => 'Kunden',
         'first_name' => 'Vorname',
@@ -127,5 +130,35 @@ return [
             'notify_created' => 'Produkt erstellt.',
         ],
 
+    'work-instruction' =>
+        [
+            'single' => 'Arbeitsanweisung',
+            'plural' => 'Arbeitsanweisungen',
+            'add' => 'Arbeitsanweisung hinzufügen',
+            'create_new' => 'Neu Arbeistanweisung erstellen',
+            'title' => 'Titel',
+            'description' => 'Beschreibung',
+            'document' => 'Dokument',
+            'status' =>
+                [
+                    'status' => 'Status',
+                    'rejected' => 'abgelehnt',
+                    'confirmed' => 'bestätigt',
+                    'new' => 'neu',
+                    'updated' => 'aktualisiert',
+                    'waiting' => 'wartend',
+                    'warning' => 'warnung',
+                ],
+        ],
+
+    'group' =>
+        [
+            'single' => 'Gruppe',
+            'plural' => 'Gruppen',
+            'name' => 'Name',
+            'description' => 'Beschreibung',
+            'members' => 'Angehörige',
+            'add_group' => 'Gruppe Hinzufügen',
+        ]
 
 ];
