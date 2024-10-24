@@ -311,6 +311,102 @@ return [
                             'description' => 'can reorder department',
                         ],
                 ],
+            'work-instructions' =>
+                [
+                    'view-any' =>
+                        [
+                            'title' => 'View Work Instructions',
+                            'description' => 'can view work instructions',
+                        ],
+                    'view' =>
+                        [
+                            'title' => 'View Work Instruction',
+                            'description' => 'can view work instruction',
+                        ],
+                    'create' =>
+                    [
+                        'title' => 'Create Work Instructions',
+                        'description' => 'can create work instruction',
+                    ],
+                    'update' =>
+                    [
+                        'title' => 'Update Work Instructions',
+                        'description' => 'can edit work instruction',
+                    ],
+                    'delete' =>
+                    [
+                        'title' => 'Delete Work Instructions',
+                        'description' => 'can delete work instruction',
+                    ],
+                    'restore' =>
+                    [
+                        'title' => 'Restore Work Instructions',
+                        'description' => 'can restore a deleted work instruction',
+                    ],
+                    'force-delete' =>
+                    [
+                        'title' => 'Force Delete Work Instructions',
+                        'description' => 'can delete the work instruction completely from Database',
+                    ],
+                    'replicate' =>
+                    [
+                        'title' => 'Replicate Work Instructions',
+                        'description' => 'can replicate work instruction',
+                    ],
+                    'reorder' =>
+                    [
+                        'title' => 'Reorder Work Instructions',
+                        'description' => 'can reorder work instruction',
+                    ]
+                ],
+            'groups' =>
+            [
+                'view-any' =>
+                [
+                    'title' => 'View Groups',
+                    'description' => 'can list groups',
+                ],
+                'view' =>
+                [
+                    'title' => 'View Group',
+                    'description' => 'can view group',
+                ],
+                'create' =>
+                [
+                    'title' => 'Create Groups',
+                    'description' => 'can create group',
+                ],
+                'update' =>
+                [
+                    'title' => 'Update Groups',
+                    'description' => 'can edit group',
+                ],
+                'delete' =>
+                [
+                    'title' => 'Delete Groups',
+                    'description' => 'can delete group',
+                ],
+                'restore' =>
+                [
+                    'title' => 'Restore Groups',
+                    'description' => 'can restore a deleted group',
+                ],
+                'force-delete' =>
+                [
+                    'title' => 'Force Delete Groups',
+                    'description' => 'can delete the group completely from Database',
+                ],
+                'replicate' =>
+                [
+                    'title' => 'Replicate Groups',
+                    'description' => 'can replicate group',
+                ],
+                'reorder' =>
+                [
+                    'title' => 'Reorder Groups',
+                    'description' => 'can reorder group',
+                ],
+            ]
 
         ]
 

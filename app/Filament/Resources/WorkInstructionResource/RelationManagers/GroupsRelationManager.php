@@ -20,19 +20,14 @@ class GroupsRelationManager extends RelationManager
         return $ownerRecord->groups->count();
     }
 
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    {
+        return __('filament-panels::translations.group.plural');
+    }
+
     public static function canViewForRecord(Model $ownerRecord, string $pageClass): bool
     {
         return auth()->user()->can('backend.work-instructions.update');
-    }
-
-    public function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-            ]);
     }
 
     public function table(Table $table): Table
@@ -40,14 +35,15 @@ class GroupsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('name')
+                ->label(__('filament-panels::translations.group.name')),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
                 Tables\Actions\AttachAction::make()
-                    ->modalHeading(__('filament-panels::translations.add_group'))
+                    ->modalHeading(__('filament-panels::translations.group.add_group'))
                     ->preloadRecordSelect()
                     ->recordSelectSearchColumns(['name'])
                     ->color('primary'),

@@ -10,11 +10,17 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UsersRelationManager extends RelationManager
 {
     protected static string $relationship = 'users';
+
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    {
+        return __('filament-panels::translations.user.plural');
+    }
 
 
     public function table(Table $table): Table
@@ -22,7 +28,8 @@ class UsersRelationManager extends RelationManager
         return $table
             ->recordTitle(fn(User $user): string => optional($user)->full_name)
             ->columns([
-                Tables\Columns\TextColumn::make('full_name'),
+                Tables\Columns\TextColumn::make('full_name')
+                ->label(__('filament-panels::translations.user.full_name')),
                 Tables\Columns\ImageColumn::make('avatar')
                     ->circular(),
             ])

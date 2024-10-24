@@ -17,6 +17,10 @@ class UsersRelationManager extends RelationManager
 {
     protected static string $relationship = 'users';
 
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    {
+        return __('filament-panels::translations.user.plural');
+    }
     public static function getBadge(Model $ownerRecord, string $pageClass): ?string
     {
         return $ownerRecord->users->count();
@@ -32,9 +36,12 @@ class UsersRelationManager extends RelationManager
         return $table
             ->recordTitle(fn(User $user): string => optional($user)->full_name)
             ->columns([
-                Tables\Columns\TextColumn::make('full_name'),
-                Tables\Columns\TextColumn::make('confirmed_at'),
-                TextColumn::make('rejection_reason'),
+                Tables\Columns\TextColumn::make('full_name')
+                ->label(__('filament-panels::translations.user.full_name')),
+                Tables\Columns\TextColumn::make('confirmed_at')
+                ->label(__('filament-panels::translations.user.confirmed_at')),
+                TextColumn::make('rejection_reason')
+                ->label(__('filament-panels::translations.user.rejection_reason')),
             ])
             ->filters([
                 //

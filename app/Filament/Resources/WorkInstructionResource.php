@@ -19,17 +19,33 @@ class WorkInstructionResource extends Resource
 {
     protected static ?string $model = WorkInstruction::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    
+    protected static ?string $navigationIcon = 'heroicon-o-paper-clip';
+
+    protected static ?int $navigationSort = 2;
+
+    public static function getModelLabel(): string
+    {
+        return __('filament-panels::translations.work-instruction.single');
+    }
+
+    /**
+     * sets the resource name for plural cases
+     * @return string
+     */
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament-panels::translations.work-instruction.plural');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
+                    ->label(__('filament-panels::translations.work-instruction.title'))
                     ->required()
                     ->maxLength(255)
                     ->disabled(function ($record, $operation) {
-
                         if ($operation === 'create') {
                             return false;
                         }
@@ -37,9 +53,9 @@ class WorkInstructionResource extends Resource
                             || $record->users()->wherePivotNotNull('rejection_reason')->exists();
                     }),
                 Forms\Components\Textarea::make('description')
+                    ->label(__('filament-panels::translations.work-instruction.description'))
                     ->columnSpanFull()
                     ->disabled(function ($record, $operation) {
-
                         if ($operation === 'create') {
                             return false;
                         }
@@ -47,6 +63,7 @@ class WorkInstructionResource extends Resource
                             || $record->users()->wherePivotNotNull('rejection_reason')->exists();
                     }),
                 Forms\Components\FileUpload::make('document')
+                    ->label(__('filament-panels::translations.work-instruction.document'))
                     ->disabled(function ($record, $operation) {
 
                         if ($operation === 'create') {
@@ -93,6 +110,7 @@ class WorkInstructionResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
+                    ->formatStateUsing(fn($state) => __('filament-panels::translations.work-instruction.status.' . $state))
                     ->color(fn(string $state): string => match ($state) {
                         'new' => 'primary',
                         'confirmed' => 'success',
