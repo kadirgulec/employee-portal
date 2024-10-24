@@ -64,14 +64,18 @@ class WorkInstructionResource extends Resource
                     }),
                 Forms\Components\FileUpload::make('document')
                     ->label(__('filament-panels::translations.work-instruction.document'))
+                    ->directory('work-instructions')
                     ->disabled(function ($record, $operation) {
-
                         if ($operation === 'create') {
                             return false;
                         }
                         return $record->users()->wherePivotNotNull('confirmed_at')->exists()
                             || $record->users()->wherePivotNotNull('rejection_reason')->exists();
                     }),
+                Forms\Components\View::make('filament.show-work-instruction-document')
+                    ->columnSpanFull()
+                    ->visible(fn($record) => !is_null($record->document)),
+
             ]);
     }
 
@@ -110,7 +114,8 @@ class WorkInstructionResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
-                    ->formatStateUsing(fn($state) => __('filament-panels::translations.work-instruction.status.' . $state))
+                    ->formatStateUsing(fn($state
+                    ) => __('filament-panels::translations.work-instruction.status.'.$state))
                     ->color(fn(string $state): string => match ($state) {
                         'new' => 'primary',
                         'confirmed' => 'success',
