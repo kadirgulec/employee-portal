@@ -6,6 +6,8 @@ use App\Filament\Resources\IllnessNotificationResource;
 use App\Filament\Resources\UserResource;
 use App\Http\Middleware\Pin;
 use App\Http\Middleware\SetLocal;
+use App\Notifications\ResetPasswordNotification;
+use App\Filament\Pages\Auth\RequestPasswordReset;
 use Filament\AvatarProviders\UiAvatarsProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -37,7 +39,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('/')
             ->login()
-            ->passwordReset()
+            ->passwordReset(RequestPasswordReset::class)
             ->colors([
                 'danger' => Color::Red,
                 'gray' => Color::Slate,
