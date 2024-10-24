@@ -313,6 +313,7 @@ return [
                 ],
             'work-instructions' =>
                 [
+                    'title' => 'Work Instructions',
                     'view-any' =>
                         [
                             'title' => 'View Work Instructions',
@@ -361,6 +362,7 @@ return [
                 ],
             'groups' =>
             [
+                'title' => 'Groups',
                 'view-any' =>
                 [
                     'title' => 'View Groups',
