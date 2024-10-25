@@ -85,10 +85,13 @@ class ViewWorkInstruction extends ViewRecord
     {
         $userId = auth()->user()->id;
 
-        $hasConfirmedOrRejected = $record->users()
-            ->wherePivotNotNull('confirmed_at')
-            ->orwherePivotNotNull('rejection_reason')
-            ->exists();
+        $hasConfirmedOrRejected = $record->users()->exists()
+            ? $record->users()
+                ->wherePivotNotNull('confirmed_at')
+                ->orWherePivotNotNull('rejection_reason')
+                ->exists()
+            : false;
+
 
         $userInGroup = $record->groups()
             ->whereHas('users', function (Builder $query) use ($userId) {
