@@ -153,6 +153,8 @@ return [
                     'waiting' => 'waiting',
                     'warning' => 'warning',
                 ],
+            'reject' => 'Reject',
+            'confirm' => 'Confirm',
         ],
     'group' =>
         [

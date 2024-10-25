@@ -27,7 +27,8 @@ class ViewWorkInstruction extends ViewRecord
             Actions\EditAction::make(),
 
             Action::make('confirm')
-                ->hidden(fn(WorkInstruction $record) => $this->canBeConfirmedOrRejected($record))
+                ->label(__('filament-panels::translations.work-instruction.confirm'))
+                ->visible(fn(WorkInstruction $record) => $this->canBeConfirmedOrRejected($record))
                 ->form([
                     TextInput::make('pin')
                         ->mask('9999')
@@ -59,7 +60,8 @@ class ViewWorkInstruction extends ViewRecord
                 ->color('success'),
 
             Action::make('reject')
-                ->hidden(fn(WorkInstruction $record) => $this->canBeConfirmedOrRejected($record))
+                ->label(__('filament-panels::translations.work-instruction.reject'))
+                ->visible(fn(WorkInstruction $record) => $this->canBeConfirmedOrRejected($record))
                 ->form([
                     Textarea::make('reason')
                         ->required()
@@ -88,17 +90,16 @@ class ViewWorkInstruction extends ViewRecord
             ->orwherePivotNotNull('rejection_reason')
             ->exists();
 
-        $userInGroup = $record->groups()->whereHas('users', function (Builder $query) use ($userId) {
-            $query->where('user_id', $userId);
-        })->exists();
+        $userInGroup = $record->groups()
+            ->whereHas('users', function (Builder $query) use ($userId) {
+                $query->where('user_id', $userId);
+            })->exists();
 
+        $userAssociatedWithInstruction = $record->users()
+            ->where('users.id', $userId)
+            ->exists();
 
-        $userAssociatedWithInstruction = $record->users()->where('users.id', $userId)->exists();
-
-        return $hasConfirmedOrRejected
-            || (!$userInGroup && !$userAssociatedWithInstruction)
-            || ($userAssociatedWithInstruction && $hasConfirmedOrRejected);
+        return ($userInGroup && !$hasConfirmedOrRejected)
+            || ($userAssociatedWithInstruction && !$hasConfirmedOrRejected);
     }
-
-
 }
