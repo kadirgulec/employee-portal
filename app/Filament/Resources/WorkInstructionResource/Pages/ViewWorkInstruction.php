@@ -27,15 +27,7 @@ class ViewWorkInstruction extends ViewRecord
             Actions\EditAction::make(),
 
             Action::make('confirm')
-                //hidden if it is confirmed or rejected
-                //and if it is not for the users group
-                ->hidden(function (WorkInstruction $record) {
-                    return ($record->users()->wherePivotNotNull('confirmed_at')->exists()
-                            || $record->users()->wherePivotNotNull('rejection_reason')->exists())
-                        || ($record->groups()->whereHas('users', function (Builder $query) {
-                            $query->where('user_id', auth()->user()->id);
-                        })->doesntExist());
-                })
+                ->hidden(fn(WorkInstruction $record) => $this->canBeConfirmedOrRejected($record))
                 ->form([
                     TextInput::make('pin')
                         ->mask('9999')
@@ -67,13 +59,7 @@ class ViewWorkInstruction extends ViewRecord
                 ->color('success'),
 
             Action::make('reject')
-                ->hidden(function (WorkInstruction $record) {
-                    return ($record->users()->wherePivotNotNull('confirmed_at')->exists()
-                            || $record->users()->wherePivotNotNull('rejection_reason')->exists())
-                        || ($record->groups()->whereHas('users', function (Builder $query) {
-                            $query->where('user_id', auth()->user()->id);
-                        })->doesntExist());
-                })
+                ->hidden(fn(WorkInstruction $record) => $this->canBeConfirmedOrRejected($record))
                 ->form([
                     Textarea::make('reason')
                         ->required()
@@ -91,6 +77,27 @@ class ViewWorkInstruction extends ViewRecord
                 })
                 ->color('danger'),
         ];
+    }
+
+    protected function canBeConfirmedOrRejected($record): bool
+    {
+        $userId = auth()->user()->id;
+
+        $hasConfirmedOrRejected = $record->users()
+            ->wherePivotNotNull('confirmed_at')
+            ->orwherePivotNotNull('rejection_reason')
+            ->exists();
+
+        $userInGroup = $record->groups()->whereHas('users', function (Builder $query) use ($userId) {
+            $query->where('user_id', $userId);
+        })->exists();
+
+
+        $userAssociatedWithInstruction = $record->users()->where('users.id', $userId)->exists();
+
+        return $hasConfirmedOrRejected
+            || (!$userInGroup && !$userAssociatedWithInstruction)
+            || ($userAssociatedWithInstruction && $hasConfirmedOrRejected);
     }
 
 

@@ -52,7 +52,7 @@ class WorkInstructionResource extends Resource
                         return $record->users()->wherePivotNotNull('confirmed_at')->exists()
                             || $record->users()->wherePivotNotNull('rejection_reason')->exists();
                     }),
-                Forms\Components\Textarea::make('description')
+                Forms\Components\RichEditor::make('description')
                     ->label(__('filament-panels::translations.work-instruction.description'))
                     ->columnSpanFull()
                     ->disabled(function ($record, $operation) {
@@ -74,8 +74,7 @@ class WorkInstructionResource extends Resource
                     }),
                 Forms\Components\View::make('filament.show-work-instruction-document')
                     ->columnSpanFull()
-                    ->visible(fn($record) => !is_null($record->document)),
-
+                    ->visible(fn($record) => isset($record->document)),
             ]);
     }
 

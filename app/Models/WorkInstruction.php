@@ -16,9 +16,9 @@ class WorkInstruction extends Model
     //attributes
     public function getStatusAttribute(): string
     {
-        if ($this->users()->wherePivot('user_id', auth()->id())->wherePivot('confirmed_at', null)->exists()) {
+        if ($this->users()->wherePivot('user_id', auth()->id())->wherePivotNotNull('rejection_reason')->exists()) {
             return 'rejected';
-        } elseif ($this->users()->wherePivot('user_id', auth()->id())->exists()) {
+        } elseif ($this->users()->wherePivot('user_id', auth()->id())->wherePivotNotNull('confirmed_at')->exists()) {
             return 'confirmed';
         } elseif ($this->created_at->isToday() || $this->created_at->isYesterday()) {
             return 'new';

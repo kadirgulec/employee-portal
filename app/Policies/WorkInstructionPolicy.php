@@ -37,8 +37,9 @@ class WorkInstructionPolicy
      */
     public function update(User $user, WorkInstruction $workInstruction): bool
     {
-        return auth()->user()->can('backend.work-instructions.update');
-
+        return auth()->user()->can('backend.work-instructions.update')
+            && !$workInstruction->users()->wherePivotNotNull('confirmed_at')->exists()
+            && !$workInstruction->users()->wherePivotNotNull('rejection_reason')->exists();
     }
 
     /**
