@@ -149,8 +149,8 @@ return [
                     'waiting' => 'wartend',
                     'warning' => 'warnung',
                 ],
-            'reject' => 'Reject',
-            'confirm' => 'Confirm',
+            'reject' => 'Ablehnen',
+            'confirm' => 'Bestätigen',
         ],
 
     'group' =>
