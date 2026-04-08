@@ -1,66 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏢 Enterprise Employee Portal 
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive, scalable Employee Management and HR Workflow Portal built with the **TALL Stack** and **FilamentPHP**. 
 
-## About Laravel
+> **🎓 IHK Final Project (Betriebliche Projektarbeit)**
+> This application originated as my official final examination project for my state-recognized degree as a Software Developer (IHK). Since graduating, I have actively maintained and expanded the system with new features and architectural improvements.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🎯 The Business Case
+Many medium-sized companies struggle with decentralized employee data and analog workflows. The goal of this project was to digitize the HR department, specifically targeting the manual, paper-based "Sick Leave" (Krankmeldung) process. 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+By replacing phone calls and paper forms with a digital workflow, automated PDF generation, and centralized dashboards, this system significantly reduces administrative overhead and ensures data integrity.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠 Tech Stack & Architecture
+* **Framework:** Laravel 10/11 (PHP 8+)
+* **Admin Panel & UI:** FilamentPHP (v3), Tailwind CSS
+* **Frontend Interactivity:** Livewire 3, Alpine.js
+* **Database:** MySQL (Structured via Eloquent ORM)
+* **PDF Generation:** Spatie Browsershot / Puppeteer
+* **Architecture:** MVC Pattern, Service Classes, Action-based logic.
 
-## Learning Laravel
+## ✨ Core Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 👥 Employee Management (CRUD)
+* Centralized management of employee records, departments, and roles.
+* Complex Eloquent relationships (Many-to-Many for Department Leaders, One-to-Many for Notifications).
+* Secure password handling and authentication.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 🤒 Digital Sick Leave Workflow (Krankmeldesystem)
+* Dynamic Livewire forms that adapt based on user input (e.g., conditionally showing fields if a doctor was visited).
+* Validation of specific German HR rules (§5 EntgFG).
+* **Automated PDF Generation:** Converts the digital sick leave record into a standardized, downloadable PDF document for official HR records.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🌍 Multilingual Support
+* Custom-built language switcher component using Livewire and Alpine.js.
+* Dynamic translation of the Filament UI and custom pages (English, German, Turkish).
 
-## Laravel Sponsors
+### 📊 Dashboard & Analytics
+* Interactive widgets displaying real-time HR statistics and active sick leaves.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🧪 Code Quality & Testing
+A major focus of this project is reliability and code quality:
+* **Feature & Unit Testing:** Extensive test suites written with **PEST** to ensure CRUD operations and authorization rules work flawlessly.
+* **Code Coverage:** Monitored using **PCOV** to ensure critical business logic is fully tested.
+* **Static Analysis:** Codebase checked with **Qodana** to prevent vulnerabilities and maintain clean code standards.
 
-### Premium Partners
+## 📸 Screenshots
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+<details>
+  <summary>Click to view Screenshots</summary>
+     <img width="883" height="668" alt="image" src="https://github.com/user-attachments/assets/3043bad7-9566-4beb-98c3-736f124e1e88" />
+<img width="581" height="908" alt="image" src="https://github.com/user-attachments/assets/fd27b470-de64-4098-b6c3-aac0e584855c" />
+<img width="568" height="502" alt="image" src="https://github.com/user-attachments/assets/6edf9fef-25a2-40eb-9aad-bfad7005cd4c" />
+</details>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🚀 Local Setup & Installation
 
-## Code of Conduct
+To run this project locally, ensure you have PHP 8+, Composer, and Node.js installed. Note that Puppeteer is required for the PDF generation feature.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/kadirgulec/employee-portal.git
+   cd employee-portal
+   ```
+2. **Install PHP and Node dependencies:**
+   ```bash
+   composer install
+   npm install
+   npm run build
+   ```
+3. **Install Puppeteer (for Spatie Browsershot / PDF Generation):**
+   ```bash
+   npm install puppeteer
+   ```
+4. **Environment & Database Setup:**
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+   ```
+5. **Run Migrations & Seeders:**
+    ```bash
+    php artisan migrate --seed
+    ```
+6. **Link Storage (for Avatars & generated PDFs):**
+    ```bash
+    php artisan storage:link
+    ```
+7. **Start the development server:**
+    ```bash
+    php artisan serve
+    ```
+    
+   
