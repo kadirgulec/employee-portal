@@ -11,7 +11,7 @@
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
-        "spatie/browsershot": "^4.3",
+        "spatie/browsershot": "^5.0",
         "spatie/laravel-activitylog": "^4.8",
         "spatie/laravel-translatable": "^6.8",
         "spatie/pest-plugin-route-testing": "^1.0"
